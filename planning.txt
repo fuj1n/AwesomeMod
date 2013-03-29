@@ -1,0 +1,31 @@
+Topic - Awesome Mod
+
+- Game Mode?
+- Decoration Blocks       ^
+- Mobs     ^
+- Gameplay changers?
+- New tools/armor/blocks       ^
+- New ores  ^
+- GUI's and storage blocks?
+- WorldGen
+
+
+- Ores
+    * Awesome ore
+- Decoration Blocks
+    * Chairs?
+    * Different types of half blocks?
+    * Awesome blocks?
+- Mobs
+    * New mobs (awesome mobs) that drop certain items required to make mod-items?
+- Tools/armor/blocks
+    * Awesome armor set.
+- Awesome potions?
+- WorldGen
+    * Ores
+    * Structures?
+
+- End-game mod
+    
+
+
