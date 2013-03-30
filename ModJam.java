@@ -1,9 +1,8 @@
 package modJam;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.material.MapColor;
-import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.oredict.OreDictionary;
@@ -26,9 +25,15 @@ public class ModJam {
 	public static Configuration config;
 	
 	//Config values
+	//Blocks
 	public static int oreAwesomeID = 1024;
+	//Items
+	public static int ingotAwesomeID = 3240;
+	//End Config values
 	//Blocks
 	public static Block awesomeOre;
+	//Items
+	public static Item awesomeIngot;
 	//CreativeTabs
 	public static CreativeTabs modJamCreativeTab;
 	//Sub Names
@@ -42,7 +47,10 @@ public class ModJam {
 	public void PreInit(FMLPreInitializationEvent event){
 		config = new Configuration(event.getSuggestedConfigurationFile());
 		config.load();
+		//Blocks
 		oreAwesomeID = config.getBlock("Awesome Ore ID", oreAwesomeID).getInt();
+		//Items
+		ingotAwesomeID = config.getItem("Awesome Ingot ID", ingotAwesomeID).getInt();
 		config.save();
 	} 
 	
@@ -51,6 +59,7 @@ public class ModJam {
 		proxy.handler();
 		registerCreativeTab();
 		initAllBlocks();
+		initAllItems();
 		registerAllBlocks();
 		addAllNames();
 		registerAllOreDictionary();
@@ -60,6 +69,10 @@ public class ModJam {
 		awesomeOre = new BlockAwesomeOre(oreAwesomeID).setHardness(5F).setResistance(5F).setCreativeTab(modJamCreativeTab).setUnlocalizedName("fuj1n.modJam.AwesomeOre");
 	}
 	
+	public void initAllItems(){
+		awesomeIngot = new ItemAwesomeIngot(ingotAwesomeID).setCreativeTab(modJamCreativeTab);
+	}
+	
 	public void registerAllBlocks(){
 		GameRegistry.registerBlock(awesomeOre, ItemAwesomeOre.class, "fuj1n.modJam.awesomeOre");
 	}
@@ -67,6 +80,7 @@ public class ModJam {
 	public void addAllNames(){
 		for (int i = 0; i < 16; i++) {
 			LanguageRegistry.addName(new ItemStack(awesomeOre, 1, i), awesomeColors[new ItemStack(awesomeOre, 1, i).getItemDamage()] + " Awesome Ore");
+			LanguageRegistry.addName(new ItemStack(awesomeIngot, 1, i), awesomeColors[new ItemStack(awesomeIngot, 1, i).getItemDamage()] + " Awesome Ingot");
 		}
 	}
 	
@@ -76,6 +90,10 @@ public class ModJam {
 	}
 	
 	public void registerAllOreDictionary(){
-		OreDictionary.registerOre("oreAwesome", awesomeOre);
+		for (int i = 0; i < 16; i++) {
+			OreDictionary.registerOre("oreAwesome" + awesomeColors[i], new ItemStack(awesomeOre, 1, i));
+			OreDictionary.registerOre("ingotAwesome" + awesomeColors[i], new ItemStack(awesomeIngot, 1, i));
+		}
+		
 	}
 }
