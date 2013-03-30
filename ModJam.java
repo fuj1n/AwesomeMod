@@ -98,7 +98,7 @@ public class ModJam {
 	
 	public void addAllSmelting(){
 		for (int i = 0; i < 16; i++){
-			FurnaceRecipes.smelting().addSmelting(oreAwesomeID, i, new ItemStack(ingotAwesomeID, 1, i), 0.1F);
+			FurnaceRecipes.smelting().addSmelting(oreAwesomeID, i, new ItemStack(awesomeIngot, 1, i), 0.1F);
 		}
 	}
 	
