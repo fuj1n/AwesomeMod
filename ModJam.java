@@ -6,6 +6,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.Configuration;
+import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.PreInit;
@@ -52,6 +53,7 @@ public class ModJam {
 		initAllBlocks();
 		registerAllBlocks();
 		addAllNames();
+		registerAllOreDictionary();
 	}
 	
 	public void initAllBlocks(){
@@ -71,5 +73,9 @@ public class ModJam {
 	public void registerCreativeTab(){
 		modJamCreativeTab = new CreativeTabModJam("fuj1n.modJam");
 		LanguageRegistry.instance().addStringLocalization("itemGroup." + modJamCreativeTab.getTabLabel(), CommonProxyModJam.modName);
+	}
+	
+	public void registerAllOreDictionary(){
+		OreDictionary.registerOre("oreAwesome", awesomeOre);
 	}
 }
