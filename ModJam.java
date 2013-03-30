@@ -4,8 +4,11 @@ import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.CraftingManager;
+import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.PreInit;
@@ -62,6 +65,8 @@ public class ModJam {
 		initAllItems();
 		registerAllBlocks();
 		addAllNames();
+		addAllCrafting();
+		addAllSmelting();
 		registerAllOreDictionary();
 	}
 	
@@ -87,6 +92,14 @@ public class ModJam {
 	public void registerCreativeTab(){
 		modJamCreativeTab = new CreativeTabModJam("fuj1n.modJam");
 		LanguageRegistry.instance().addStringLocalization("itemGroup." + modJamCreativeTab.getTabLabel(), CommonProxyModJam.modName);
+	}
+	
+	public void addAllCrafting(){}
+	
+	public void addAllSmelting(){
+		for (int i = 0; i < 16; i++){
+			FurnaceRecipes.smelting().addSmelting(oreAwesomeID, i, new ItemStack(ingotAwesomeID, 1, i), 0.1F);
+		}
 	}
 	
 	public void registerAllOreDictionary(){

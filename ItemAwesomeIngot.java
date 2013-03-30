@@ -26,7 +26,11 @@ public class ItemAwesomeIngot extends Item{
 	@Override
     public Icon getIconFromDamage(int par1)
     {
-        return this.iconsList[par1];
+		if(par1 < iconsList.length){
+			return this.iconsList[par1];
+		}else{
+			return this.iconsList[0];
+		}
     }
 	
     /**
@@ -76,7 +80,7 @@ public class ItemAwesomeIngot extends Item{
     
     @Override
     public String getUnlocalizedName(ItemStack par1ItemStack){
-    	return getUnlocalizedName() + "." + subNames[par1ItemStack.getItemDamage()];
+    	return getUnlocalizedName() + "." + subNames[par1ItemStack.getItemDamage() < subNames.length ? par1ItemStack.getItemDamage() : 0];
     }
 
 }
