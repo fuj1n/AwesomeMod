@@ -48,6 +48,15 @@ public class BlockAwesomeOre extends BlockOre{
     }
 	
     /**
+     * Returns true if the given side of this block type should be rendered, if the adjacent block is at the given
+     * coordinates.  Args: blockAccess, x, y, z, side
+     */
+    public boolean shouldSideBeRendered(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
+    {
+        return true;
+    }
+	
+    /**
      * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
      */
 	@Override

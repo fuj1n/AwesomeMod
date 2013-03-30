@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.Configuration;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
@@ -29,6 +30,12 @@ public class ModJam {
 	public static Block awesomeOre;
 	//CreativeTabs
 	public static CreativeTabs modJamCreativeTab;
+	//Sub Names
+	private static final String[] awesomeColors = { 
+		"White", "Orange", "Magenta",
+		"Light-Blue", "Yellow", "Lime", "Pink", "Gray", "Light-Gray", "Cyan",
+		"Purple", "Blue", "Brown", "Green", "Red", "Black"
+	};
 	
 	@PreInit
 	public void PreInit(FMLPreInitializationEvent event){
@@ -52,11 +59,13 @@ public class ModJam {
 	}
 	
 	public void registerAllBlocks(){
-		GameRegistry.registerBlock(awesomeOre, "fuj1n.modJam.awesomeOre");
+		GameRegistry.registerBlock(awesomeOre, ItemAwesomeOre.class, "fuj1n.modJam.awesomeOre");
 	}
 	
 	public void addAllNames(){
-		LanguageRegistry.addName(awesomeOre, "Awesome Ore");
+		for (int i = 0; i < 16; i++) {
+			LanguageRegistry.addName(new ItemStack(awesomeOre, 1, i), awesomeColors[new ItemStack(awesomeOre, 1, i).getItemDamage()] + " Awesome Ore");
+		}
 	}
 	
 	public void registerCreativeTab(){
