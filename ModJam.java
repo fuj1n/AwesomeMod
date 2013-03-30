@@ -36,19 +36,19 @@ public class ModJam {
 		config.load();
 		oreAwesomeID = config.getBlock("Awesome Ore ID", oreAwesomeID).getInt();
 		config.save();
-	}
+	} 
 	
 	@Init
 	public void Init(FMLInitializationEvent event){
 		proxy.handler();
+		registerCreativeTab();
 		initAllBlocks();
 		registerAllBlocks();
 		addAllNames();
-		registerCreativeTab();
 	}
 	
 	public void initAllBlocks(){
-		awesomeOre = new BlockAwesomeOre(oreAwesomeID).setHardness(5F).setResistance(5F).setUnlocalizedName("fuj1n.modJam.AwesomeOre");
+		awesomeOre = new BlockAwesomeOre(oreAwesomeID).setHardness(5F).setResistance(5F).setCreativeTab(modJamCreativeTab).setUnlocalizedName("fuj1n.modJam.AwesomeOre");
 	}
 	
 	public void registerAllBlocks(){
