@@ -15,6 +15,7 @@ public class BlockAwesomeOre extends BlockOre{
 	
 	public BlockAwesomeOre(int par1) {
 		super(par1);
+		this.setLightOpacity(15);
 	}
 	
 	@Override
@@ -24,12 +25,12 @@ public class BlockAwesomeOre extends BlockOre{
 	
 	@Override
 	public boolean renderAsNormalBlock(){
-		return true;
+		return false;
 	}
 	
 	@Override
 	public boolean isOpaqueCube(){
-		return true;
+		return false;
 	}
 	
 	@Override
