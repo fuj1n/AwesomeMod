@@ -80,6 +80,11 @@ public class BlockAwesomeOre extends BlockOre{
         par3List.add(new ItemStack(par1, 1, 15));
     }
 	
+	@Override
+	public int damageDropped(int par1){
+		return par1;
+	}
+	
     /**
      * When this method is called, your block should register all the icons it needs with the given IconRegister. This
      * is the only chance you get to register icons.
