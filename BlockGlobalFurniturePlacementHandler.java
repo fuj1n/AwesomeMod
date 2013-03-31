@@ -19,4 +19,13 @@ public abstract class BlockGlobalFurniturePlacementHandler extends Block{
 		}
 		return var1 == Block.glass.blockID || var1 == Block.mobSpawner.blockID || var1 == ModJam.awesomeOre.blockID || var1 == ModJam.woodTable.blockID || var1 == ModJam.stoneTable.blockID;
 	}
+	
+    /**
+     * Returns the mobility information of the block, 0 = free, 1 = can't push but can move over, 2 = total immobility
+     * and stop pistons
+     */
+    public int getMobilityFlag()
+    {
+        return 0;
+    }
 }
