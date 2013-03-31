@@ -1,4 +1,4 @@
-modJam
-======
+Awesome Mod - modJam
+====================
 
-ModJam 2013 by fuj1n
+AwesomeMod by fuj1n - Written for ModJam 2013
