@@ -92,8 +92,8 @@ public class ModJam {
 	public void Init(FMLInitializationEvent event){
 		proxy.handler();
 		registerCreativeTab();
-		initAllBlocks();
 		initAllItems();
+		initAllBlocks();
 		registerAllBlocks();
 		addAllNames();
 		addAllCrafting();
@@ -103,14 +103,14 @@ public class ModJam {
 	
 	public void initAllBlocks(){
 		awesomeOre = new BlockAwesomeOre(oreAwesomeID).setHardness(5F).setResistance(5F).setCreativeTab(modJamCreativeTab).setUnlocalizedName("fuj1n.modJam.AwesomeOre");
-		woodChairNorth = new BlockChair(woodChairIDs[0], ForgeDirection.NORTH, Block.planks, woodChairID);
-		woodChairEast = new BlockChair(woodChairIDs[1], ForgeDirection.EAST, Block.planks, woodChairID);
-		woodChairSouth = new BlockChair(woodChairIDs[2], ForgeDirection.SOUTH, Block.planks, woodChairID);
-		woodChairWest = new BlockChair(woodChairIDs[3], ForgeDirection.WEST, Block.planks, woodChairID);
-		stoneChairNorth = new BlockChair(stoneChairIDs[0], ForgeDirection.NORTH, Block.stone, stoneChairID);
-		stoneChairEast = new BlockChair(stoneChairIDs[1], ForgeDirection.EAST, Block.stone, stoneChairID);
-		stoneChairSouth = new BlockChair(stoneChairIDs[2], ForgeDirection.SOUTH, Block.stone, stoneChairID);
-		stoneChairWest = new BlockChair(stoneChairIDs[3], ForgeDirection.WEST, Block.stone, stoneChairID);
+		woodChairNorth = new BlockChair(woodChairIDs[0], ForgeDirection.NORTH, Block.planks, woodChair.itemID);
+		woodChairEast = new BlockChair(woodChairIDs[1], ForgeDirection.EAST, Block.planks, woodChair.itemID);
+		woodChairSouth = new BlockChair(woodChairIDs[2], ForgeDirection.SOUTH, Block.planks, woodChair.itemID);
+		woodChairWest = new BlockChair(woodChairIDs[3], ForgeDirection.WEST, Block.planks, woodChair.itemID);
+		stoneChairNorth = new BlockChair(stoneChairIDs[0], ForgeDirection.NORTH, Block.stone, stoneChair.itemID);
+		stoneChairEast = new BlockChair(stoneChairIDs[1], ForgeDirection.EAST, Block.stone, stoneChair.itemID);
+		stoneChairSouth = new BlockChair(stoneChairIDs[2], ForgeDirection.SOUTH, Block.stone, stoneChair.itemID);
+		stoneChairWest = new BlockChair(stoneChairIDs[3], ForgeDirection.WEST, Block.stone, stoneChair.itemID);
 	}
 	
 	public void initAllItems(){
