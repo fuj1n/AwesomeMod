@@ -30,6 +30,14 @@ public class ModJam {
 	//Config values
 	//Blocks
 	public static int oreAwesomeID = 1024;
+	public static int woodChairNorthID = 1025;
+	public static int woodChairEastID = 1026;
+	public static int woodChairSouthID = 1027;
+	public static int woodChairWestID = 1028;
+	public static int stoneChairNorthID = 1029;
+	public static int stoneChairEastID = 1030;
+	public static int stoneChairSouthID = 1031;
+	public static int stoneChairWestID = 1032;
 	//Items
 	public static int ingotAwesomeID = 3240;
 	//End Config values
