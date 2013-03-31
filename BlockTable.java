@@ -27,7 +27,7 @@ public class BlockTable extends Block{
 	}
 	
 	public boolean testPlacement(World par1World, int par2, int par3, int par4){
-		return par1World.isBlockNormalCube(par2, par3 - 1, par4) || par1World.getBlockId(par2, par3 - 1, par4) == ModJam.awesomeOre.blockID;
+		return par1World.isBlockNormalCube(par2, par3 - 1, par4) || par1World.getBlockId(par2, par3 - 1, par4) == ModJam.awesomeOre.blockID || par1World.getBlockId(par2, par3 - 1, par4) == ModJam.woodTable.blockID || par1World.getBlockId(par2, par3 - 1, par4) == ModJam.stoneTable.blockID;
 	}
 	
     /**
