@@ -172,7 +172,13 @@ public class ModJam {
 				"SXX", "SSS", "SXS", Character.valueOf('S'), Block.stone, Character.valueOf('X'), "ingotAwesome" + awesomeColors[i]
 			}));
 			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(stoneChair, 1, i), new Object[]{
-				"XXP", "SSS", "SXS", Character.valueOf('S'), Block.stone, Character.valueOf('X'), "ingotAwesome" + awesomeColors[i]
+				"XXS", "SSS", "SXS", Character.valueOf('S'), Block.stone, Character.valueOf('X'), "ingotAwesome" + awesomeColors[i]
+			}));
+			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(woodTable, 1, i), new Object[]{
+				"XXX", "PPP", "PXP", Character.valueOf('P'), Block.planks, Character.valueOf('X'), "ingotAwesome" + awesomeColors[i]
+			}));
+			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(stoneTable, 1, i), new Object[]{
+				"XXX", "SSS", "SXS", Character.valueOf('S'), Block.stone, Character.valueOf('X'), "ingotAwesome" + awesomeColors[i]
 			}));
 		}
 	}
