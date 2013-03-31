@@ -37,6 +37,8 @@ public class ModJam {
 	public static int[] stoneChairIDs = {
 		1029, 1030, 1031, 1032
 	};
+	public static int woodTableID = 1033;
+	public static int stoneTableID = 1034;
 	//Items
 	public static int ingotAwesomeID = 3240;
 	public static int woodChairID = 3241;
@@ -52,6 +54,8 @@ public class ModJam {
 	public static Block stoneChairEast;
 	public static Block stoneChairSouth;
 	public static Block stoneChairWest;
+	public static Block woodTable;
+	public static Block stoneTable;
 	//Items
 	public static Item awesomeIngot;
 	public static Item woodChair;
@@ -71,8 +75,10 @@ public class ModJam {
 		config.load();
 		//Blocks
 		oreAwesomeID = config.getBlock("Awesome Ore ID", oreAwesomeID).getInt();
-		woodChairIDs[0] = config.getBlock("Wooden Chair ID Set", woodChairIDs[0]).getInt();
-		stoneChairIDs[0] = config.getBlock("Stone Chair ID Set", stoneChairIDs[0]).getInt();
+		woodChairIDs[0] = config.getBlock("Wooden Chair ID Set(of 4)", woodChairIDs[0]).getInt();
+		stoneChairIDs[0] = config.getBlock("Stone Chair ID Set(of 4)", stoneChairIDs[0]).getInt();
+		woodTableID = config.getBlock("Wooden Table ID", woodTableID).getInt();
+		stoneTableID = config.getBlock("Stone Table ID", stoneTableID).getInt();
 		refreshChairIDs();
 		//Items
 		ingotAwesomeID = config.getItem("Awesome Ingot ID", ingotAwesomeID).getInt();
@@ -113,6 +119,8 @@ public class ModJam {
 		stoneChairEast = new BlockChair(stoneChairIDs[1], ForgeDirection.EAST, Block.stone, stoneChair.itemID).setHardness(0.3F).setUnlocalizedName("fuj1n.modJam.tileChair");
 		stoneChairSouth = new BlockChair(stoneChairIDs[2], ForgeDirection.SOUTH, Block.stone, stoneChair.itemID).setHardness(0.3F).setUnlocalizedName("fuj1n.modJam.tileChair");
 		stoneChairWest = new BlockChair(stoneChairIDs[3], ForgeDirection.WEST, Block.stone, stoneChair.itemID).setHardness(0.3F).setUnlocalizedName("fuj1n.modJam.tileChair");
+		woodTable = new BlockTable(woodTableID, Block.planks).setHardness(0.3F).setCreativeTab(modJamCreativeTab).setUnlocalizedName("fuj1n.modJam.woodTable");
+		stoneTable = new BlockTable(stoneTableID, Block.stone).setHardness(0.3F).setCreativeTab(modJamCreativeTab).setUnlocalizedName("fuj1n.modJam.stoneTable");
 	}
 	
 	public void initAllItems(){
@@ -131,6 +139,8 @@ public class ModJam {
 		GameRegistry.registerBlock(stoneChairEast, "fuj1n.modJam.stoneChairEast");
 		GameRegistry.registerBlock(stoneChairSouth, "fuj1n.modJam.stoneChairSouth");
 		GameRegistry.registerBlock(stoneChairWest, "fuj1n.modJam.stoneChairWest");
+		GameRegistry.registerBlock(woodTable, ItemTable.class, "fuj1n.modJam.woodTable");
+		GameRegistry.registerBlock(stoneTable, ItemTable.class, "fuj1n.modJam.stoneTable");
 	}
 	
 	public void addAllNames(){
@@ -139,6 +149,8 @@ public class ModJam {
 			LanguageRegistry.addName(new ItemStack(awesomeIngot, 1, i), awesomeColors[new ItemStack(awesomeIngot, 1, i).getItemDamage()] + " Awesome Ingot");
 			LanguageRegistry.addName(new ItemStack(woodChair, 1, i), awesomeColors[new ItemStack(woodChair, 1, i).getItemDamage()] + " Glowing Wooden Chair");
 			LanguageRegistry.addName(new ItemStack(stoneChair, 1, i), awesomeColors[new ItemStack(stoneChair, 1, i).getItemDamage()] + " Glowing Stone Chair");
+			LanguageRegistry.addName(new ItemStack(woodTable, 1, i), awesomeColors[new ItemStack(woodTable, 1, i).getItemDamage()] + " Glowing Wooden Table");
+			LanguageRegistry.addName(new ItemStack(stoneTable, 1, i), awesomeColors[new ItemStack(stoneTable, 1, i).getItemDamage()] + " Glowing Stone Table");
 		}
 	}
 	

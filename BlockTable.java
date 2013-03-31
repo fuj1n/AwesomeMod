@@ -14,21 +14,16 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 
-public class BlockChair extends Block{
+public class BlockTable extends Block{
 
 	private Icon[] blockColors = new Icon[16];
 	
-	public ForgeDirection face;
 	public Block belowBlock;
-	public int itemID;
 	
-	public BlockChair(int par1, ForgeDirection face, Block belowBlock, int itemID) {
+	public BlockTable(int par1, Block belowBlock) {
 		super(par1, Material.circuits);
 		this.setStepSound(belowBlock.stepSound);
-		this.setBlockBounds(0.25F, 0F, 0.25F, 0.75F, 1.4F, 0.75F);
-		this.face = face;
 		this.belowBlock = belowBlock;
-		this.itemID = itemID;
 	}
 	
 	public boolean testPlacement(World par1World, int par2, int par3, int par4){
@@ -70,7 +65,7 @@ public class BlockChair extends Block{
 	
 	@Override
 	public int getRenderType(){
-		return ClientProxyModJam.chairRenderType;
+		return ClientProxyModJam.tableRenderType;
 	}
 	
     /**
@@ -87,7 +82,7 @@ public class BlockChair extends Block{
 	@Override
     public int getLightValue(IBlockAccess world, int x, int y, int z)
     {
-        if(ClientProxyModJam.chairRenderStage == 0){
+        if(ClientProxyModJam.tableRenderStage == 0){
             Block block = blocksList[world.getBlockId(x, y, z)];
             if (block != null && block != this)
             {
@@ -100,32 +95,33 @@ public class BlockChair extends Block{
     }
 	
     /**
-     * Returns the bounding box of the wired rectangular prism to render.
-     */
-    public AxisAlignedBB getSelectedBoundingBoxFromPool(World par1World, int par2, int par3, int par4)
-    {
-        return AxisAlignedBB.getAABBPool().getAABB(0.25F, 0F, 0.25F, 0.75F, 1.0F, 0.75F);
-    }
-	
-    /**
      * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
      */
 	@Override
-    public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, List par3List){}
+    public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, List par3List)
+    {
+        par3List.add(new ItemStack(par1, 1, 0));
+        par3List.add(new ItemStack(par1, 1, 1));
+        par3List.add(new ItemStack(par1, 1, 2));
+        par3List.add(new ItemStack(par1, 1, 3));
+        par3List.add(new ItemStack(par1, 1, 4));
+        par3List.add(new ItemStack(par1, 1, 5));
+        par3List.add(new ItemStack(par1, 1, 6));
+        par3List.add(new ItemStack(par1, 1, 7));
+        par3List.add(new ItemStack(par1, 1, 8));
+        par3List.add(new ItemStack(par1, 1, 9));
+        par3List.add(new ItemStack(par1, 1, 10));
+        par3List.add(new ItemStack(par1, 1, 11));
+        par3List.add(new ItemStack(par1, 1, 12));
+        par3List.add(new ItemStack(par1, 1, 13));
+        par3List.add(new ItemStack(par1, 1, 14));
+        par3List.add(new ItemStack(par1, 1, 15));
+    }
 	
 	@Override
 	public int damageDropped(int par1){
 		return par1;
 	}
-	
-    /**
-     * Returns the ID of the items to drop on destruction.
-     */
-	@Override
-    public int idDropped(int par1, Random par2Random, int par3)
-    {
-        return this.itemID;
-    }
 	
 	@Override
 	public boolean shouldSideBeRendered(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5){
