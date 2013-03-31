@@ -14,7 +14,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 
-public class BlockTable extends Block{
+public class BlockTable extends BlockGlobalFurniturePlacementHandler{
 
 	private Icon[] blockColors = new Icon[16];
 	
@@ -25,10 +25,28 @@ public class BlockTable extends Block{
 		this.setStepSound(belowBlock.stepSound);
 		this.belowBlock = belowBlock;
 	}
+	public boolean isBlockInLocalPlacementWhiteList(World par1World, int par2, int par3, int par4){
+		return false;
+	}
 	
 	public boolean testPlacement(World par1World, int par2, int par3, int par4){
-		return par1World.isBlockNormalCube(par2, par3 - 1, par4) || par1World.getBlockId(par2, par3 - 1, par4) == ModJam.awesomeOre.blockID || par1World.getBlockId(par2, par3 - 1, par4) == ModJam.woodTable.blockID || par1World.getBlockId(par2, par3 - 1, par4) == ModJam.stoneTable.blockID;
+		return par1World.doesBlockHaveSolidTopSurface(par2, par3 - 1, par4) || isBlockInGlobalPlacementWhiteList(par1World, par2, par3, par4);
 	}
+	
+    /**
+     * Determines if a torch can be placed on the top surface of this block.
+     * Useful for creating your own block that torches can be on, such as fences.
+     *
+     * @param world The current world
+     * @param x X Position
+     * @param y Y Position
+     * @param z Z Position
+     * @return True to allow the torch to be placed
+     */
+    public boolean canPlaceTorchOnTop(World world, int x, int y, int z)
+    {
+        return true;
+    }
 	
     /**
      * Checks to see if its valid to put this block at the specified coordinates. Args: world, x, y, z

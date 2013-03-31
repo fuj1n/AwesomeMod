@@ -14,7 +14,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 
-public class BlockChair extends Block{
+public class BlockChair extends BlockGlobalFurniturePlacementHandler{
 
 	private Icon[] blockColors = new Icon[16];
 	
@@ -31,8 +31,12 @@ public class BlockChair extends Block{
 		this.itemID = itemID;
 	}
 	
+	public boolean isBlockInLocalPlacementWhiteList(World par1World, int par2, int par3, int par4){
+		return false;
+	}
+	
 	public boolean testPlacement(World par1World, int par2, int par3, int par4){
-		return par1World.isBlockNormalCube(par2, par3 - 1, par4) || par1World.getBlockId(par2, par3 - 1, par4) == ModJam.awesomeOre.blockID || par1World.getBlockId(par2, par3 - 1, par4) == ModJam.woodTable.blockID || par1World.getBlockId(par2, par3 - 1, par4) == ModJam.stoneTable.blockID;
+		return par1World.doesBlockHaveSolidTopSurface(par2, par3 - 1, par4) || isBlockInGlobalPlacementWhiteList(par1World, par2, par3, par4);
 	}
 	
     /**
