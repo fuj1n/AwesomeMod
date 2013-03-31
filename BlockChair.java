@@ -7,11 +7,13 @@ import net.minecraftforge.common.ForgeDirection;
 public class BlockChair extends Block{
 
 	public ForgeDirection face;
+	public Block belowBlock;
 	
-	public BlockChair(int par1, ForgeDirection face) {
+	public BlockChair(int par1, ForgeDirection face, Block belowBlock) {
 		super(par1, Material.wood);
 		this.setBlockBounds(0.25F, 0F, 0.25F, 0.75F, 1.4F, 0.75F);
 		this.face = face;
+		this.belowBlock = belowBlock;
 	}
 	
 	@Override

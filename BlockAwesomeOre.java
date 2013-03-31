@@ -2,6 +2,7 @@ package modJam;
 
 import java.util.List;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockOre;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -42,7 +43,12 @@ public class BlockAwesomeOre extends BlockOre{
     public int getLightValue(IBlockAccess world, int x, int y, int z)
     {
         if(ClientProxyModJam.awesomeOreRenderStage == 0){
-        	return 0;
+            Block block = blocksList[world.getBlockId(x, y, z)];
+            if (block != null && block != this)
+            {
+                return block.getLightValue(world, x, y, z);
+            }
+            return lightValue[blockID];
         }else{
         	return 15;
         }

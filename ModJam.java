@@ -7,6 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.common.Configuration;
+import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import cpw.mods.fml.common.Mod;
@@ -43,6 +44,14 @@ public class ModJam {
 	//End Config values
 	//Blocks
 	public static Block awesomeOre;
+	public static Block woodChairNorth;
+	public static Block woodChairEast;
+	public static Block woodChairSouth;
+	public static Block woodChairWest;
+	public static Block stoneChairNorth;
+	public static Block stoneChairEast;
+	public static Block stoneChairSouth;
+	public static Block stoneChairWest;
 	//Items
 	public static Item awesomeIngot;
 	//CreativeTabs
@@ -60,6 +69,14 @@ public class ModJam {
 		config.load();
 		//Blocks
 		oreAwesomeID = config.getBlock("Awesome Ore ID", oreAwesomeID).getInt();
+		woodChairNorthID = config.getBlock("Wooden Chair North ID", woodChairNorthID).getInt();
+		woodChairEastID = config.getBlock("Wooden Chair East ID", woodChairEastID).getInt();
+		woodChairSouthID = config.getBlock("Wooden Chair South ID", woodChairSouthID).getInt();
+		woodChairWestID = config.getBlock("Wooden Chair West ID", woodChairWestID).getInt();
+		stoneChairNorthID = config.getBlock("Stone Chair North ID", stoneChairNorthID).getInt();
+		stoneChairEastID = config.getBlock("Stone Chair East ID", stoneChairEastID).getInt();
+		stoneChairSouthID = config.getBlock("Stone Chair South ID", stoneChairSouthID).getInt();
+		stoneChairWestID = config.getBlock("Stone Chair West ID", stoneChairWestID).getInt();
 		//Items
 		ingotAwesomeID = config.getItem("Awesome Ingot ID", ingotAwesomeID).getInt();
 		config.save();
@@ -80,6 +97,14 @@ public class ModJam {
 	
 	public void initAllBlocks(){
 		awesomeOre = new BlockAwesomeOre(oreAwesomeID).setHardness(5F).setResistance(5F).setCreativeTab(modJamCreativeTab).setUnlocalizedName("fuj1n.modJam.AwesomeOre");
+		woodChairNorth = new BlockChair(woodChairNorthID, ForgeDirection.NORTH, Block.planks);
+		woodChairEast = new BlockChair(woodChairEastID, ForgeDirection.EAST, Block.planks);
+		woodChairSouth = new BlockChair(woodChairSouthID, ForgeDirection.SOUTH, Block.planks);
+		woodChairWest = new BlockChair(woodChairWestID, ForgeDirection.WEST, Block.planks);
+		stoneChairNorth = new BlockChair(stoneChairNorthID, ForgeDirection.NORTH, Block.stone);
+		stoneChairEast = new BlockChair(stoneChairEastID, ForgeDirection.EAST, Block.stone);
+		stoneChairSouth = new BlockChair(stoneChairSouthID, ForgeDirection.SOUTH, Block.stone);
+		stoneChairWest = new BlockChair(stoneChairWestID, ForgeDirection.WEST, Block.stone);
 	}
 	
 	public void initAllItems(){

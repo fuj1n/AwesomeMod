@@ -18,16 +18,17 @@ public class RenderChair implements ISimpleBlockRenderingHandler{
 	@Override
 	public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z,
 			Block block, int modelId, RenderBlocks renderer) {
+		BlockChair handlerBlock = (BlockChair)block;
 		renderer.setRenderBounds(0.251, 0.001, 0.251, 0.349, 0.599, 0.349);
-		renderer.renderStandardBlock(Block.planks, x, y, z);
+		renderer.renderStandardBlock(handlerBlock.belowBlock, x, y, z);
 		renderer.setRenderBounds(0.651, 0.001, 0.251, 0.749, 0.599, 0.349);
-		renderer.renderStandardBlock(Block.planks, x, y, z);
+		renderer.renderStandardBlock(handlerBlock.belowBlock, x, y, z);
 		renderer.setRenderBounds(0.251, 0.001, 0.651, 0.349, 0.599, 0.749);
-		renderer.renderStandardBlock(Block.planks, x, y, z);
+		renderer.renderStandardBlock(handlerBlock.belowBlock, x, y, z);
 		renderer.setRenderBounds(0.651, 0.001, 0.651, 0.749, 0.599, 0.749);
-		renderer.renderStandardBlock(Block.planks, x, y, z);
+		renderer.renderStandardBlock(handlerBlock.belowBlock, x, y, z);
 		renderer.setRenderBounds(0.251, 0.599, 0.251, 0.749, 0.699, 0.749);
-		renderer.renderStandardBlock(Block.planks, x, y, z);
+		renderer.renderStandardBlock(handlerBlock.belowBlock, x, y, z);
 		renderChairBasedOnSide(world, x, y, z, block, modelId, renderer);
 		return false;
 	}
@@ -37,16 +38,16 @@ public class RenderChair implements ISimpleBlockRenderingHandler{
 		ForgeDirection face = handlerBlock.face;
 		if(face == ForgeDirection.NORTH){
 			renderer.setRenderBounds(0.251, 0.699, 0.651, 0.749, 1.399, 0.749);
-			renderer.renderStandardBlock(Block.planks, x, y, z);	
+			renderer.renderStandardBlock(handlerBlock.belowBlock, x, y, z);	
 		}else if(face == ForgeDirection.SOUTH){
 			renderer.setRenderBounds(0.251, 0.699, 0.251, 0.749, 1.399, 0.349);
-			renderer.renderStandardBlock(Block.planks, x, y, z);
+			renderer.renderStandardBlock(handlerBlock.belowBlock, x, y, z);
 		}else if(face == ForgeDirection.EAST){
 			renderer.setRenderBounds(0.251, 0.699, 0.251, 0.349, 1.399, 0.749);
-			renderer.renderStandardBlock(Block.planks, x, y, z);	
+			renderer.renderStandardBlock(handlerBlock.belowBlock, x, y, z);	
 		}else if(face == ForgeDirection.WEST){
 			renderer.setRenderBounds(0.651, 0.699, 0.251, 0.749, 1.399, 0.749);
-			renderer.renderStandardBlock(Block.planks, x, y, z);
+			renderer.renderStandardBlock(handlerBlock.belowBlock, x, y, z);
 		}
 	}
 	
