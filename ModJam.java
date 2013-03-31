@@ -31,16 +31,16 @@ public class ModJam {
 	//Config values
 	//Blocks
 	public static int oreAwesomeID = 1024;
-	public static int woodChairNorthID = 1025;
-	public static int woodChairEastID = 1026;
-	public static int woodChairSouthID = 1027;
-	public static int woodChairWestID = 1028;
-	public static int stoneChairNorthID = 1029;
-	public static int stoneChairEastID = 1030;
-	public static int stoneChairSouthID = 1031;
-	public static int stoneChairWestID = 1032;
+	public static int[] woodChairIDs = {
+		1025, 1026, 1027, 1028
+	};
+	public static int[] stoneChairIDs = {
+		1029, 1030, 1031, 1032
+	};
 	//Items
 	public static int ingotAwesomeID = 3240;
+	public static int woodChairID = 3241;
+	public static int stoneChairID = 3242;
 	//End Config values
 	//Blocks
 	public static Block awesomeOre;
@@ -54,6 +54,8 @@ public class ModJam {
 	public static Block stoneChairWest;
 	//Items
 	public static Item awesomeIngot;
+	public static Item woodChair;
+	public static Item stoneChair;
 	//CreativeTabs
 	public static CreativeTabs modJamCreativeTab;
 	//Sub Names
@@ -69,18 +71,24 @@ public class ModJam {
 		config.load();
 		//Blocks
 		oreAwesomeID = config.getBlock("Awesome Ore ID", oreAwesomeID).getInt();
-		woodChairNorthID = config.getBlock("Wooden Chair North ID", woodChairNorthID).getInt();
-		woodChairEastID = config.getBlock("Wooden Chair East ID", woodChairEastID).getInt();
-		woodChairSouthID = config.getBlock("Wooden Chair South ID", woodChairSouthID).getInt();
-		woodChairWestID = config.getBlock("Wooden Chair West ID", woodChairWestID).getInt();
-		stoneChairNorthID = config.getBlock("Stone Chair North ID", stoneChairNorthID).getInt();
-		stoneChairEastID = config.getBlock("Stone Chair East ID", stoneChairEastID).getInt();
-		stoneChairSouthID = config.getBlock("Stone Chair South ID", stoneChairSouthID).getInt();
-		stoneChairWestID = config.getBlock("Stone Chair West ID", stoneChairWestID).getInt();
+		woodChairIDs[0] = config.getBlock("Wooden Chair ID Set", woodChairIDs[0]).getInt();
+		stoneChairIDs[0] = config.getBlock("Stone Chair ID Set", stoneChairIDs[0]).getInt();
+		refreshChairIDs();
 		//Items
 		ingotAwesomeID = config.getItem("Awesome Ingot ID", ingotAwesomeID).getInt();
+		woodChairID = config.getItem("Wooden Chair Item ID", woodChairID).getInt();
+		stoneChairID = config.getItem("Stone Chair Item ID", stoneChairID).getInt();
 		config.save();
 	} 
+	
+	public void refreshChairIDs(){
+		woodChairIDs[1] = woodChairIDs[0] + 1;
+		woodChairIDs[2] = woodChairIDs[1] + 1;
+		woodChairIDs[3] = woodChairIDs[2] + 1;
+		stoneChairIDs[1] = stoneChairIDs[0] + 1;
+		stoneChairIDs[2] = stoneChairIDs[1] + 1;
+		stoneChairIDs[3] = stoneChairIDs[2] + 1;
+	}
 	
 	@Init
 	public void Init(FMLInitializationEvent event){
@@ -97,22 +105,32 @@ public class ModJam {
 	
 	public void initAllBlocks(){
 		awesomeOre = new BlockAwesomeOre(oreAwesomeID).setHardness(5F).setResistance(5F).setCreativeTab(modJamCreativeTab).setUnlocalizedName("fuj1n.modJam.AwesomeOre");
-		woodChairNorth = new BlockChair(woodChairNorthID, ForgeDirection.NORTH, Block.planks);
-		woodChairEast = new BlockChair(woodChairEastID, ForgeDirection.EAST, Block.planks);
-		woodChairSouth = new BlockChair(woodChairSouthID, ForgeDirection.SOUTH, Block.planks);
-		woodChairWest = new BlockChair(woodChairWestID, ForgeDirection.WEST, Block.planks);
-		stoneChairNorth = new BlockChair(stoneChairNorthID, ForgeDirection.NORTH, Block.stone);
-		stoneChairEast = new BlockChair(stoneChairEastID, ForgeDirection.EAST, Block.stone);
-		stoneChairSouth = new BlockChair(stoneChairSouthID, ForgeDirection.SOUTH, Block.stone);
-		stoneChairWest = new BlockChair(stoneChairWestID, ForgeDirection.WEST, Block.stone);
+		woodChairNorth = new BlockChair(woodChairIDs[0], ForgeDirection.NORTH, Block.planks, woodChairID);
+		woodChairEast = new BlockChair(woodChairIDs[1], ForgeDirection.EAST, Block.planks, woodChairID);
+		woodChairSouth = new BlockChair(woodChairIDs[2], ForgeDirection.SOUTH, Block.planks, woodChairID);
+		woodChairWest = new BlockChair(woodChairIDs[3], ForgeDirection.WEST, Block.planks, woodChairID);
+		stoneChairNorth = new BlockChair(stoneChairIDs[0], ForgeDirection.NORTH, Block.stone, stoneChairID);
+		stoneChairEast = new BlockChair(stoneChairIDs[1], ForgeDirection.EAST, Block.stone, stoneChairID);
+		stoneChairSouth = new BlockChair(stoneChairIDs[2], ForgeDirection.SOUTH, Block.stone, stoneChairID);
+		stoneChairWest = new BlockChair(stoneChairIDs[3], ForgeDirection.WEST, Block.stone, stoneChairID);
 	}
 	
 	public void initAllItems(){
 		awesomeIngot = new ItemAwesomeIngot(ingotAwesomeID).setCreativeTab(modJamCreativeTab);
+		woodChair = new ItemChair(woodChairID, 0);
+		stoneChair = new ItemChair(woodChairID, 1);
 	}
 	
 	public void registerAllBlocks(){
 		GameRegistry.registerBlock(awesomeOre, ItemAwesomeOre.class, "fuj1n.modJam.awesomeOre");
+		GameRegistry.registerBlock(woodChairNorth, "fuj1n.modJam.woodChairNorth");
+		GameRegistry.registerBlock(woodChairEast, "fuj1n.modJam.woodChairEast");
+		GameRegistry.registerBlock(woodChairSouth, "fuj1n.modJam.woodChairSouth");
+		GameRegistry.registerBlock(woodChairWest, "fuj1n.modJam.woodChairWest");
+		GameRegistry.registerBlock(stoneChairNorth, "fuj1n.modJam.stoneChairNorth");
+		GameRegistry.registerBlock(stoneChairEast, "fuj1n.modJam.stoneChairEast");
+		GameRegistry.registerBlock(stoneChairSouth, "fuj1n.modJam.stoneChairSouth");
+		GameRegistry.registerBlock(stoneChairWest, "fuj1n.modJam.stoneChairWest");
 	}
 	
 	public void addAllNames(){
