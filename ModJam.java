@@ -115,8 +115,8 @@ public class ModJam {
 	
 	public void initAllItems(){
 		awesomeIngot = new ItemAwesomeIngot(ingotAwesomeID).setCreativeTab(modJamCreativeTab);
-		woodChair = new ItemChair(woodChairID, 0, this.woodChairIDs[0]).setCreativeTab(modJamCreativeTab);
-		stoneChair = new ItemChair(stoneChairID, 1, this.stoneChairIDs[0]).setCreativeTab(modJamCreativeTab);
+		woodChair = new ItemChair(woodChairID, 0, this.woodChairIDs[0]).setCreativeTab(modJamCreativeTab).setUnlocalizedName("woodChair");
+		stoneChair = new ItemChair(stoneChairID, 1, this.stoneChairIDs[0]).setCreativeTab(modJamCreativeTab).setUnlocalizedName("stoneChair");
 	}
 	
 	public void registerAllBlocks(){
@@ -135,6 +135,8 @@ public class ModJam {
 		for (int i = 0; i < 16; i++) {
 			LanguageRegistry.addName(new ItemStack(awesomeOre, 1, i), awesomeColors[new ItemStack(awesomeOre, 1, i).getItemDamage()] + " Awesome Ore");
 			LanguageRegistry.addName(new ItemStack(awesomeIngot, 1, i), awesomeColors[new ItemStack(awesomeIngot, 1, i).getItemDamage()] + " Awesome Ingot");
+			LanguageRegistry.addName(new ItemStack(woodChair, 1, i), awesomeColors[new ItemStack(woodChair, 1, i).getItemDamage()] + " Glowing Wooden Chair");
+			LanguageRegistry.addName(new ItemStack(stoneChair, 1, i), awesomeColors[new ItemStack(stoneChair, 1, i).getItemDamage()] + " Glowing Stone Chair");
 		}
 	}
 	

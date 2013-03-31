@@ -1,9 +1,14 @@
 package modJam;
 
+import java.util.List;
+
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
@@ -11,12 +16,48 @@ public class ItemChair extends Item{
 
 	public int chairType;
 	public int beginBlockID;
+	private Icon[] chairOverlay = new Icon[16];
+	
+	private static final String[] subNames = { 
+		"white", "orange", "magenta",
+		"lBlue", "yellow", "lime", "pink", "gray", "lGray", "cyan",
+		"purple", "blue", "brown", "green", "red", "black"
+	};
 	
 	public ItemChair(int par1, int par2, int par3) {
 		super(par1);
+		this.setHasSubtypes(true);
 		chairType = par2;
 		beginBlockID = par3;
+	}    
+	
+	@Override
+	public boolean requiresMultipleRenderPasses(){
+		return true;
 	}
+	
+    /**
+     * returns a list of items with the same ID, but different meta (eg: dye returns 16 items)
+     */
+    public void getSubItems(int par1, CreativeTabs par2CreativeTabs, List par3List)
+    {
+    	par3List.add(new ItemStack(par1, 1, 0));
+    	par3List.add(new ItemStack(par1, 1, 1));
+    	par3List.add(new ItemStack(par1, 1, 2));
+    	par3List.add(new ItemStack(par1, 1, 3));
+    	par3List.add(new ItemStack(par1, 1, 4));
+    	par3List.add(new ItemStack(par1, 1, 5));
+    	par3List.add(new ItemStack(par1, 1, 6));
+    	par3List.add(new ItemStack(par1, 1, 7));
+    	par3List.add(new ItemStack(par1, 1, 8));
+    	par3List.add(new ItemStack(par1, 1, 9));
+    	par3List.add(new ItemStack(par1, 1, 10));
+    	par3List.add(new ItemStack(par1, 1, 11));
+    	par3List.add(new ItemStack(par1, 1, 12));
+    	par3List.add(new ItemStack(par1, 1, 13));
+    	par3List.add(new ItemStack(par1, 1, 14));
+    	par3List.add(new ItemStack(par1, 1, 15));
+    }
 	
     /**
      * Callback for item usage. If the item does something special on right clicking, he will have one of those. Return
@@ -139,6 +180,57 @@ public class ItemChair extends Item{
         }
 
        return true;
+    }
+    
+    /**
+     * Gets an icon index based on an item's damage value and the given render pass
+     */
+    @Override
+    public Icon getIconFromDamageForRenderPass(int par1, int par2)
+    {
+    	if(par2 == 0)
+    		return this.getIconFromDamage(par1);
+    	else if(par2 == 1){
+    		return this.chairOverlay[par1];
+    	}else{
+    		return this.getIconFromDamage(par1);
+    	}
+    }
+    
+    @Override
+    public void updateIcons(IconRegister par1IconRegister){
+    	switch(chairType){
+    	case 0:
+    		this.iconIndex = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.chairWood");
+    		break;
+    	case 1:
+    		this.iconIndex = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.chairStone");
+    		break;
+    	default:
+    		this.iconIndex = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.chairWood");
+    		break;
+    	}
+    	this.chairOverlay[0] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.overlayWhite");
+    	this.chairOverlay[1] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.overlayOrange");
+    	this.chairOverlay[2] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.overlayMagenta");
+    	this.chairOverlay[3] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.overlayLBlue");
+    	this.chairOverlay[4] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.overlayYellow");
+    	this.chairOverlay[5] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.overlayLime");
+    	this.chairOverlay[6] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.overlayPink");
+    	this.chairOverlay[7] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.overlayGray");
+    	this.chairOverlay[8] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.overlayLGray");
+    	this.chairOverlay[9] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.overlayCyan");
+    	this.chairOverlay[10] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.overlayPurple");
+    	this.chairOverlay[11] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.overlayBlue");
+    	this.chairOverlay[12] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.overlayBrown");
+    	this.chairOverlay[13] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.overlayGreen");
+    	this.chairOverlay[14] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.overlayRed");
+    	this.chairOverlay[15] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.overlayBlack");
+    }
+    
+    @Override
+    public String getUnlocalizedName(ItemStack par1ItemStack){
+    	return getUnlocalizedName() + "." + subNames[par1ItemStack.getItemDamage()];
     }
 
 }

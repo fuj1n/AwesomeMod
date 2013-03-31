@@ -8,8 +8,10 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 
 public class BlockChair extends Block{
@@ -27,6 +29,28 @@ public class BlockChair extends Block{
 		this.belowBlock = belowBlock;
 		this.itemID = itemID;
 	}
+	
+	public boolean testPlacement(World par1World, int par2, int par3, int par4){
+		return par1World.isBlockNormalCube(par2, par3 - 1, par4);
+	}
+	
+    /**
+     * Checks to see if its valid to put this block at the specified coordinates. Args: world, x, y, z
+     */
+	@Override
+    public boolean canPlaceBlockAt(World par1World, int par2, int par3, int par4)
+    {
+        return testPlacement(par1World, par2, par3, par4);
+    }
+	
+    /**
+     * Checks to see if its valid to put this block at the specified coordinates. Args: world, x, y, z
+     */
+	@Override
+    public boolean canBlockStay(World par1World, int par2, int par3, int par4)
+    {
+        return testPlacement(par1World, par2, par3, par4);
+    }
 	
 	@Override
 	public Icon getBlockTextureFromSideAndMetadata(int par1, int par2){
@@ -48,6 +72,17 @@ public class BlockChair extends Block{
 		return ClientProxyModJam.chairRenderType;
 	}
 	
+    /**
+     * Lets the block know when one of its neighbor changes. Doesn't know which neighbor changed (coordinates passed are
+     * their own) Args: x, y, z, neighbor blockID
+     */
+    public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, int par5) {
+    	if(!testPlacement(par1World, par2, par3, par4)){
+    		Block.blocksList[par1World.getBlockId(par2, par3, par4)].dropBlockAsItem(par1World, par2, par3, par4, par1World.getBlockMetadata(par2, par3, par4), 0);
+    		par1World.setBlockToAir(par2, par3, par4);
+    	}
+    }
+	
 	@Override
     public int getLightValue(IBlockAccess world, int x, int y, int z)
     {
@@ -61,6 +96,14 @@ public class BlockChair extends Block{
         }else{
         	return 15;
         }
+    }
+	
+    /**
+     * Returns the bounding box of the wired rectangular prism to render.
+     */
+    public AxisAlignedBB getSelectedBoundingBoxFromPool(World par1World, int par2, int par3, int par4)
+    {
+        return AxisAlignedBB.getAABBPool().getAABB(0.25F, 0F, 0.25F, 0.75F, 1.0F, 0.75F);
     }
 	
     /**

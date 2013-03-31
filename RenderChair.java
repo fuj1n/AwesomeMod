@@ -11,7 +11,7 @@ public class RenderChair implements ISimpleBlockRenderingHandler{
 	@Override
 	public void renderInventoryBlock(Block block, int metadata, int modelID,
 			RenderBlocks renderer) {
-		
+		return;
 	}
 
 	@Override

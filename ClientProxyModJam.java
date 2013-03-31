@@ -1,5 +1,6 @@
 package modJam;
 
+import net.minecraftforge.client.MinecraftForgeClient;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 
 public class ClientProxyModJam extends CommonProxyModJam{
