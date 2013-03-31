@@ -4,12 +4,10 @@ import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.oredict.OreDictionary;
-import net.minecraftforge.oredict.ShapelessOreRecipe;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.PreInit;
@@ -117,8 +115,8 @@ public class ModJam {
 	
 	public void initAllItems(){
 		awesomeIngot = new ItemAwesomeIngot(ingotAwesomeID).setCreativeTab(modJamCreativeTab);
-		woodChair = new ItemChair(woodChairID, 0);
-		stoneChair = new ItemChair(woodChairID, 1);
+		woodChair = new ItemChair(woodChairID, 0, this.woodChairIDs[0]).setCreativeTab(modJamCreativeTab);
+		stoneChair = new ItemChair(stoneChairID, 1, this.stoneChairIDs[0]).setCreativeTab(modJamCreativeTab);
 	}
 	
 	public void registerAllBlocks(){
