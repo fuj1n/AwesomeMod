@@ -14,6 +14,8 @@ public class BlockAwesomeOre extends BlockOre{
 
 	private Icon[] blockColors = new Icon[16];
 	
+	public Block belowBlock = Block.stone;
+	
 	public BlockAwesomeOre(int par1) {
 		super(par1);
 		this.setLightOpacity(15);

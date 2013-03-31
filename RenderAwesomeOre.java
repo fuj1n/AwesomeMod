@@ -68,13 +68,17 @@ public class RenderAwesomeOre implements ISimpleBlockRenderingHandler{
 
 	@Override
 	public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
+		BlockAwesomeOre handlerBlock = (BlockAwesomeOre)block;
 		ClientProxyModJam.awesomeOreRenderStage = 0;
 		renderer.setRenderBounds(0.001, 0.001, 0.001, 0.999, 0.999, 0.999);
-		renderer.renderStandardBlock(Block.stone, x, y, z);
+		renderer.setOverrideBlockTexture(handlerBlock.belowBlock.getBlockTextureFromSide(0));
+		renderer.renderStandardBlock(block, x, y, z);
 		ClientProxyModJam.awesomeOreRenderStage = 1;
 		renderer.setRenderBounds(0, 0, 0, 1, 1, 1);
+		renderer.clearOverrideBlockTexture();
 		renderer.renderStandardBlock(block, x, y, z);
 		ClientProxyModJam.awesomeOreRenderStage = 0;
+		renderer.clearOverrideBlockTexture();
 		return true;
 	}
 	

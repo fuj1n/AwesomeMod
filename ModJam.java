@@ -107,6 +107,7 @@ public class ModJam {
 		addAllCrafting();
 		addAllSmelting();
 		registerAllOreDictionary();
+		registerAllWorldGenerators();
 	}
 	
 	public void initAllBlocks(){
@@ -188,5 +189,9 @@ public class ModJam {
 			OreDictionary.registerOre("ingotAwesome" + awesomeColors[i], new ItemStack(awesomeIngot, 1, i));
 		}
 		
+	}
+	
+	public void registerAllWorldGenerators(){
+		GameRegistry.registerWorldGenerator(new WorldGeneratorModJam());
 	}
 }
