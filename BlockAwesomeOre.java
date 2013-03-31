@@ -9,6 +9,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 
 public class BlockAwesomeOre extends BlockOre{
 
@@ -25,6 +26,21 @@ public class BlockAwesomeOre extends BlockOre{
 	public Icon getBlockTextureFromSideAndMetadata(int par1, int par2){
 		return blockColors[par2];
 	}
+	
+    /**
+     * Determines if a torch can be placed on the top surface of this block.
+     * Useful for creating your own block that torches can be on, such as fences.
+     *
+     * @param world The current world
+     * @param x X Position
+     * @param y Y Position
+     * @param z Z Position
+     * @return True to allow the torch to be placed
+     */
+    public boolean canPlaceTorchOnTop(World world, int x, int y, int z)
+    {
+        return true;
+    }
 	
 	@Override
 	public boolean renderAsNormalBlock(){
