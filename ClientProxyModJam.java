@@ -20,5 +20,6 @@ public class ClientProxyModJam extends CommonProxyModJam{
         RenderingRegistry.registerBlockHandler(new RenderAwesomeOre());
         RenderingRegistry.registerBlockHandler(new RenderChair());
         RenderingRegistry.registerBlockHandler(new RenderTable());
+        awesomeArmorID = RenderingRegistry.addNewArmourRendererPrefix("awesome");
 	}
 }

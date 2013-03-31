@@ -2,11 +2,13 @@ package modJam;
 
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.common.Configuration;
+import net.minecraftforge.common.EnumHelper;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
@@ -43,6 +45,10 @@ public class ModJam {
 	public static int ingotAwesomeID = 3240;
 	public static int woodChairID = 3241;
 	public static int stoneChairID = 3242;
+	public static int awesomeArmorHelmetID = 3243;
+	public static int awesomeArmorChestplateID = 3244;
+	public static int awesomeArmorLeggingsID = 3245;
+	public static int awesomeArmorBootsID = 3246;
 	//End Config values
 	//Blocks
 	public static Block awesomeOre;
@@ -60,6 +66,12 @@ public class ModJam {
 	public static Item awesomeIngot;
 	public static Item woodChair;
 	public static Item stoneChair;
+	public static Item awesomeHelmet;
+	public static Item awesomeChestplate;
+	public static Item awesomeLeggings;
+	public static Item awesomeBoots;
+	//Armor Materials
+	public static EnumArmorMaterial awesomeArmorMaterial;
 	//CreativeTabs
 	public static CreativeTabs modJamCreativeTab;
 	//Sub Names
@@ -84,6 +96,10 @@ public class ModJam {
 		ingotAwesomeID = config.getItem("Awesome Ingot ID", ingotAwesomeID).getInt();
 		woodChairID = config.getItem("Wooden Chair Item ID", woodChairID).getInt();
 		stoneChairID = config.getItem("Stone Chair Item ID", stoneChairID).getInt();
+		awesomeArmorHelmetID = config.getItem("Awesome Helmet ID", awesomeArmorHelmetID).getInt();
+		awesomeArmorChestplateID = config.getItem("Awesome Chestplate ID", awesomeArmorChestplateID).getInt();
+		awesomeArmorLeggingsID = config.getItem("Awesome Leggings ID", awesomeArmorLeggingsID).getInt();
+		awesomeArmorBootsID = config.getItem("Awesome Boots ID", awesomeArmorBootsID).getInt();
 		config.save();
 	} 
 	
@@ -100,6 +116,7 @@ public class ModJam {
 	public void Init(FMLInitializationEvent event){
 		proxy.handler();
 		registerCreativeTab();
+		initAllMaterials();
 		initAllItems();
 		initAllBlocks();
 		registerAllBlocks();
@@ -108,6 +125,10 @@ public class ModJam {
 		addAllSmelting();
 		registerAllOreDictionary();
 		registerAllWorldGenerators();
+	}
+	
+	public void initAllMaterials(){
+		awesomeArmorMaterial = EnumHelper.addArmorMaterial("AWESOME", 13, new int[]{3, 7, 5, 2}, 25);
 	}
 	
 	public void initAllBlocks(){
@@ -128,6 +149,10 @@ public class ModJam {
 		awesomeIngot = new ItemAwesomeIngot(ingotAwesomeID).setCreativeTab(modJamCreativeTab);
 		woodChair = new ItemChair(woodChairID, 0, this.woodChairIDs[0]).setCreativeTab(modJamCreativeTab).setUnlocalizedName("woodChair");
 		stoneChair = new ItemChair(stoneChairID, 1, this.stoneChairIDs[0]).setCreativeTab(modJamCreativeTab).setUnlocalizedName("stoneChair");
+		awesomeHelmet = new ItemAwesomeArmor(awesomeArmorHelmetID, awesomeArmorMaterial, CommonProxyModJam.awesomeArmorID, 0, "awesomeMod:fuj1n.AwesomeMod.awesomeArmor").setUnlocalizedName("fuj1n.AwesomeMod.awesomeArmor");
+		awesomeChestplate = new ItemAwesomeArmor(awesomeArmorChestplateID, awesomeArmorMaterial, CommonProxyModJam.awesomeArmorID, 1, "awesomeMod:fuj1n.AwesomeMod.awesomeArmor").setUnlocalizedName("fuj1n.AwesomeMod.awesomeArmor");
+		awesomeLeggings = new ItemAwesomeArmor(awesomeArmorLeggingsID, awesomeArmorMaterial, CommonProxyModJam.awesomeArmorID, 2, "awesomeMod:fuj1n.AwesomeMod.awesomeArmor").setUnlocalizedName("fuj1n.AwesomeMod.awesomeArmor");
+		awesomeBoots = new ItemAwesomeArmor(awesomeArmorBootsID, awesomeArmorMaterial, CommonProxyModJam.awesomeArmorID, 3, "awesomeMod:fuj1n.AwesomeMod.awesomeArmor").setUnlocalizedName("fuj1n.AwesomeMod.awesomeArmor");
 	}
 	
 	public void registerAllBlocks(){
