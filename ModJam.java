@@ -4,10 +4,12 @@ import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.ShapedOreRecipe;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.PreInit;
@@ -145,10 +147,25 @@ public class ModJam {
 		LanguageRegistry.instance().addStringLocalization("itemGroup." + modJamCreativeTab.getTabLabel(), CommonProxyModJam.modName);
 	}
 	
-	public void addAllCrafting(){}
+	public void addAllCrafting(){
+		for(int i = 0; i < 15; i++){
+			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(woodChair, 1, i), new Object[]{
+				"PXX", "PPP", "PXP", Character.valueOf('P'), Block.planks, Character.valueOf('X'), "ingotAwesome" + awesomeColors[i]
+			}));
+			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(woodChair, 1, i), new Object[]{
+				"XXP", "PPP", "PXP", Character.valueOf('P'), Block.planks, Character.valueOf('X'), "ingotAwesome" + awesomeColors[i]
+			}));
+			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(stoneChair, 1, i), new Object[]{
+				"SXX", "SSS", "SXS", Character.valueOf('S'), Block.stone, Character.valueOf('X'), "ingotAwesome" + awesomeColors[i]
+			}));
+			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(stoneChair, 1, i), new Object[]{
+				"XXP", "SSS", "SXS", Character.valueOf('S'), Block.stone, Character.valueOf('X'), "ingotAwesome" + awesomeColors[i]
+			}));
+		}
+	}
 	
 	public void addAllSmelting(){
-		for (int i = 0; i < 16; i++){
+		for (int i = 0; i < 15; i++){
 			FurnaceRecipes.smelting().addSmelting(oreAwesomeID, i, new ItemStack(awesomeIngot, 1, i), 0.1F);
 		}
 	}
