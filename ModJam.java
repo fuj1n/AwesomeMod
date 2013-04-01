@@ -1,5 +1,7 @@
 package modJam;
 
+import java.util.logging.Level;
+
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.EnumArmorMaterial;
@@ -12,6 +14,7 @@ import net.minecraftforge.common.EnumHelper;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.PreInit;
@@ -177,7 +180,12 @@ public class ModJam {
 			LanguageRegistry.addName(new ItemStack(stoneChair, 1, i), awesomeColors[new ItemStack(stoneChair, 1, i).getItemDamage()] + " Glowing Stone Chair");
 			LanguageRegistry.addName(new ItemStack(woodTable, 1, i), awesomeColors[new ItemStack(woodTable, 1, i).getItemDamage()] + " Glowing Wooden Table");
 			LanguageRegistry.addName(new ItemStack(stoneTable, 1, i), awesomeColors[new ItemStack(stoneTable, 1, i).getItemDamage()] + " Glowing Stone Table");
+			//LanguageRegistry.instance().addStringLocalization(awesomeHelmet.getUnlocalizedName(ItemAwesomeArmor.getItemStackForNaming(awesomeHelmet.itemID, i)), awesomeColors[i] + " Awesome Helmet");
 		}
+		LanguageRegistry.addName(new ItemStack(awesomeHelmet), "Awesome Helmet");
+		LanguageRegistry.addName(new ItemStack(awesomeChestplate), "Awesome Chestplate");
+		LanguageRegistry.addName(new ItemStack(awesomeLeggings), "Awesome Leggings");
+		LanguageRegistry.addName(new ItemStack(awesomeBoots), "Awesome Boots");
 	}
 	
 	public void registerCreativeTab(){
@@ -225,4 +233,8 @@ public class ModJam {
 	public void registerAllWorldGenerators(){
 		GameRegistry.registerWorldGenerator(new WorldGeneratorModJam());
 	}
+	
+    public static <var> void log(var s, Level level){
+        FMLLog.log(level, "[Awesome Mod] %s", s);
+    }
 }

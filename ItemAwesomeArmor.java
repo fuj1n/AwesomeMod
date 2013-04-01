@@ -1,6 +1,10 @@
 package modJam;
 
 import java.util.List;
+import java.util.logging.Level;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -9,10 +13,17 @@ import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.StatCollector;
 
 public class ItemAwesomeArmor extends ItemArmor{
 
 	private String texture;
+	
+	private static final String[] awesomeColors = { 
+		"White", "Orange", "Magenta",
+		"Light-Blue", "Yellow", "Lime", "Pink", "Gray", "Light-Gray", "Cyan",
+		"Purple", "Blue", "Brown", "Green", "Red", "Black"
+	};
 	
 	private static final String[] subNames = { 
 		"white", "orange", "magenta",
@@ -26,6 +37,12 @@ public class ItemAwesomeArmor extends ItemArmor{
 		texture = tex;
 	}
 	
+    @SideOnly(Side.CLIENT)
+    public boolean requiresMultipleRenderPasses()
+    {
+        return false;
+    }
+	
 	public void setItemColorIDToNBT(ItemStack par1ItemStack, int colorMeta){
 		NBTTagCompound nbt;
 		if(par1ItemStack.getTagCompound() != null){
@@ -37,34 +54,24 @@ public class ItemAwesomeArmor extends ItemArmor{
         nbt.setByte("Color", (byte)colorMeta);
         par1ItemStack.setTagCompound(nbt);
 	}
-	
-	public int getItemColorIDBasedOnNBT(ItemStack par1ItemStack){
-		if(par1ItemStack.getTagCompound() != null){
-			NBTTagCompound nbt = par1ItemStack.getTagCompound();
-			if(nbt.hasKey("Color")){
-				return nbt.getByte("Color");
-			}
-		}
-		return 0;
-	}
-	
+    
 	public String getArmorNameByType(int type){
 		String typeStr;
 		switch (this.armorType){
 		case 0:
-			typeStr = "Helmet";
+			typeStr = "helmet";
 			break;
 		case 1:
-			typeStr = "Chestplate";
+			typeStr = "chestplate";
 			break;
 		case 2:
-			typeStr = "Leggings";
+			typeStr = "leggings";
 			break;
 		case 3:
-			typeStr = "Boots";
+			typeStr = "boots";
 			break;
 		default:
-			typeStr = "Unknown";
+			typeStr = "unknown";
 			break;
 		}
 		return typeStr;
@@ -76,12 +83,20 @@ public class ItemAwesomeArmor extends ItemArmor{
 	@Override
     public void getSubItems(int par1, CreativeTabs par2CreativeTabs, List par3List)
     {
-		ItemStack var1 = new ItemStack(par1, 1, 0);
+		/*ItemStack var1 = new ItemStack(par1, 1, 0);
 		for(int i = 0; i < 15; i++){
 			setItemColorIDToNBT(var1, i);
 			par3List.add(var1);
-		}
+		}*/
+		par3List.add(new ItemStack(par1, 1, 0));
     }
+	
+	public static ItemStack getItemStackForNaming(int par1, int meta){
+		ItemStack var1 = new ItemStack(par1, 1, 0);
+		ItemAwesomeArmor inst = (ItemAwesomeArmor)ModJam.awesomeHelmet;
+		inst.setItemColorIDToNBT(var1, meta);
+		return var1;
+	}
 	
 	@Override
 	public void updateIcons(IconRegister par1IconRegister){
@@ -92,7 +107,8 @@ public class ItemAwesomeArmor extends ItemArmor{
 	
 	   @Override
 	    public String getUnlocalizedName(ItemStack par1ItemStack){
-	    	return getUnlocalizedName() + "." + getArmorNameByType(this.armorType) + "." + this.subNames[getItemColorIDBasedOnNBT(par1ItemStack)];
+		   return getUnlocalizedName() + "." + getArmorNameByType(this.armorType);
+	    	//return getUnlocalizedName() + "." + getArmorNameByType(this.armorType) + "." + this.subNames[getColor(par1ItemStack)];
 	    }
 
 }
