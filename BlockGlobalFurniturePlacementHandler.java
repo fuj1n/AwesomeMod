@@ -20,7 +20,6 @@ public abstract class BlockGlobalFurniturePlacementHandler extends Block{
 		return var1 == Block.glass.blockID || var1 == Block.ice.blockID || var1 == Block.mobSpawner.blockID || var1 == ModJam.awesomeOre.blockID || var1 == ModJam.woodTable.blockID || var1 == ModJam.stoneTable.blockID || var1 == ModJam.awesomeBlock.blockID || var1 == ModJam.awesomeBlockStandard.blockID;
 	}
 	
-	
 	public boolean testPlacement(World par1World, int par2, int par3, int par4){
 		return par1World.doesBlockHaveSolidTopSurface(par2, par3 - 1, par4) || isBlockInGlobalPlacementWhiteList(par1World, par2, par3, par4);
 	}

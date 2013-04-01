@@ -43,6 +43,12 @@ public class WorldGeneratorModJam implements IWorldGenerator{
 				(new WorldGenMinable(ModJam.oreAwesomeID, meta, 10, Block.stone.blockID)).generate(world, random, xCoord, yCoord, zCoord);
 			}
 		}
+		if(random.nextInt(10) == 1){
+			int y1 = random.nextInt(12);
+			int y2 = 45;
+			int y = y1 + y2;
+			new WorldGenAwesomeRoom().generate(world, random, chunkX + 6, y, chunkZ + 6);
+		}
 	}
 	
 	public void generateNether(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider){

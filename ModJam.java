@@ -166,6 +166,7 @@ public class ModJam {
 		addHeadRecipe();
 		addAllSmelting();
 		registerAllOreDictionary();
+		populateGenChest();
 		registerAllWorldGenerators();
 	}
 	
@@ -277,6 +278,12 @@ public class ModJam {
 			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(awesomeIngot, 1, 15), new Object[]{
 				"XXX", "XDX", "XXX", Character.valueOf('D'), "extractDark", Character.valueOf('X'), "ingotAwesome" + awesomeColors[i]
 			}));
+			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(awesomeBlockStandard, 1, i), new Object[]{
+				"XXX", "XBX", "XXX", Character.valueOf('B'), awesomeBlock, Character.valueOf('X'), "ingotAwesome" + awesomeColors[i]
+			}));
+			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(awesomeBlockCreeper, 1, i), new Object[]{
+				"XGX", "XBX", "XGX", Character.valueOf('B'), awesomeBlock, Character.valueOf('G'), Item.gunpowder, Character.valueOf('X'), "ingotAwesome" + awesomeColors[i]
+			}));
 		}
 		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(awesomeHelmet, 1, 0), new Object[]{
 			" X ", "XHX", " X ", Character.valueOf('H'), Item.helmetSteel, Character.valueOf('X'), "ingotAwesomeBlack"
@@ -305,6 +312,9 @@ public class ModJam {
 		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(awesomeHoe, 1, 0), new Object[]{
 			" X ", "XHX", " X ", Character.valueOf('H'), Item.hoeSteel, Character.valueOf('X'), "ingotAwesomeBlack"
 		}));
+		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(awesomeBlock, 1, 0), new Object[]{
+			" X ", "XSX", " X ", Character.valueOf('S'), Block.stone, Character.valueOf('X'), "ingotAwesomeBlack"
+		}));
 	}
 	
 	public static void addHeadRecipe(){
@@ -331,6 +341,17 @@ public class ModJam {
 		}
 		OreDictionary.registerOre("extractDark", darkExtract);
 		
+	}
+	
+	public void populateGenChest(){
+		WorldGenChestContents.addItemGen(awesomeBlock, 0, 2, 5, 20);
+		WorldGenChestContents.addItemGen(Item.gunpowder, 0, 3, 5, 5);
+		for(int i = 0; i < 15; i++){
+			WorldGenChestContents.addItemGen(awesomeBlockStandard, i, 1, 3, 3);
+			WorldGenChestContents.addItemGen(awesomeBlockCreeper, i, 1, 3, 2);
+			WorldGenChestContents.addItemGen(awesomeOre, i, 1, 4, 10);
+			WorldGenChestContents.addItemGen(awesomeIngot, i, 2, 10, 5);
+		}
 	}
 	
 	public void registerAllWorldGenerators(){
