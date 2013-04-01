@@ -27,4 +27,14 @@ public class ComponentChestContents {
 		}
 	}
 	
+	public static void addItemGen(Item item, int[] metaList, int min, int max, int weight){
+		for(int m = min; m <= max; m++){
+			for(int metaIndex = metaList[0]; metaIndex < metaList.length; metaIndex++){
+				for(int i = 0; i < weight; i++){
+					chestGen.add(new ItemStack(item, m, metaList[metaIndex]));
+				}
+			}
+		}
+	}
+	
 }

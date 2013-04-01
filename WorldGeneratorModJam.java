@@ -43,7 +43,7 @@ public class WorldGeneratorModJam implements IWorldGenerator{
 				(new WorldGenMinable(ModJam.oreAwesomeID, meta, 10, Block.stone.blockID)).generate(world, random, xCoord, yCoord, zCoord);
 			}
 		}
-		if(random.nextInt(10) == 1){
+		if(random.nextInt(15) == 1){
 			int y1 = random.nextInt(12);
 			int y2 = 45;
 			int y = y1 + y2;

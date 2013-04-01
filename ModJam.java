@@ -150,13 +150,13 @@ public class ModJam {
 	public void Init(FMLInitializationEvent event){
     	if(event.getSide() == Side.CLIENT){
     		new UpdaterClient();
+    		registerCreativeTab();
     	}else if(event.getSide() == Side.SERVER){
     		new UpdaterServer();
     	}else{
     		log("Failed to detect current side.", Level.SEVERE);
     	}
 		proxy.handler();
-		registerCreativeTab();
 		initAllMaterials();
 		initAllItems();
 		initAllBlocks();
@@ -172,7 +172,7 @@ public class ModJam {
 	
 	public void initAllMaterials(){
 		awesomeArmorMaterial = EnumHelper.addArmorMaterial("AWESOME", 13, new int[]{3, 7, 5, 2}, 25);
-		awesomeToolMaterial = EnumHelper.addToolMaterial("AWESOME", 1300, 250, 7.0F, 2, 22);
+		awesomeToolMaterial = EnumHelper.addToolMaterial("AWESOME", 3, 280, 7.0F, 2, 22);
 	}
 	
 	public void initAllBlocks(){
@@ -351,6 +351,22 @@ public class ModJam {
 			ComponentChestContents.addItemGen(awesomeBlockCreeper, i, 1, 3, 2);
 			ComponentChestContents.addItemGen(awesomeOre, i, 1, 4, 10);
 			ComponentChestContents.addItemGen(awesomeIngot, i, 2, 10, 5);
+			ComponentChestContents.addItemGen(Block.stone, 0, 1, 2, 2);
+			ComponentChestContents.addItemGen(Item.diamond, 0, 1, 5, 1);
+			ComponentChestContents.addItemGen(Item.emerald, 0, 2, 4, 3);
+			ComponentChestContents.addItemGen(darkExtract, 0, 3, 10, 10);
+			ComponentChestContents.addItemGen(Block.blockSteel, 0, 1, 2, 1);
+			ComponentChestContents.addItemGen(Item.ingotIron, 0, 1, 4, 5);
+			ComponentChestContents.addItemGen(Item.coal, 0, 5, 10, 10);
+			ComponentChestContents.addItemGen(awesomePickaxe, new int[]{0, 10, 20, 200, 280}, 1, 1, 3);
+			ComponentChestContents.addItemGen(awesomeShovel, new int[]{0, 10, 20, 200, 280}, 1, 1, 3);
+			ComponentChestContents.addItemGen(awesomeSword, new int[]{0, 10, 20, 200, 280}, 1, 1, 3);
+			ComponentChestContents.addItemGen(awesomeAxe, new int[]{0, 10, 20, 200, 280}, 1, 1, 3);
+			ComponentChestContents.addItemGen(awesomeHoe, new int[]{0, 10, 20, 200, 280}, 1, 1, 3);
+			ComponentChestContents.addItemGen(awesomeHelmet, new int[]{0, 10, 20}, 1, 1, 3);
+			ComponentChestContents.addItemGen(awesomeChestplate, new int[]{0, 10, 20}, 1, 1, 3);
+			ComponentChestContents.addItemGen(awesomeLeggings, new int[]{0, 10, 20}, 1, 1, 3);
+			ComponentChestContents.addItemGen(awesomeBoots, new int[]{0, 10, 20}, 1, 1, 3);
 		}
 	}
 	
