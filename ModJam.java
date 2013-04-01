@@ -58,6 +58,7 @@ public class ModJam {
 	public static int awesomeToolSwordID = 3249;
 	public static int awesomeToolAxeID = 3250;
 	public static int awesomeToolHoeID = 3251;
+	public static int darkExtractID = 3252;
 	//End Config values
 	//Blocks
 	public static Block awesomeOre;
@@ -84,6 +85,7 @@ public class ModJam {
 	public static Item awesomeSword;
 	public static Item awesomeAxe;
 	public static Item awesomeHoe;
+	public static Item darkExtract;
 	//Materials
 	public static EnumArmorMaterial awesomeArmorMaterial;
 	public static EnumToolMaterial awesomeToolMaterial;
@@ -120,6 +122,7 @@ public class ModJam {
 		awesomeToolSwordID = config.getItem("Awesome Sword ID", awesomeToolSwordID).getInt();
 		awesomeToolAxeID = config.getItem("Awesome Axe ID", awesomeToolAxeID).getInt();
 		awesomeToolHoeID = config.getItem("Awesome Hoe ID", awesomeToolHoeID).getInt();
+		darkExtractID = config.getItem("Dark Extract ID", darkExtractID).getInt();
 		config.save();
 	} 
 	
@@ -179,6 +182,7 @@ public class ModJam {
 		awesomeSword = new ItemAwesomeSword(awesomeToolSwordID, awesomeToolMaterial, "awesomeMod:fuj1n.AwesomeMod.awesomeSword").setUnlocalizedName("fuj1n.AwesomeMod.awesomeSword");
 		awesomeAxe = new ItemAwesomeAxe(awesomeToolAxeID, awesomeToolMaterial, "awesomeMod:fuj1n.AwesomeMod.awesomeAxe").setUnlocalizedName("fuj1n.AwesomeMod.awesomeAxe");
 		awesomeHoe = new ItemAwesomeHoe(awesomeToolHoeID, awesomeToolMaterial, "awesomeMod:fuj1n.AwesomeMod.awesomeHoe").setUnlocalizedName("fuj1n.AwesomeMod.awesomeHoe");
+		darkExtract = new ItemDarkExtract(darkExtractID).setCreativeTab(modJamCreativeTab).setUnlocalizedName("fuj1n.AwesomeMod.darkExtract");
 	}
 	
 	public void registerAllBlocks(){
@@ -214,6 +218,7 @@ public class ModJam {
 		LanguageRegistry.addName(awesomeSword, "Awesome Sword");
 		LanguageRegistry.addName(awesomeAxe, "Awesome Axe");
 		LanguageRegistry.addName(awesomeHoe, "Awesome Hoe");
+		LanguageRegistry.addName(darkExtract, "Dark Extract");
 	}
 	
 	public void registerCreativeTab(){
@@ -241,40 +246,44 @@ public class ModJam {
 			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(stoneTable, 1, i), new Object[]{
 				"XXX", "SSS", "SXS", Character.valueOf('S'), Block.stone, Character.valueOf('X'), "ingotAwesome" + awesomeColors[i]
 			}));
-			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(awesomeHelmet, 1, 0), new Object[]{
-				" X ", "XHX", " X ", Character.valueOf('H'), Item.helmetSteel, Character.valueOf('X'), "ingotAwesomeBlack"
-			}));
-			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(awesomeChestplate, 1, 0), new Object[]{
-				" X ", "XCX", " X ", Character.valueOf('C'), Item.plateSteel, Character.valueOf('X'), "ingotAwesomeBlack"
-			}));
-			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(awesomeLeggings, 1, 0), new Object[]{
-				" X ", "XLX", " X ", Character.valueOf('L'), Item.legsSteel, Character.valueOf('X'), "ingotAwesomeBlack"
-			}));
-			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(awesomeBoots, 1, 0), new Object[]{
-				" X ", "XBX", " X ", Character.valueOf('B'), Item.bootsSteel, Character.valueOf('X'), "ingotAwesomeBlack"
-			}));
-			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(awesomePickaxe, 1, 0), new Object[]{
-				" X ", "XPX", " X ", Character.valueOf('P'), Item.pickaxeSteel, Character.valueOf('X'), "ingotAwesomeBlack"
-			}));
-			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(awesomeShovel, 1, 0), new Object[]{
-				" X ", "XSX", " X ", Character.valueOf('S'), Item.shovelSteel, Character.valueOf('X'), "ingotAwesomeBlack"
-			}));
-			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(awesomeSword, 1, 0), new Object[]{
-				" X ", "XSX", " X ", Character.valueOf('S'), Item.swordSteel, Character.valueOf('X'), "ingotAwesomeBlack"
-			}));
-			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(awesomeAxe, 1, 0), new Object[]{
-				" X ", "XAX", " X ", Character.valueOf('A'), Item.axeSteel, Character.valueOf('X'), "ingotAwesomeBlack"
-			}));
-			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(awesomeHoe, 1, 0), new Object[]{
-				" X ", "XHX", " X ", Character.valueOf('H'), Item.hoeSteel, Character.valueOf('X'), "ingotAwesomeBlack"
+			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(darkExtract, 1), new Object[]{
+				"XXX", "XDX", "XXX", Character.valueOf('D'), "extractDark", Character.valueOf('X'), "ingotAwesome" + awesomeColors[i]
 			}));
 		}
+		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(awesomeHelmet, 1, 0), new Object[]{
+			" X ", "XHX", " X ", Character.valueOf('H'), Item.helmetSteel, Character.valueOf('X'), "ingotAwesomeBlack"
+		}));
+		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(awesomeChestplate, 1, 0), new Object[]{
+			" X ", "XCX", " X ", Character.valueOf('C'), Item.plateSteel, Character.valueOf('X'), "ingotAwesomeBlack"
+		}));
+		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(awesomeLeggings, 1, 0), new Object[]{
+			" X ", "XLX", " X ", Character.valueOf('L'), Item.legsSteel, Character.valueOf('X'), "ingotAwesomeBlack"
+		}));
+		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(awesomeBoots, 1, 0), new Object[]{
+			" X ", "XBX", " X ", Character.valueOf('B'), Item.bootsSteel, Character.valueOf('X'), "ingotAwesomeBlack"
+		}));
+		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(awesomePickaxe, 1, 0), new Object[]{
+			" X ", "XPX", " X ", Character.valueOf('P'), Item.pickaxeSteel, Character.valueOf('X'), "ingotAwesomeBlack"
+		}));
+		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(awesomeShovel, 1, 0), new Object[]{
+			" X ", "XSX", " X ", Character.valueOf('S'), Item.shovelSteel, Character.valueOf('X'), "ingotAwesomeBlack"
+		}));
+		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(awesomeSword, 1, 0), new Object[]{
+			" X ", "XSX", " X ", Character.valueOf('S'), Item.swordSteel, Character.valueOf('X'), "ingotAwesomeBlack"
+		}));
+		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(awesomeAxe, 1, 0), new Object[]{
+			" X ", "XAX", " X ", Character.valueOf('A'), Item.axeSteel, Character.valueOf('X'), "ingotAwesomeBlack"
+		}));
+		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(awesomeHoe, 1, 0), new Object[]{
+			" X ", "XHX", " X ", Character.valueOf('H'), Item.hoeSteel, Character.valueOf('X'), "ingotAwesomeBlack"
+		}));
 	}
 	
 	public void addAllSmelting(){
 		for (int i = 0; i < 15; i++){
 			FurnaceRecipes.smelting().addSmelting(oreAwesomeID, i, new ItemStack(awesomeIngot, 1, i), 0.1F);
 		}
+		FurnaceRecipes.smelting().addSmelting(Item.coal.itemID, new ItemStack(darkExtract, 3, 0), 0.1F);
 	}
 	
 	public void registerAllOreDictionary(){
@@ -282,6 +291,7 @@ public class ModJam {
 			OreDictionary.registerOre("oreAwesome" + awesomeColors[i], new ItemStack(awesomeOre, 1, i));
 			OreDictionary.registerOre("ingotAwesome" + awesomeColors[i], new ItemStack(awesomeIngot, 1, i));
 		}
+		OreDictionary.registerOre("extractDark", darkExtract);
 		
 	}
 	
