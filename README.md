@@ -1,6 +1,25 @@
 Awesome Mod - modJam
 ====================
 
+Install Instructions
+====================
+Client Installation
+1. Open Minecraft.jar in an archive program such as WinRAR or 7-Zip.
+2. Delete META-INF.
+3. Install Minecraft Forge Universal (recommended build).
+4. If it does not exist already, create a folder called "mods" in the .minecraft folder.
+5. Copy the AwesomeMod folder to the "mods" folder located in .minecraft folder.
+
+Server Installation
+1. Open minecraft_server.jar in an archive program such as WinRAR or 7-Zip.
+2. Delete META-INF.
+3. Install Minecraft Forge Universal (recommended build).
+4. If it does not exist already, create a folder called "mods" in your server directory.
+5. Copy the AwesomeMod folder to the "mods" folder located in your server directory.
+
+Mod Description
+===============
+
 AwesomeMod by fuj1n - Written for ModJam 2013
 
 This is a mod I have written for ModJam 2013, the inspiration for this mod is Awesome.
