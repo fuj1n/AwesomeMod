@@ -46,7 +46,7 @@ public class WorldGenAwesomeRoom extends WorldGenerator{
 	}
 	
 	public void genChestContents(World world, Random random, int i, int j, int k){
-		if(!WorldGenChestContents.chestGen.isEmpty()){
+		if(!ComponentChestContents.chestGen.isEmpty()){
 			world.setBlock(i, j, k, Block.chest.blockID);
 			TileEntityChest chest;
 			if(world.getBlockTileEntity(i, j, k) != null){
@@ -57,7 +57,7 @@ public class WorldGenAwesomeRoom extends WorldGenerator{
 			}
 			int numOfItems = random.nextInt(9) + 1;
 			for(int n = 0; n < numOfItems; n++){
-				ItemStack item = WorldGenChestContents.chestGen.get(random.nextInt(WorldGenChestContents.chestGen.size()));
+				ItemStack item = ComponentChestContents.chestGen.get(random.nextInt(ComponentChestContents.chestGen.size()));
 				int slot = random.nextInt(chest.getSizeInventory());
 				while(chest.getStackInSlot(slot) != null){
 					slot = random.nextInt(chest.getSizeInventory());

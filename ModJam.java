@@ -344,13 +344,13 @@ public class ModJam {
 	}
 	
 	public void populateGenChest(){
-		WorldGenChestContents.addItemGen(awesomeBlock, 0, 2, 5, 20);
-		WorldGenChestContents.addItemGen(Item.gunpowder, 0, 3, 5, 5);
+		ComponentChestContents.addItemGen(awesomeBlock, 0, 2, 5, 20);
+		ComponentChestContents.addItemGen(Item.gunpowder, 0, 3, 5, 5);
 		for(int i = 0; i < 15; i++){
-			WorldGenChestContents.addItemGen(awesomeBlockStandard, i, 1, 3, 3);
-			WorldGenChestContents.addItemGen(awesomeBlockCreeper, i, 1, 3, 2);
-			WorldGenChestContents.addItemGen(awesomeOre, i, 1, 4, 10);
-			WorldGenChestContents.addItemGen(awesomeIngot, i, 2, 10, 5);
+			ComponentChestContents.addItemGen(awesomeBlockStandard, i, 1, 3, 3);
+			ComponentChestContents.addItemGen(awesomeBlockCreeper, i, 1, 3, 2);
+			ComponentChestContents.addItemGen(awesomeOre, i, 1, 4, 10);
+			ComponentChestContents.addItemGen(awesomeIngot, i, 2, 10, 5);
 		}
 	}
 	
