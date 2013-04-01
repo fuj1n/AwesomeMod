@@ -10,6 +10,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.EnumHelper;
 import net.minecraftforge.common.ForgeDirection;
@@ -153,6 +154,7 @@ public class ModJam {
 		registerAllBlocks();
 		addAllNames();
 		addAllCrafting();
+		addHeadRecipe();
 		addAllSmelting();
 		registerAllOreDictionary();
 		registerAllWorldGenerators();
@@ -285,6 +287,16 @@ public class ModJam {
 		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(awesomeHoe, 1, 0), new Object[]{
 			" X ", "XHX", " X ", Character.valueOf('H'), Item.hoeSteel, Character.valueOf('X'), "ingotAwesomeBlack"
 		}));
+	}
+	
+	public static void addHeadRecipe(){
+		ItemStack head = new ItemStack(Item.skull, 1, 3);
+		NBTTagCompound var1 = new NBTTagCompound();
+		var1.setString("SkullOwner", "fuj1n");
+		head.setTagCompound(var1);
+		GameRegistry.addShapedRecipe(head, new Object[]{
+			"OIO", "IEI", "OIO", Character.valueOf('O'), new ItemStack(awesomeOre, 1, 5), Character.valueOf('I'), new ItemStack(awesomeIngot, 1, 5), Character.valueOf('E'), darkExtract
+		});
 	}
 	
 	public void addAllSmelting(){
