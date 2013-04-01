@@ -30,7 +30,7 @@ public class WorldGeneratorModJam implements IWorldGenerator{
 	
 	public void generateOverworld(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider){
 		for(int meta = 0; meta < 15; meta++){
-			for(int i = 0; i < 15; i++){
+			for(int i = 0; i < 5; i++){
 				int xCoord = chunkX + random.nextInt(16);
 				int yCoord = random.nextInt(50);
 				int zCoord = chunkZ + random.nextInt(16);
@@ -52,7 +52,7 @@ public class WorldGeneratorModJam implements IWorldGenerator{
 	
 	public void generateEnd(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider){
 		for(int meta = 0; meta < 15; meta++){
-			for(int i = 0; i < 20; i++){
+			for(int i = 0; i < 10; i++){
 				int xCoord = chunkX + random.nextInt(16);
 				int yCoord = random.nextInt(50);
 				int zCoord = chunkZ + random.nextInt(16);
@@ -63,7 +63,7 @@ public class WorldGeneratorModJam implements IWorldGenerator{
 	
 	public void generateMisc(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider){
 		for(int meta = 0; meta < 15; meta++){
-			for(int i = 0; i < 3; i++){
+			for(int i = 0; i < 2; i++){
 				int xCoord = chunkX + random.nextInt(16);
 				int yCoord = random.nextInt(50);
 				int zCoord = chunkZ + random.nextInt(16);
