@@ -55,7 +55,7 @@ public class WorldGenAwesomeRoom extends WorldGenerator{
 				chest = new TileEntityChest();
 				world.setBlockTileEntity(i, j, k, chest);
 			}
-			int numOfItems = random.nextInt(10);
+			int numOfItems = random.nextInt(9) + 1;
 			for(int n = 0; n < numOfItems; n++){
 				ItemStack item = WorldGenChestContents.chestGen.get(random.nextInt(WorldGenChestContents.chestGen.size()));
 				int slot = random.nextInt(chest.getSizeInventory());
