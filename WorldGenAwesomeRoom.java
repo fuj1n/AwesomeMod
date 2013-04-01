@@ -15,7 +15,7 @@ public class WorldGenAwesomeRoom extends WorldGenerator{
 	
 	@Override
 	public boolean generate(World world, Random random, int i, int j, int k) {
-		if(world.getBlockId(i, j, k) != 0){
+		if(world.getBlockId(i, j, k) != 0 && world.getBlockId(i, j, k) != Block.waterStill.blockID){
 			//ModJam.log("Generating room at: " + i + " " + j + " " + k, Level.INFO);
 			for(int i1 = i; i1 < i + 5; i1++){
 				for(int j1 = j; j1 < j + 5; j1++){
