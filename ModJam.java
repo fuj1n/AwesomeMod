@@ -213,6 +213,18 @@ public class ModJam {
 			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(stoneTable, 1, i), new Object[]{
 				"XXX", "SSS", "SXS", Character.valueOf('S'), Block.stone, Character.valueOf('X'), "ingotAwesome" + awesomeColors[i]
 			}));
+			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(awesomeHelmet, 1, 0), new Object[]{
+				" X ", "XHX", " X ", Character.valueOf('H'), Item.helmetSteel, Character.valueOf('X'), "ingotAwesomeBlack"
+			}));
+			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(awesomeHelmet, 1, 0), new Object[]{
+				" X ", "XCX", " X ", Character.valueOf('C'), Item.plateSteel, Character.valueOf('X'), "ingotAwesomeBlack"
+			}));
+			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(awesomeHelmet, 1, 0), new Object[]{
+				" X ", "XLX", " X ", Character.valueOf('L'), Item.legsSteel, Character.valueOf('X'), "ingotAwesomeBlack"
+			}));
+			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(awesomeHelmet, 1, 0), new Object[]{
+				" X ", "XBX", " X ", Character.valueOf('B'), Item.bootsSteel, Character.valueOf('X'), "ingotAwesomeBlack"
+			}));
 		}
 	}
 	
