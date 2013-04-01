@@ -47,6 +47,9 @@ public class ModJam {
 	};
 	public static int woodTableID = 1033;
 	public static int stoneTableID = 1034;
+	public static int awesomeBlockID = 1035;
+	public static int awesomeBlockStandardID = 1036;
+	public static int awesomeBlockCreeperID = 1037;
 	//Items
 	public static int ingotAwesomeID = 3240;
 	public static int woodChairID = 3241;
@@ -74,6 +77,9 @@ public class ModJam {
 	public static Block stoneChairWest;
 	public static Block woodTable;
 	public static Block stoneTable;
+	public static Block awesomeBlock;
+	public static Block awesomeBlockStandard;
+	public static Block awesomeBlockCreeper;
 	//Items
 	public static Item awesomeIngot;
 	public static Item woodChair;
@@ -111,6 +117,9 @@ public class ModJam {
 		woodTableID = config.getBlock("Wooden Table ID", woodTableID).getInt();
 		stoneTableID = config.getBlock("Stone Table ID", stoneTableID).getInt();
 		refreshChairIDs();
+		awesomeBlockID = config.getBlock("Awesome Block ID", awesomeBlockID).getInt();
+		awesomeBlockStandardID = config.getBlock("Standard Awesome Block ID", awesomeBlockStandardID).getInt();
+		awesomeBlockCreeperID = config.getBlock("Creeper-textured Awesome Block ID", awesomeBlockCreeperID).getInt();
 		//Items
 		ingotAwesomeID = config.getItem("Awesome Ingot ID", ingotAwesomeID).getInt();
 		woodChairID = config.getItem("Wooden Chair Item ID", woodChairID).getInt();
@@ -177,6 +186,9 @@ public class ModJam {
 		stoneChairWest = new BlockChair(stoneChairIDs[3], ForgeDirection.WEST, Block.stone, stoneChair.itemID).setHardness(0.3F).setUnlocalizedName("fuj1n.modJam.tileChair");
 		woodTable = new BlockTable(woodTableID, Block.planks).setHardness(0.3F).setCreativeTab(modJamCreativeTab).setUnlocalizedName("fuj1n.modJam.woodTable");
 		stoneTable = new BlockTable(stoneTableID, Block.stone).setHardness(0.3F).setCreativeTab(modJamCreativeTab).setUnlocalizedName("fuj1n.modJam.stoneTable");
+		awesomeBlock = new BlockAwesome(awesomeBlockID, "none").setHardness(0.8F).setResistance(5F).setCreativeTab(modJamCreativeTab).setUnlocalizedName("fuj1n.modJam.awesomeBlock");
+		awesomeBlockStandard = new BlockAwesome(awesomeBlockStandardID, "standard").addAdditionalInfo("Standard-Textured").setHardness(0.8F).setResistance(5F).setCreativeTab(modJamCreativeTab).setUnlocalizedName("fuj1n.modJam.awesomeBlock.standard");
+		awesomeBlockCreeper = new BlockAwesome(awesomeBlockCreeperID, "creeper").addAdditionalInfo("Creeper-Textured").setHardness(0.8F).setResistance(10F).setCreativeTab(modJamCreativeTab).setUnlocalizedName("fuj1n.modJam.awesomeBlock.creeper");
 	}
 	
 	public void initAllItems(){
@@ -197,16 +209,19 @@ public class ModJam {
 	
 	public void registerAllBlocks(){
 		GameRegistry.registerBlock(awesomeOre, ItemAwesomeOre.class, "fuj1n.modJam.awesomeOre");
-		GameRegistry.registerBlock(woodChairNorth, "fuj1n.modJam.woodChairNorth");
-		GameRegistry.registerBlock(woodChairEast, "fuj1n.modJam.woodChairEast");
-		GameRegistry.registerBlock(woodChairSouth, "fuj1n.modJam.woodChairSouth");
-		GameRegistry.registerBlock(woodChairWest, "fuj1n.modJam.woodChairWest");
-		GameRegistry.registerBlock(stoneChairNorth, "fuj1n.modJam.stoneChairNorth");
-		GameRegistry.registerBlock(stoneChairEast, "fuj1n.modJam.stoneChairEast");
-		GameRegistry.registerBlock(stoneChairSouth, "fuj1n.modJam.stoneChairSouth");
-		GameRegistry.registerBlock(stoneChairWest, "fuj1n.modJam.stoneChairWest");
-		GameRegistry.registerBlock(woodTable, ItemTable.class, "fuj1n.modJam.woodTable");
-		GameRegistry.registerBlock(stoneTable, ItemTable.class, "fuj1n.modJam.stoneTable");
+		GameRegistry.registerBlock(woodChairNorth, "fuj1n.modJam.woodChair.north");
+		GameRegistry.registerBlock(woodChairEast, "fuj1n.modJam.woodChair.east");
+		GameRegistry.registerBlock(woodChairSouth, "fuj1n.modJam.woodChair.south");
+		GameRegistry.registerBlock(woodChairWest, "fuj1n.modJam.woodChair.west");
+		GameRegistry.registerBlock(stoneChairNorth, "fuj1n.modJam.stoneChair.north");
+		GameRegistry.registerBlock(stoneChairEast, "fuj1n.modJam.stoneChair.east");
+		GameRegistry.registerBlock(stoneChairSouth, "fuj1n.modJam.stoneChair.south");
+		GameRegistry.registerBlock(stoneChairWest, "fuj1n.modJam.stoneChair.west");
+		GameRegistry.registerBlock(woodTable, ItemTable.class, "fuj1n.modJam.table.wood");
+		GameRegistry.registerBlock(stoneTable, ItemTable.class, "fuj1n.modJam.table.stone");
+		GameRegistry.registerBlock(awesomeBlock, "fuj1n.modJam.awesomeBlock");
+		GameRegistry.registerBlock(awesomeBlockStandard, ItemAwesomeBlock.class, "fuj1n.modJam.awesomeBlock.standard");
+		GameRegistry.registerBlock(awesomeBlockCreeper, ItemAwesomeBlock.class, "fuj1n.modJam.awesomeBlock.creeper");
 	}
 	
 	public void addAllNames(){
@@ -217,6 +232,8 @@ public class ModJam {
 			LanguageRegistry.addName(new ItemStack(stoneChair, 1, i), awesomeColors[new ItemStack(stoneChair, 1, i).getItemDamage()] + " Glowing Stone Chair");
 			LanguageRegistry.addName(new ItemStack(woodTable, 1, i), awesomeColors[new ItemStack(woodTable, 1, i).getItemDamage()] + " Glowing Wooden Table");
 			LanguageRegistry.addName(new ItemStack(stoneTable, 1, i), awesomeColors[new ItemStack(stoneTable, 1, i).getItemDamage()] + " Glowing Stone Table");
+			LanguageRegistry.addName(new ItemStack(awesomeBlockStandard, 1, i), awesomeColors[new ItemStack(awesomeBlockStandard, 1, i).getItemDamage()] + " Awesome Block");
+			LanguageRegistry.addName(new ItemStack(awesomeBlockCreeper, 1, i), awesomeColors[new ItemStack(awesomeBlockCreeper, 1, i).getItemDamage()] + " Awesome Block");
 			//LanguageRegistry.instance().addStringLocalization(awesomeHelmet.getUnlocalizedName(ItemAwesomeArmor.getItemStackForNaming(awesomeHelmet.itemID, i)), awesomeColors[i] + " Awesome Helmet");
 		}
 		LanguageRegistry.addName(new ItemStack(awesomeHelmet), "Awesome Helmet");
@@ -229,6 +246,7 @@ public class ModJam {
 		LanguageRegistry.addName(awesomeAxe, "Awesome Axe");
 		LanguageRegistry.addName(awesomeHoe, "Awesome Hoe");
 		LanguageRegistry.addName(darkExtract, "Dark Extract");
+		LanguageRegistry.addName(awesomeBlock, "Awesome Block");
 	}
 	
 	public void registerCreativeTab(){

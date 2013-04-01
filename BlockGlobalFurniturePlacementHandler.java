@@ -17,7 +17,7 @@ public abstract class BlockGlobalFurniturePlacementHandler extends Block{
 		if(isBlockInLocalPlacementWhiteList(par1World, par2, par3, par4)){
 			return true;
 		}
-		return var1 == Block.glass.blockID || var1 == Block.ice.blockID || var1 == Block.mobSpawner.blockID || var1 == ModJam.awesomeOre.blockID || var1 == ModJam.woodTable.blockID || var1 == ModJam.stoneTable.blockID;
+		return var1 == Block.glass.blockID || var1 == Block.ice.blockID || var1 == Block.mobSpawner.blockID || var1 == ModJam.awesomeOre.blockID || var1 == ModJam.woodTable.blockID || var1 == ModJam.stoneTable.blockID || var1 == ModJam.awesomeBlock.blockID || var1 == ModJam.awesomeBlockStandard.blockID;
 	}
 	
 	

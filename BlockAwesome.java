@@ -1,5 +1,7 @@
 package modJam;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import net.minecraft.block.Block;
@@ -16,6 +18,8 @@ public class BlockAwesome extends Block{
 	private Icon bottomBlock;
 	private Icon[] blockColors = new Icon[16];
 	
+	public Collection blockInfo = new ArrayList();
+	
 	public String blockType;
 	
 	public BlockAwesome(int par1, String par2String) {
@@ -26,7 +30,11 @@ public class BlockAwesome extends Block{
 	
 	@Override
 	public Icon getBlockTextureFromSideAndMetadata(int par1, int par2){
-		return blockColors[par2];
+		if(!blockType.equals("none")){
+			return blockColors[par2];
+		}else{
+			return bottomBlock;
+		}
 	}
 	
 	public Icon getUnderlyingTexture(int par1, int par2){
@@ -60,13 +68,22 @@ public class BlockAwesome extends Block{
 	
 	@Override
 	public int getRenderType(){
-		return ClientProxyModJam.awesomeOreRenderType;
+		if(!blockType.equals("none")){
+			return ClientProxyModJam.awesomeBlockRenderType;
+		}else{
+			return 0;
+		}
+	}
+	
+	public Block addAdditionalInfo(String s){
+		blockInfo.add(s);
+		return this;
 	}
 	
 	@Override
     public int getLightValue(IBlockAccess world, int x, int y, int z)
     {
-        if(ClientProxyModJam.awesomeOreRenderStage == 0){
+        if(ClientProxyModJam.awesomeBlockRenderStage == 0){
             Block block = blocksList[world.getBlockId(x, y, z)];
             if (block != null && block != this)
             {
@@ -85,21 +102,23 @@ public class BlockAwesome extends Block{
     public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, List par3List)
     {
         par3List.add(new ItemStack(par1, 1, 0));
-        par3List.add(new ItemStack(par1, 1, 1));
-        par3List.add(new ItemStack(par1, 1, 2));
-        par3List.add(new ItemStack(par1, 1, 3));
-        par3List.add(new ItemStack(par1, 1, 4));
-        par3List.add(new ItemStack(par1, 1, 5));
-        par3List.add(new ItemStack(par1, 1, 6));
-        par3List.add(new ItemStack(par1, 1, 7));
-        par3List.add(new ItemStack(par1, 1, 8));
-        par3List.add(new ItemStack(par1, 1, 9));
-        par3List.add(new ItemStack(par1, 1, 10));
-        par3List.add(new ItemStack(par1, 1, 11));
-        par3List.add(new ItemStack(par1, 1, 12));
-        par3List.add(new ItemStack(par1, 1, 13));
-        par3List.add(new ItemStack(par1, 1, 14));
-        par3List.add(new ItemStack(par1, 1, 15));
+		if(!blockType.equals("none")){
+	        par3List.add(new ItemStack(par1, 1, 1));
+	        par3List.add(new ItemStack(par1, 1, 2));
+	        par3List.add(new ItemStack(par1, 1, 3));
+	        par3List.add(new ItemStack(par1, 1, 4));
+	        par3List.add(new ItemStack(par1, 1, 5));
+	        par3List.add(new ItemStack(par1, 1, 6));
+	        par3List.add(new ItemStack(par1, 1, 7));
+	        par3List.add(new ItemStack(par1, 1, 8));
+	        par3List.add(new ItemStack(par1, 1, 9));
+	        par3List.add(new ItemStack(par1, 1, 10));
+	        par3List.add(new ItemStack(par1, 1, 11));
+	        par3List.add(new ItemStack(par1, 1, 12));
+	        par3List.add(new ItemStack(par1, 1, 13));
+	        par3List.add(new ItemStack(par1, 1, 14));
+	        par3List.add(new ItemStack(par1, 1, 15));
+		}
     }
 	
 	@Override
@@ -113,22 +132,24 @@ public class BlockAwesome extends Block{
      */
     public void registerIcons(IconRegister par1IconRegister)
     {
-    	this.blockColors[0] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.awesomeBlock."+ blockType +".white");
-    	this.blockColors[1] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.awesomeBlock."+ blockType +".orange");
-    	this.blockColors[2] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.awesomeBlock."+ blockType +".magenta");
-    	this.blockColors[3] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.awesomeBlock."+ blockType +".LBlue");
-    	this.blockColors[4] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.awesomeBlock."+ blockType +".yellow");
-    	this.blockColors[5] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.awesomeBlock."+ blockType +".lime");
-    	this.blockColors[6] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.awesomeBlock."+ blockType +".pink");
-    	this.blockColors[7] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.awesomeBlock."+ blockType +".gray");
-    	this.blockColors[8] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.awesomeBlock."+ blockType +".LGray");
-    	this.blockColors[9] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.awesomeBlock."+ blockType +".cyan");
-    	this.blockColors[10] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.awesomeBlock."+ blockType +".purple");
-    	this.blockColors[11] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.awesomeBlock."+ blockType +".blue");
-    	this.blockColors[12] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.awesomeBlock."+ blockType +".brown");
-    	this.blockColors[13] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.awesomeBlock."+ blockType +".green");
-    	this.blockColors[14] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.awesomeBlock."+ blockType +".red");
-    	this.blockColors[15] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.awesomeBlock."+ blockType +".black");
+    	if(!blockType.equals("none")){
+	    	this.blockColors[0] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.awesomeBlock."+ blockType +".white");
+	    	this.blockColors[1] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.awesomeBlock."+ blockType +".orange");
+	    	this.blockColors[2] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.awesomeBlock."+ blockType +".magenta");
+	    	this.blockColors[3] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.awesomeBlock."+ blockType +".LBlue");
+	    	this.blockColors[4] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.awesomeBlock."+ blockType +".yellow");
+	    	this.blockColors[5] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.awesomeBlock."+ blockType +".lime");
+	    	this.blockColors[6] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.awesomeBlock."+ blockType +".pink");
+	    	this.blockColors[7] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.awesomeBlock."+ blockType +".gray");
+	    	this.blockColors[8] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.awesomeBlock."+ blockType +".LGray");
+	    	this.blockColors[9] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.awesomeBlock."+ blockType +".cyan");
+	    	this.blockColors[10] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.awesomeBlock."+ blockType +".purple");
+	    	this.blockColors[11] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.awesomeBlock."+ blockType +".blue");
+	    	this.blockColors[12] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.awesomeBlock."+ blockType +".brown");
+	    	this.blockColors[13] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.awesomeBlock."+ blockType +".green");
+	    	this.blockColors[14] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.awesomeBlock."+ blockType +".red");
+	    	this.blockColors[15] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.awesomeBlock."+ blockType +".black");
+    	}
     	this.bottomBlock = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.awesomeBlock");
     }
 
