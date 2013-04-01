@@ -246,7 +246,7 @@ public class ModJam {
 			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(stoneTable, 1, i), new Object[]{
 				"XXX", "SSS", "SXS", Character.valueOf('S'), Block.stone, Character.valueOf('X'), "ingotAwesome" + awesomeColors[i]
 			}));
-			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(darkExtract, 1), new Object[]{
+			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(awesomeIngot, 1, 15), new Object[]{
 				"XXX", "XDX", "XXX", Character.valueOf('D'), "extractDark", Character.valueOf('X'), "ingotAwesome" + awesomeColors[i]
 			}));
 		}
