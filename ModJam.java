@@ -5,6 +5,7 @@ import java.util.logging.Level;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.EnumArmorMaterial;
+import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
@@ -52,6 +53,11 @@ public class ModJam {
 	public static int awesomeArmorChestplateID = 3244;
 	public static int awesomeArmorLeggingsID = 3245;
 	public static int awesomeArmorBootsID = 3246;
+	public static int awesomeToolPickaxeID = 3247;
+	public static int awesomeToolShovelID = 3248;
+	public static int awesomeToolSwordID = 3249;
+	public static int awesomeToolAxeID = 3250;
+	public static int awesomeToolHoeID = 3251;
 	//End Config values
 	//Blocks
 	public static Block awesomeOre;
@@ -73,8 +79,14 @@ public class ModJam {
 	public static Item awesomeChestplate;
 	public static Item awesomeLeggings;
 	public static Item awesomeBoots;
-	//Armor Materials
+	public static Item awesomePickaxe;
+	public static Item awesomeShovel;
+	public static Item awesomeSword;
+	public static Item awesomeAxe;
+	public static Item awesomeHoe;
+	//Materials
 	public static EnumArmorMaterial awesomeArmorMaterial;
+	public static EnumToolMaterial awesomeToolMaterial;
 	//CreativeTabs
 	public static CreativeTabs modJamCreativeTab;
 	//Sub Names
@@ -103,6 +115,11 @@ public class ModJam {
 		awesomeArmorChestplateID = config.getItem("Awesome Chestplate ID", awesomeArmorChestplateID).getInt();
 		awesomeArmorLeggingsID = config.getItem("Awesome Leggings ID", awesomeArmorLeggingsID).getInt();
 		awesomeArmorBootsID = config.getItem("Awesome Boots ID", awesomeArmorBootsID).getInt();
+		awesomeToolPickaxeID = config.getItem("Awesome Pickaxe ID", awesomeToolPickaxeID).getInt();
+		awesomeToolShovelID = config.getItem("Awesome Shovel ID", awesomeToolShovelID).getInt();
+		awesomeToolSwordID = config.getItem("Awesome Sword ID", awesomeToolSwordID).getInt();
+		awesomeToolAxeID = config.getItem("Awesome Axe ID", awesomeToolAxeID).getInt();
+		awesomeToolHoeID = config.getItem("Awesome Hoe ID", awesomeToolHoeID).getInt();
 		config.save();
 	} 
 	
@@ -132,6 +149,7 @@ public class ModJam {
 	
 	public void initAllMaterials(){
 		awesomeArmorMaterial = EnumHelper.addArmorMaterial("AWESOME", 13, new int[]{3, 7, 5, 2}, 25);
+		awesomeToolMaterial = EnumHelper.addToolMaterial("AWESOME", 1300, 250, 7.0F, 2, 22);
 	}
 	
 	public void initAllBlocks(){
@@ -156,6 +174,11 @@ public class ModJam {
 		awesomeChestplate = new ItemAwesomeArmor(awesomeArmorChestplateID, awesomeArmorMaterial, CommonProxyModJam.awesomeArmorID, 1, "awesomeMod:fuj1n.AwesomeMod.awesomeArmor").setUnlocalizedName("fuj1n.AwesomeMod.awesomeArmor");
 		awesomeLeggings = new ItemAwesomeArmor(awesomeArmorLeggingsID, awesomeArmorMaterial, CommonProxyModJam.awesomeArmorID, 2, "awesomeMod:fuj1n.AwesomeMod.awesomeArmor").setUnlocalizedName("fuj1n.AwesomeMod.awesomeArmor");
 		awesomeBoots = new ItemAwesomeArmor(awesomeArmorBootsID, awesomeArmorMaterial, CommonProxyModJam.awesomeArmorID, 3, "awesomeMod:fuj1n.AwesomeMod.awesomeArmor").setUnlocalizedName("fuj1n.AwesomeMod.awesomeArmor");
+		awesomePickaxe = new ItemAwesomePickaxe(awesomeToolPickaxeID, awesomeToolMaterial, "awesomeMod:fuj1n.AwesomeMod.awesomePickaxe").setUnlocalizedName("fuj1n.AwesomeMod.awesomePickaxe");
+		awesomeShovel = new ItemAwesomeShovel(awesomeToolShovelID, awesomeToolMaterial, "awesomeMod:fuj1n.AwesomeMod.awesomeShovel").setUnlocalizedName("fuj1n.AwesomeMod.awesomeShovel");
+		awesomeSword = new ItemAwesomeSword(awesomeToolSwordID, awesomeToolMaterial, "awesomeMod:fuj1n.AwesomeMod.awesomeSword").setUnlocalizedName("fuj1n.AwesomeMod.awesomeSword");
+		awesomeAxe = new ItemAwesomeAxe(awesomeToolAxeID, awesomeToolMaterial, "awesomeMod:fuj1n.AwesomeMod.awesomeAxe").setUnlocalizedName("fuj1n.AwesomeMod.awesomeAxe");
+		awesomeHoe = new ItemAwesomeHoe(awesomeToolHoeID, awesomeToolMaterial, "awesomeMod:fuj1n.AwesomeMod.awesomeHoe").setUnlocalizedName("fuj1n.AwesomeMod.awesomeHoe");
 	}
 	
 	public void registerAllBlocks(){
@@ -186,6 +209,11 @@ public class ModJam {
 		LanguageRegistry.addName(new ItemStack(awesomeChestplate), "Awesome Chestplate");
 		LanguageRegistry.addName(new ItemStack(awesomeLeggings), "Awesome Leggings");
 		LanguageRegistry.addName(new ItemStack(awesomeBoots), "Awesome Boots");
+		LanguageRegistry.addName(awesomePickaxe, "Awesome Pickaxe");
+		LanguageRegistry.addName(awesomeShovel, "Awesome Shovel");
+		LanguageRegistry.addName(awesomeSword, "Awesome Sword");
+		LanguageRegistry.addName(awesomeAxe, "Awesome Axe");
+		LanguageRegistry.addName(awesomeHoe, "Awesome Hoe");
 	}
 	
 	public void registerCreativeTab(){
@@ -224,6 +252,21 @@ public class ModJam {
 			}));
 			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(awesomeBoots, 1, 0), new Object[]{
 				" X ", "XBX", " X ", Character.valueOf('B'), Item.bootsSteel, Character.valueOf('X'), "ingotAwesomeBlack"
+			}));
+			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(awesomePickaxe, 1, 0), new Object[]{
+				" X ", "XPX", " X ", Character.valueOf('P'), Item.pickaxeSteel, Character.valueOf('X'), "ingotAwesomeBlack"
+			}));
+			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(awesomeShovel, 1, 0), new Object[]{
+				" X ", "XSX", " X ", Character.valueOf('S'), Item.shovelSteel, Character.valueOf('X'), "ingotAwesomeBlack"
+			}));
+			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(awesomeSword, 1, 0), new Object[]{
+				" X ", "XSX", " X ", Character.valueOf('S'), Item.swordSteel, Character.valueOf('X'), "ingotAwesomeBlack"
+			}));
+			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(awesomeAxe, 1, 0), new Object[]{
+				" X ", "XAX", " X ", Character.valueOf('A'), Item.axeSteel, Character.valueOf('X'), "ingotAwesomeBlack"
+			}));
+			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(awesomeHoe, 1, 0), new Object[]{
+				" X ", "XHX", " X ", Character.valueOf('H'), Item.hoeSteel, Character.valueOf('X'), "ingotAwesomeBlack"
 			}));
 		}
 	}

@@ -1,6 +1,7 @@
 package modJam;
 
 import java.util.Random;
+import java.util.logging.Level;
 
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
@@ -9,7 +10,11 @@ import net.minecraft.world.gen.feature.WorldGenMinable;
 import cpw.mods.fml.common.IWorldGenerator;
 
 public class WorldGeneratorModJam implements IWorldGenerator{
-
+	private static final String[] awesomeColors = { 
+		"White", "Orange", "Magenta",
+		"Light-Blue", "Yellow", "Lime", "Pink", "Gray", "Light-Gray", "Cyan",
+		"Purple", "Blue", "Brown", "Green", "Red", "Black"
+	};
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
 		switch(world.provider.dimensionId){
@@ -29,11 +34,12 @@ public class WorldGeneratorModJam implements IWorldGenerator{
 	}
 	
 	public void generateOverworld(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider){
-		for(int meta = 0; meta < 15; meta++){
-			for(int i = 0; i < 5; i++){
+		for(int meta = 0; meta < 16; meta++){
+			for(int i = 0; i < 1; i++){
 				int xCoord = chunkX + random.nextInt(16);
 				int yCoord = random.nextInt(50);
 				int zCoord = chunkZ + random.nextInt(16);
+				//ModJam.log(awesomeColors[meta] + "generated at: " + xCoord + " " + yCoord + " " + zCoord, Level.INFO);
 				(new WorldGenMinable(ModJam.oreAwesomeID, meta, 10, Block.stone.blockID)).generate(world, random, xCoord, yCoord, zCoord);
 			}
 		}
@@ -42,10 +48,12 @@ public class WorldGeneratorModJam implements IWorldGenerator{
 	public void generateNether(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider){
 		for(int meta = 0; meta < 15; meta++){
 			for(int i = 0; i < 1; i++){
-				int xCoord = chunkX + random.nextInt(16);
-				int yCoord = random.nextInt(50);
-				int zCoord = chunkZ + random.nextInt(16);
-				(new WorldGenMinable(ModJam.oreAwesomeID, meta, 10, Block.stone.blockID)).generate(world, random, xCoord, yCoord, zCoord);
+				if(world.rand.nextInt(2) == 1){
+					int xCoord = chunkX + random.nextInt(16);
+					int yCoord = random.nextInt(50);
+					int zCoord = chunkZ + random.nextInt(16);
+					(new WorldGenMinable(ModJam.oreAwesomeID, meta, 10, Block.stone.blockID)).generate(world, random, xCoord, yCoord, zCoord);
+				}
 			}
 		}
 	}

@@ -18,23 +18,18 @@ public class ItemAwesomeArmor extends ItemArmor{
 	
 	private Icon overlayTexture;
 	
-	private int[] colorArray = {
-			
-	};
-	
 	public ItemAwesomeArmor(int par1, EnumArmorMaterial par2EnumArmorMaterial, int par3, int par4, String tex) {
 		super(par1, par2EnumArmorMaterial, par3, par4);
 		this.setCreativeTab(ModJam.modJamCreativeTab);
-		this.setHasSubtypes(true);
 		texture = tex;
 	}
 	
     @SideOnly(Side.CLIENT)
     public boolean requiresMultipleRenderPasses(){
-        return true;
+        return false;
     }
 	
-    public Icon getIcon(ItemStack stack, int pass){
+   /* public Icon getIcon(ItemStack stack, int pass){
     	if(pass == 0){
     		return this.iconIndex;
     	}else if(pass == 1){
@@ -43,7 +38,7 @@ public class ItemAwesomeArmor extends ItemArmor{
     		}
     	}
     	return this.iconIndex;
-    }
+    }*/
     
 	public void setItemColorIDToNBT(ItemStack par1ItemStack, int colorMeta){
 		NBTTagCompound nbt;
@@ -58,12 +53,13 @@ public class ItemAwesomeArmor extends ItemArmor{
 	}
     
 	public boolean hasColor(ItemStack par1ItemStack){
-		return par1ItemStack.getTagCompound() == null ? false : par1ItemStack.getTagCompound().hasKey("Color");
+		return false;
+		//return par1ItemStack.getTagCompound() == null ? false : par1ItemStack.getTagCompound().hasKey("Color");
 	}
 	
-	public int getColor(ItemStack par1ItemStack){
+	/*public int getColor(ItemStack par1ItemStack){
 		return hasColor(par1ItemStack) ? 0 : par1ItemStack.getTagCompound().getByte("Color");
-	}
+	}*/
 	
 	public String getArmorNameByType(int type){
 		String typeStr;
