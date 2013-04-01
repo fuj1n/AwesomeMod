@@ -25,6 +25,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import cpw.mods.fml.relauncher.Side;
 
 @Mod(modid="fuj1n.modJam", name=CommonProxyModJam.modName, version=CommonProxyModJam.version)
 @NetworkMod(clientSideRequired=true, serverSideRequired=false)
@@ -137,6 +138,13 @@ public class ModJam {
 	
 	@Init
 	public void Init(FMLInitializationEvent event){
+    	if(event.getSide() == Side.CLIENT){
+    		new UpdaterClient();
+    	}else if(event.getSide() == Side.SERVER){
+    		new UpdaterServer();
+    	}else{
+    		log("Failed to detect current side.", Level.SEVERE);
+    	}
 		proxy.handler();
 		registerCreativeTab();
 		initAllMaterials();
