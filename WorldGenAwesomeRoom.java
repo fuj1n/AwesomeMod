@@ -19,6 +19,13 @@ public class WorldGenAwesomeRoom extends WorldGenerator{
 			//ModJam.log("Generating room at: " + i + " " + j + " " + k, Level.INFO);
 			for(int i1 = i; i1 < i + 5; i1++){
 				for(int j1 = j; j1 < j + 5; j1++){
+					for(int k1 = k; k1 < k + 5; k1++){
+						world.setBlockToAir(i1, j1, k1);
+					}
+				}
+			}
+			for(int i1 = i; i1 < i + 5; i1++){
+				for(int j1 = j; j1 < j + 5; j1++){
 					world.setBlock(i1, j1, k, ModJam.awesomeBlock.blockID);
 					world.setBlock(i1, j1, k + 4, ModJam.awesomeBlock.blockID);
 				}
