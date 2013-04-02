@@ -35,7 +35,8 @@ Blocks added by this mod have glowing properties.
 There are several additions in this mod, which are:
     World generation:
         This mod adds world-gen for special glowing ores called Awesome Ores, which when smelted produce Awesome Gems
-        and a small 5x5 structure comprised of Awesome Blocks called the Awesome Room, in the middle of the Awesome Room
+        and a small 5x5 structure comprised of Awesome Blocks called the Awesome Room which spawn
+        between the y-level of 45 and 57, in the middle of the Awesome Room
         there is a chest with randomly-generated items which are picked from a list inside ComponentChestContents(see below).
     Smelting:
         This mod has only two smelting recipes added, one being Awesome Ore smelting into 8 Awesome Ingots and the other one
