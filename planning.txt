@@ -1,3 +1,7 @@
+NOTE:
+This file was created before any classes were added, therefore there may be more/less features in the mod then listed
+in this planning file.
+
 Topic - Awesome Mod
 
 - Game Mode?
