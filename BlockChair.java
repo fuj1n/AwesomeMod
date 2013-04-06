@@ -41,7 +41,7 @@ public class BlockChair extends BlockGlobalFurniturePlacementHandler{
     		return false;
     	}
     	//Will return true when one of the features is added(the reason for the check above).
-        return true;
+        return false;
     }
 	
     /**
