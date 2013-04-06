@@ -6,8 +6,22 @@ import net.minecraft.world.World;
 
 public abstract class BlockGlobalFurniturePlacementHandler extends Block{
 	
+	public static boolean[] globalPlacementWhitelist = new boolean[Block.blocksList.length];
+	
 	public BlockGlobalFurniturePlacementHandler(int par1, Material par2Material) {
 		super(par1, par2Material);
+	}
+	
+	public static void initPlacementWhitelist(){
+		globalPlacementWhitelist[Block.glass.blockID] = true;
+		globalPlacementWhitelist[Block.ice.blockID] = true;
+		globalPlacementWhitelist[Block.mobSpawner.blockID] = true;
+		globalPlacementWhitelist[ModJam.awesomeOre.blockID] = true;
+		globalPlacementWhitelist[ModJam.woodTable.blockID] = true;
+		globalPlacementWhitelist[ModJam.stoneTable.blockID] = true;
+		globalPlacementWhitelist[ModJam.awesomeBlock.blockID] = true;
+		globalPlacementWhitelist[ModJam.awesomeBlockStandard.blockID] = true;
+		globalPlacementWhitelist[ModJam.awesomeBlockCreeper.blockID] = true;
 	}
 
 	public abstract boolean isBlockInLocalPlacementWhiteList(World par1World, int par2, int par3, int par4);
@@ -17,7 +31,7 @@ public abstract class BlockGlobalFurniturePlacementHandler extends Block{
 		if(isBlockInLocalPlacementWhiteList(par1World, par2, par3, par4)){
 			return true;
 		}
-		return var1 == Block.glass.blockID || var1 == Block.ice.blockID || var1 == Block.mobSpawner.blockID || var1 == ModJam.awesomeOre.blockID || var1 == ModJam.woodTable.blockID || var1 == ModJam.stoneTable.blockID || var1 == ModJam.awesomeBlock.blockID || var1 == ModJam.awesomeBlockStandard.blockID;
+		return globalPlacementWhitelist[var1];
 	}
 	
 	public boolean testPlacement(World par1World, int par2, int par3, int par4){

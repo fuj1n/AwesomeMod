@@ -168,6 +168,7 @@ public class ModJam {
 		registerAllOreDictionary();
 		populateGenChest();
 		registerAllWorldGenerators();
+		BlockGlobalFurniturePlacementHandler.initPlacementWhitelist();
 	}
 	
 	public void initAllMaterials(){
