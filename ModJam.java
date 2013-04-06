@@ -66,6 +66,7 @@ public class ModJam {
 	public static int awesomeToolAxeID = 3250;
 	public static int awesomeToolHoeID = 3251;
 	public static int darkExtractID = 3252;
+	public static int rotationToolID = 3253;
 	//End Config values
 	//Blocks
 	public static Block awesomeOre;
@@ -96,6 +97,7 @@ public class ModJam {
 	public static Item awesomeAxe;
 	public static Item awesomeHoe;
 	public static Item darkExtract;
+	public static Item rotationTool;
 	//Materials
 	public static EnumArmorMaterial awesomeArmorMaterial;
 	public static EnumToolMaterial awesomeToolMaterial;
@@ -137,6 +139,7 @@ public class ModJam {
 		awesomeToolAxeID = config.getItem("Awesome Axe ID", awesomeToolAxeID).getInt();
 		awesomeToolHoeID = config.getItem("Awesome Hoe ID", awesomeToolHoeID).getInt();
 		darkExtractID = config.getItem("Dark Extract ID", darkExtractID).getInt();
+		rotationToolID = config.getItem("Rotation Tool ID", rotationToolID).getInt();
 		config.save();
 	} 
 	
@@ -215,6 +218,7 @@ public class ModJam {
 		awesomeAxe = new ItemAwesomeAxe(awesomeToolAxeID, awesomeToolMaterial, "awesomeMod:fuj1n.AwesomeMod.awesomeAxe").setUnlocalizedName("fuj1n.AwesomeMod.awesomeAxe");
 		awesomeHoe = new ItemAwesomeHoe(awesomeToolHoeID, awesomeToolMaterial, "awesomeMod:fuj1n.AwesomeMod.awesomeHoe").setUnlocalizedName("fuj1n.AwesomeMod.awesomeHoe");
 		darkExtract = new ItemDarkExtract(darkExtractID).setCreativeTab(modJamCreativeTab).setUnlocalizedName("fuj1n.AwesomeMod.darkExtract");
+		rotationTool = new ItemRotationTool(rotationToolID).setCreativeTab(modJamCreativeTab).setUnlocalizedName("fuj1n.AwesomeMod.rotationTool");
 	}
 	
 	public void registerAllBlocks(){
@@ -257,6 +261,7 @@ public class ModJam {
 		LanguageRegistry.addName(awesomeHoe, "Awesome Hoe");
 		LanguageRegistry.addName(darkExtract, "Dark Extract");
 		LanguageRegistry.addName(awesomeBlock, "Awesome Block");
+		LanguageRegistry.addName(rotationTool, "Rotation Tool");
 	}
 	
 	public void registerCreativeTab(){
@@ -323,6 +328,9 @@ public class ModJam {
 		}));
 		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(awesomeBlock, 1, 0), new Object[]{
 			" X ", "XSX", " X ", Character.valueOf('S'), Block.stone, Character.valueOf('X'), "ingotAwesomeBlack"
+		}));
+		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(rotationTool, 1, 0), new Object[]{
+			"XC ", "CS ", "  S", Character.valueOf('C'), Block.cobblestone, Character.valueOf('S'), Item.stick, Character.valueOf('X'), "ingotAwesomeLime"
 		}));
 	}
 	

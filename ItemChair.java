@@ -182,6 +182,8 @@ public class ItemChair extends Item{
        return true;
     }
     
+    public void updateIcons(IconRegister par1IconRegister){}
+    
     @Override
     public String getUnlocalizedName(ItemStack par1ItemStack){
     	return getUnlocalizedName() + "." + subNames[par1ItemStack.getItemDamage()];

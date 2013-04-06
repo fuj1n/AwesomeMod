@@ -1,5 +1,6 @@
 package modJam;
 
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
@@ -23,6 +24,8 @@ public class ItemTable extends ItemBlock{
     {
         return par1;
     }
+    
+    public void updateIcons(IconRegister par1IconRegister){}
     
     @Override
     public String getUnlocalizedName(ItemStack par1ItemStack){

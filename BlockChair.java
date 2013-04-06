@@ -5,8 +5,11 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Icon;
@@ -31,6 +34,15 @@ public class BlockChair extends BlockGlobalFurniturePlacementHandler{
 		this.belowBlock = belowBlock;
 		this.itemID = itemID;
 	}
+	
+    public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
+    {
+    	if(par5EntityPlayer.getHeldItem().itemID == ModJam.rotationTool.itemID){
+    		return false;
+    	}
+    	//Will return true when one of the features is added(the reason for the check above).
+        return true;
+    }
 	
     /**
      * Called when a user uses the creative pick block button on this block
@@ -125,6 +137,30 @@ public class BlockChair extends BlockGlobalFurniturePlacementHandler{
 	@Override
 	public boolean shouldSideBeRendered(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5){
 		return true;
+	}
+	
+	public static boolean handleRotation(World par1World, int par2, int par3, int par4){
+		int currentBlock = par1World.getBlockId(par2, par3, par4);
+		int nextBlock = currentBlock + 1;
+    	int meta = par1World.getBlockMetadata(par2, par3, par4);
+    	
+    	for(int i = 0; i < ModJam.woodChairIDs.length; i++){
+    		if(currentBlock == ModJam.woodChairIDs[i]){
+    			if(nextBlock > ModJam.woodChairIDs[3]){
+    				nextBlock = ModJam.woodChairIDs[0];
+    			}
+    		}
+    	}
+    	
+    	for(int i = 0; i < ModJam.stoneChairIDs.length; i++){
+    		if(currentBlock == ModJam.stoneChairIDs[i]){
+    			if(nextBlock > ModJam.stoneChairIDs[3]){
+    				nextBlock = ModJam.stoneChairIDs[0];
+    			}
+    		}
+    	}
+    	par1World.setBlock(par2, par3, par4, nextBlock, meta, 2);
+    	return true;
 	}
 	
     /**
