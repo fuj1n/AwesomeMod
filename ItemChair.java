@@ -36,11 +36,6 @@ public class ItemChair extends Item{
 		return 0;
 	}
 	
-	/*@Override
-	public boolean requiresMultipleRenderPasses(){
-		return true;
-	}*/
-	
     /**
      * returns a list of items with the same ID, but different meta (eg: dye returns 16 items)
      */
@@ -185,52 +180,6 @@ public class ItemChair extends Item{
         }
 
        return true;
-    }
-    
-    /**
-     * Gets an icon index based on an item's damage value and the given render pass
-     */
-   /* @Override
-    public Icon getIconFromDamageForRenderPass(int par1, int par2)
-    {
-    	if(par2 == 0)
-    		return this.getIconFromDamage(par1);
-    	else if(par2 == 1){
-    		return this.chairOverlay[par1];
-    	}else{
-    		return this.getIconFromDamage(par1);
-    	}
-    }*/
-    
-    @Override
-    public void updateIcons(IconRegister par1IconRegister){
-    	switch(chairType){
-    	case 0:
-    		this.iconIndex = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.chairWood");
-    		break;
-    	case 1:
-    		this.iconIndex = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.chairStone");
-    		break;
-    	default:
-    		this.iconIndex = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.chairWood");
-    		break;
-    	}
-    	this.chairOverlay[0] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.overlayWhite");
-    	this.chairOverlay[1] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.overlayOrange");
-    	this.chairOverlay[2] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.overlayMagenta");
-    	this.chairOverlay[3] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.overlayLBlue");
-    	this.chairOverlay[4] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.overlayYellow");
-    	this.chairOverlay[5] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.overlayLime");
-    	this.chairOverlay[6] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.overlayPink");
-    	this.chairOverlay[7] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.overlayGray");
-    	this.chairOverlay[8] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.overlayLGray");
-    	this.chairOverlay[9] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.overlayCyan");
-    	this.chairOverlay[10] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.overlayPurple");
-    	this.chairOverlay[11] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.overlayBlue");
-    	this.chairOverlay[12] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.overlayBrown");
-    	this.chairOverlay[13] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.overlayGreen");
-    	this.chairOverlay[14] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.overlayRed");
-    	this.chairOverlay[15] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.overlayBlack");
     }
     
     @Override
