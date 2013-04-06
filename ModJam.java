@@ -19,6 +19,7 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
+import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.Mod.PostInit;
 import cpw.mods.fml.common.Mod.PreInit;
 import cpw.mods.fml.common.SidedProxy;
@@ -26,12 +27,13 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
 
 @Mod(modid="fuj1n.modJam", name=CommonProxyModJam.modName, version=CommonProxyModJam.version)
-@NetworkMod(clientSideRequired=true, serverSideRequired=false)
+@NetworkMod(clientSideRequired=true, serverSideRequired=false, channels={"fuj1nAMetaPacket"}, packetHandler = PacketHandler.class)
 
 public class ModJam {
 	@SidedProxy(serverSide="modJam.CommonProxyModJam", clientSide="modJam.ClientProxyModJam")
@@ -52,6 +54,7 @@ public class ModJam {
 	public static int awesomeBlockID = 1035;
 	public static int awesomeBlockStandardID = 1036;
 	public static int awesomeBlockCreeperID = 1037;
+	public static int lightGeneratorID = 1038;
 	//Items
 	public static int ingotAwesomeID = 3240;
 	public static int woodChairID = 3241;
@@ -83,6 +86,7 @@ public class ModJam {
 	public static Block awesomeBlock;
 	public static Block awesomeBlockStandard;
 	public static Block awesomeBlockCreeper;
+	public static Block lightGen;
 	//Items
 	public static Item awesomeIngot;
 	public static Item woodChair;
@@ -110,6 +114,9 @@ public class ModJam {
 		"Purple", "Blue", "Brown", "Green", "Red", "Black"
 	};
 	
+	@Instance("fuj1n.modJam")
+	public static ModJam instance;
+	
 	@PreInit
 	public void PreInit(FMLPreInitializationEvent event){
 		proxy.preInit();
@@ -125,6 +132,7 @@ public class ModJam {
 		awesomeBlockID = config.getBlock("Awesome Block ID", awesomeBlockID).getInt();
 		awesomeBlockStandardID = config.getBlock("Standard Awesome Block ID", awesomeBlockStandardID).getInt();
 		awesomeBlockCreeperID = config.getBlock("Creeper-textured Awesome Block ID", awesomeBlockCreeperID).getInt();
+		lightGeneratorID = config.getBlock("Light Generator ID", lightGeneratorID).getInt();
 		//Items
 		ingotAwesomeID = config.getItem("Awesome Ingot ID", ingotAwesomeID).getInt();
 		woodChairID = config.getItem("Wooden Chair Item ID", woodChairID).getInt();
@@ -162,6 +170,7 @@ public class ModJam {
     	}else{
     		log("Failed to detect current side.", Level.SEVERE);
     	}
+    	NetworkRegistry.instance().registerGuiHandler(this, new GuiHandler());
 		proxy.Init();
 		initAllMaterials();
 		initAllItems();
@@ -202,6 +211,7 @@ public class ModJam {
 		awesomeBlock = new BlockAwesome(awesomeBlockID, "none").setHardness(0.8F).setResistance(5F).setCreativeTab(modJamCreativeTab).setUnlocalizedName("fuj1n.modJam.awesomeBlock");
 		awesomeBlockStandard = new BlockAwesome(awesomeBlockStandardID, "standard").addAdditionalInfo("Standard-Textured").setHardness(0.8F).setResistance(5F).setCreativeTab(modJamCreativeTab).setUnlocalizedName("fuj1n.modJam.awesomeBlock.standard");
 		awesomeBlockCreeper = new BlockAwesome(awesomeBlockCreeperID, "creeper").addAdditionalInfo("Creeper-Textured").setHardness(0.8F).setResistance(10F).setCreativeTab(modJamCreativeTab).setUnlocalizedName("fuj1n.modJam.awesomeBlock.creeper");
+		lightGen = new BlockLightGenerator(lightGeneratorID).setHardness(0.3F).setCreativeTab(modJamCreativeTab).setUnlocalizedName("fuj1n.modJam.lightGenerator");
 	}
 	
 	public void initAllItems(){
@@ -236,6 +246,7 @@ public class ModJam {
 		GameRegistry.registerBlock(awesomeBlock, "fuj1n.modJam.awesomeBlock");
 		GameRegistry.registerBlock(awesomeBlockStandard, ItemAwesomeBlock.class, "fuj1n.modJam.awesomeBlock.standard");
 		GameRegistry.registerBlock(awesomeBlockCreeper, ItemAwesomeBlock.class, "fuj1n.modJam.awesomeBlock.creeper");
+		GameRegistry.registerBlock(lightGen, "fuj1n.modJam.lightGenerator");
 	}
 	
 	public void addAllNames(){
@@ -262,6 +273,7 @@ public class ModJam {
 		LanguageRegistry.addName(darkExtract, "Dark Extract");
 		LanguageRegistry.addName(awesomeBlock, "Awesome Block");
 		LanguageRegistry.addName(rotationTool, "Rotation Tool");
+		LanguageRegistry.addName(lightGen, "Light Generator");
 	}
 	
 	public void registerCreativeTab(){

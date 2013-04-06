@@ -91,21 +91,6 @@ public class BlockChair extends BlockGlobalFurniturePlacementHandler{
 		return ClientProxyModJam.chairRenderType;
 	}
 	
-	@Override
-    public int getLightValue(IBlockAccess world, int x, int y, int z)
-    {
-        if(ClientProxyModJam.chairRenderStage == 0){
-            Block block = blocksList[world.getBlockId(x, y, z)];
-            if (block != null && block != this)
-            {
-                return block.getLightValue(world, x, y, z);
-            }
-            return lightValue[blockID];
-        }else{
-        	return 15;
-        }
-    }
-	
     /**
      * Returns the bounding box of the wired rectangular prism to render.
      */
@@ -139,7 +124,7 @@ public class BlockChair extends BlockGlobalFurniturePlacementHandler{
 		return true;
 	}
 	
-	public static boolean handleRotation(World par1World, int par2, int par3, int par4){
+	public static boolean handleRotation(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer){
 		int currentBlock = par1World.getBlockId(par2, par3, par4);
 		int nextBlock = currentBlock + 1;
     	int meta = par1World.getBlockMetadata(par2, par3, par4);

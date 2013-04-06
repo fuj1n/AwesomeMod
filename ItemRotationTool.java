@@ -55,8 +55,11 @@ public class ItemRotationTool extends Item{
 		if (currentBlock == ModJam.woodChairIDs[0] || currentBlock == ModJam.woodChairIDs[1] || currentBlock == ModJam.woodChairIDs[2]
 		|| currentBlock == ModJam.woodChairIDs[3] || currentBlock == ModJam.stoneChairIDs[0] || currentBlock == ModJam.stoneChairIDs[1] || currentBlock == ModJam.stoneChairIDs[2]
 		|| currentBlock == ModJam.stoneChairIDs[3]) {
-			wasSuccessful = BlockChair.handleRotation(par3World, par4, par5, par6);
+			wasSuccessful = BlockChair.handleRotation(par3World, par4, par5, par6, par2EntityPlayer);
     	}
+		if(currentBlock == ModJam.lightGen.blockID){
+			wasSuccessful = BlockLightGenerator.handleRotation(par3World, par4, par5, par6, par2EntityPlayer);
+		}
 		if(wasSuccessful){
 			par1ItemStack.damageItem(2, par2EntityPlayer);
 			return true;

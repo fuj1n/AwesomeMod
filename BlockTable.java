@@ -64,21 +64,6 @@ public class BlockTable extends BlockGlobalFurniturePlacementHandler{
 		return ClientProxyModJam.tableRenderType;
 	}
 	
-	@Override
-    public int getLightValue(IBlockAccess world, int x, int y, int z)
-    {
-        if(ClientProxyModJam.tableRenderStage == 0){
-            Block block = blocksList[world.getBlockId(x, y, z)];
-            if (block != null && block != this)
-            {
-                return block.getLightValue(world, x, y, z);
-            }
-            return lightValue[blockID];
-        }else{
-        	return 15;
-        }
-    }
-	
     /**
      * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
      */
