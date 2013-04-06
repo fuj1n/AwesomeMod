@@ -52,6 +52,7 @@ public class ItemRenderChair implements IItemRenderer {
 		Tessellator tessellator = Tessellator.instance;
 		switch(type){
 		case ENTITY:
+			GL11.glScalef(0.5F, 0.5F, 0.5F);
 			GL11.glTranslatef(-0.5F, 0F, -0.5F);
 			break;
 		case INVENTORY:
