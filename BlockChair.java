@@ -34,10 +34,10 @@ public class BlockChair extends BlockGlobalFurniturePlacementHandler{
 		this.belowBlock = belowBlock;
 		this.itemID = itemID;
 	}
-	
+	@Override
     public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
     {
-    	if(par5EntityPlayer.getHeldItem().itemID == ModJam.rotationTool.itemID){
+    	if(par5EntityPlayer.getHeldItem() != null && par5EntityPlayer.getHeldItem().itemID == ModJam.rotationTool.itemID){
     		return false;
     	}
     	//Will return true when one of the features is added(the reason for the check above).
