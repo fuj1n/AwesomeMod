@@ -32,9 +32,14 @@ public class ItemChair extends Item{
 	}    
 	
 	@Override
+	public int getSpriteNumber(){
+		return 0;
+	}
+	
+	/*@Override
 	public boolean requiresMultipleRenderPasses(){
 		return true;
-	}
+	}*/
 	
     /**
      * returns a list of items with the same ID, but different meta (eg: dye returns 16 items)
@@ -185,7 +190,7 @@ public class ItemChair extends Item{
     /**
      * Gets an icon index based on an item's damage value and the given render pass
      */
-    @Override
+   /* @Override
     public Icon getIconFromDamageForRenderPass(int par1, int par2)
     {
     	if(par2 == 0)
@@ -195,7 +200,7 @@ public class ItemChair extends Item{
     	}else{
     		return this.getIconFromDamage(par1);
     	}
-    }
+    }*/
     
     @Override
     public void updateIcons(IconRegister par1IconRegister){

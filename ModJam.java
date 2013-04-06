@@ -19,9 +19,11 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
+import cpw.mods.fml.common.Mod.PostInit;
 import cpw.mods.fml.common.Mod.PreInit;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -108,6 +110,7 @@ public class ModJam {
 	
 	@PreInit
 	public void PreInit(FMLPreInitializationEvent event){
+		proxy.preInit();
 		config = new Configuration(event.getSuggestedConfigurationFile());
 		config.load();
 		//Blocks
@@ -156,7 +159,7 @@ public class ModJam {
     	}else{
     		log("Failed to detect current side.", Level.SEVERE);
     	}
-		proxy.handler();
+		proxy.Init();
 		initAllMaterials();
 		initAllItems();
 		initAllBlocks();
@@ -169,6 +172,11 @@ public class ModJam {
 		populateGenChest();
 		registerAllWorldGenerators();
 		BlockGlobalFurniturePlacementHandler.initPlacementWhitelist();
+	}
+	
+	@PostInit
+	public void PostInit(FMLPostInitializationEvent event){
+		proxy.postInit();
 	}
 	
 	public void initAllMaterials(){

@@ -67,6 +67,10 @@ public abstract class BlockGlobalFurniturePlacementHandler extends Block{
     	}
     }
 	
+    public static void setBlockInWhitelist(int id, boolean isAllowed){
+    	globalPlacementWhitelist[id] = isAllowed;
+    }
+    
     /**
      * Returns the mobility information of the block, 0 = free, 1 = can't push but can move over, 2 = total immobility
      * and stop pistons

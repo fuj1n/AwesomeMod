@@ -9,7 +9,10 @@ public class CommonProxyModJam{
 	public static final int currentVersion = 1;
 	public static int awesomeArmorID;
 	
-	public void handler(){
-		
-	}
+	public void preInit(){}
+	
+	public void Init(){}
+	
+	public void postInit(){}
+	
 }
