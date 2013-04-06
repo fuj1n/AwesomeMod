@@ -10,6 +10,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Icon;
+import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
@@ -30,6 +31,29 @@ public class BlockChair extends BlockGlobalFurniturePlacementHandler{
 		this.belowBlock = belowBlock;
 		this.itemID = itemID;
 	}
+	
+    /**
+     * Called when a user uses the creative pick block button on this block
+     *
+     * @param target The full target the player is looking at
+     * @return A ItemStack to add to the player's inventory, Null if nothing should be added.
+     */
+    public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z)
+    {
+    	int blockID = world.getBlockId(x, y, z);
+    	int blockMeta = world.getBlockMetadata(x, y, z);
+    	for(int i = 0; i < ModJam.woodChairIDs.length; i++){
+    		if(blockID == ModJam.woodChairIDs[i]){
+    			return new ItemStack(ModJam.woodChair.itemID, 1, blockMeta);
+    		}
+    	}
+    	for(int i = 0; i < ModJam.stoneChairIDs.length; i++){
+    		if(blockID == ModJam.stoneChairIDs[i]){
+    			return new ItemStack(ModJam.stoneChair.itemID, 1, blockMeta);
+    		}
+    	}
+        return null;
+    }
 	
 	public boolean isBlockInLocalPlacementWhiteList(World par1World, int par2, int par3, int par4){
 		return false;
