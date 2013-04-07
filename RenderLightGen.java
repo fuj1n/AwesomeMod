@@ -1,7 +1,10 @@
 package modJam;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
+import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.world.IBlockAccess;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
@@ -10,8 +13,39 @@ public class RenderLightGen implements ISimpleBlockRenderingHandler {
 	@Override
 	public void renderInventoryBlock(Block block, int metadata, int modelID,
 			RenderBlocks renderer) {
-		// TODO Auto-generated method stub
-
+		Tessellator tessellator = Tessellator.instance;
+		GL11.glTranslatef(-0.5F, -0.5F, 0F);
+		tessellator.startDrawingQuads();
+		tessellator.setNormal(0F, -1F, 0F);
+		renderer.setRenderBounds(0.25, 0.25, 0.25, 0.75, 0.75, 0.75);
+		renderer.renderBottomFace(block, 0.0D, 0.0D, 0.0D, renderer.getBlockIconFromSide(block, 0));
+		tessellator.draw();
+		tessellator.startDrawingQuads();
+		tessellator.setNormal(0F, +1F, 0F);
+		renderer.setRenderBounds(0.25, 0.25, 0.25, 0.75, 0.75, 0.75);
+		renderer.renderTopFace(block, 0.0D, 0.0D, 0.0D, renderer.getBlockIconFromSide(block, 1));
+		tessellator.draw();
+		tessellator.startDrawingQuads();
+		tessellator.setNormal(-1F, 0F, 0F);
+		renderer.setRenderBounds(0.25, 0.25, 0.25, 0.75, 0.75, 0.75);
+		renderer.renderWestFace(block, 0.0D, 0.0D, 0.0D, renderer.getBlockIconFromSide(block, 2));
+		tessellator.draw();
+		tessellator.startDrawingQuads();
+		tessellator.setNormal(+1F, 0F, 0F);
+		renderer.setRenderBounds(0.25, 0.25, 0.25, 0.75, 0.75, 0.75);
+		renderer.renderEastFace(block, 0.0D, 0.0D, 0.0D, renderer.getBlockIconFromSide(block, 3));
+		tessellator.draw();
+		tessellator.startDrawingQuads();
+		tessellator.setNormal(0F, 0F, -1F);
+		renderer.setRenderBounds(0.25, 0.25, 0.25, 0.75, 0.75, 0.75);
+		renderer.renderSouthFace(block, 0.0D, 0.0D, 0.0D, renderer.getBlockIconFromSide(block, 4));
+		tessellator.draw();
+		tessellator.startDrawingQuads();
+		tessellator.setNormal(0F, 0F, +1F);
+		renderer.setRenderBounds(0.25, 0.25, 0.25, 0.75, 0.75, 0.75);
+		renderer.renderNorthFace(block, 0.0D, 0.0D, 0.0D, renderer.getBlockIconFromSide(block, 5));
+		tessellator.draw();
+		GL11.glTranslatef(+0.5F, +0.5F, 0F);
 	}
 
 	@Override
@@ -94,7 +128,7 @@ public class RenderLightGen implements ISimpleBlockRenderingHandler {
 	
 	@Override
 	public boolean shouldRender3DInInventory() {
-		return false;
+		return true;
 	}
 
 	@Override
