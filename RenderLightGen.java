@@ -14,7 +14,7 @@ public class RenderLightGen implements ISimpleBlockRenderingHandler {
 	public void renderInventoryBlock(Block block, int metadata, int modelID,
 			RenderBlocks renderer) {
 		Tessellator tessellator = Tessellator.instance;
-		GL11.glTranslatef(-0.5F, -0.5F, 0F);
+		GL11.glTranslatef(-0.5F, -0.5F, -0.5F);
 		tessellator.startDrawingQuads();
 		tessellator.setNormal(0F, -1F, 0F);
 		renderer.setRenderBounds(0.25, 0.25, 0.25, 0.75, 0.75, 0.75);
@@ -45,7 +45,7 @@ public class RenderLightGen implements ISimpleBlockRenderingHandler {
 		renderer.setRenderBounds(0.25, 0.25, 0.25, 0.75, 0.75, 0.75);
 		renderer.renderNorthFace(block, 0.0D, 0.0D, 0.0D, renderer.getBlockIconFromSide(block, 5));
 		tessellator.draw();
-		GL11.glTranslatef(+0.5F, +0.5F, 0F);
+		GL11.glTranslatef(+0.5F, +0.5F, +0.5F);
 	}
 
 	@Override
