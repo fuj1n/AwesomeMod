@@ -125,6 +125,17 @@ public class BlockLightGenerator extends Block{
 	public boolean isBlockAir(IBlockAccess par1World, int par2, int par3, int par4){
 		return par1World.getBlockId(par2, par3, par4) == 0;
 	}
+
+	public boolean[] getBlockSideMap(IBlockAccess par1World, int par2, int par3, int par4, int block){
+		boolean[] returnValue = new boolean[6];
+		returnValue[0] = !isBlockAir(par1World, par2, par3 - 1, par4) && par1World.getBlockId(par2, par3 - 1, par4) == block;
+		returnValue[1] = !isBlockAir(par1World, par2, par3 + 1, par4) && par1World.getBlockId(par2, par3 + 1, par4) == block;
+		returnValue[2] = !isBlockAir(par1World, par2 - 1, par3, par4) && par1World.getBlockId(par2 - 1, par3, par4) == block;
+		returnValue[3] = !isBlockAir(par1World, par2 + 1, par3, par4) && par1World.getBlockId(par2 + 1, par3, par4) == block;
+		returnValue[4] = !isBlockAir(par1World, par2, par3, par4 - 1) && par1World.getBlockId(par2, par3, par4 - 1) == block;
+		returnValue[5] = !isBlockAir(par1World, par2, par3, par4 + 1) && par1World.getBlockId(par2, par3, par4 + 1) == block;
+		return returnValue;
+	}
 	
 	public boolean[] getBlockSideMap(IBlockAccess par1World, int par2, int par3, int par4){
 		boolean[] returnValue = new boolean[6];
@@ -143,21 +154,24 @@ public class BlockLightGenerator extends Block{
 	}
 	
     public void randomDisplayTick(World par1World, int par2, int par3, int par4, Random par5Random) {
-    	boolean[] isBlockNotAir = getBlockSideMap(par1World, par2, par3, par4);
+    	boolean[] map = getBlockSideMap(par1World, par2, par3, par4);
+    	boolean[] selfMap = getBlockSideMap(par1World, par2, par3, par4, this.blockID);
     	double zero = 0.3D;
-    	if(isBlockNotAir[0]){
-    		par1World.spawnParticle("portal", par2 + 0.5, par3 + 0.653, par4 + 0.5, zero, -2D, zero);
-    	}if(isBlockNotAir[1]){
-    		par1World.spawnParticle("portal", par2 + 0.5, par3 + 0.653, par4 + 0.5, zero, zero, zero);
-    	}if(isBlockNotAir[2]){
-    		par1World.spawnParticle("portal", par2 + 0.5, par3 + 0.653, par4 + 0.5, -1D, -1D, zero);
-    	}if(isBlockNotAir[3]){
-    		par1World.spawnParticle("portal", par2 + 0.5, par3 + 0.653, par4 + 0.5, +1D, -1D, zero);
-    	}if(isBlockNotAir[4]){
-    		par1World.spawnParticle("portal", par2 + 0.5, par3 + 0.653, par4 + 0.5, zero, -1D, -1D);
-    	}if(isBlockNotAir[5]){
-    		par1World.spawnParticle("portal", par2 + 0.5, par3 + 0.653, par4 + 0.5, zero, -1D, +1D);
-    	}
+	    if(par1World.canBlockSeeTheSky(par2, par3, par4) && par1World.isDaytime() && par1World.getBlockMetadata(par2, par3, par4) > 0){
+	    	par1World.spawnParticle("portal", par2 + 0.5, par3 + 0.653, par4 + 0.5, zero, +5D, zero);
+	    }if(map[0] && par1World.getBlockMetadata(par2, par3, par4) > 0 || selfMap[0]){
+	   		par1World.spawnParticle("portal", par2 + 0.5, par3 + 0.653, par4 + 0.5, zero, -2D, zero);
+	    }if(map[1] && par1World.getBlockMetadata(par2, par3, par4) > 0 || selfMap[1]){
+	   		par1World.spawnParticle("portal", par2 + 0.5, par3 + 0.653, par4 + 0.5, zero, zero, zero);
+	    }if(map[2] && par1World.getBlockMetadata(par2, par3, par4) > 0 || selfMap[2]){
+	    	par1World.spawnParticle("portal", par2 + 0.5, par3 + 0.653, par4 + 0.5, -1D, -1D, zero);
+	    }if(map[3] && par1World.getBlockMetadata(par2, par3, par4) > 0 || selfMap[3]){
+	    	par1World.spawnParticle("portal", par2 + 0.5, par3 + 0.653, par4 + 0.5, +1D, -1D, zero);
+	    }if(map[4] && par1World.getBlockMetadata(par2, par3, par4) > 0 || selfMap[4]){
+	    	par1World.spawnParticle("portal", par2 + 0.5, par3 + 0.653, par4 + 0.5, zero, -1D, -1D);
+	    }if(map[5] && par1World.getBlockMetadata(par2, par3, par4) > 0 || selfMap[5]){
+	    	par1World.spawnParticle("portal", par2 + 0.5, par3 + 0.653, par4 + 0.5, zero, -1D, +1D);
+	    }
     }
 	
 	@Override
