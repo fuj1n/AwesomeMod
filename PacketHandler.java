@@ -18,7 +18,7 @@ public class PacketHandler implements IPacketHandler{
 			Packet250CustomPayload packet, Player player) {
 		int x, y, z, meta;
 		System.out.println("Packet Get");
-		if(packet.channel == "fuj1nAMetaPacket"){
+		if(packet.channel.equals("fuj1nAMetaPacket")){
 			System.out.println("Packet Recognize");
 	        DataInputStream inputStream = new DataInputStream(new ByteArrayInputStream(packet.data));
 	        try {

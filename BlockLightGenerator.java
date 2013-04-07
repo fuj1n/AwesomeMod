@@ -32,30 +32,30 @@ public class BlockLightGenerator extends Block{
 
         if (map[4])
         {
-            f2 = 0.2F;
+            f2 = 0F;
         }
 
         if (map[5])
         {
-            f3 = 0.8F;
+            f3 = 1F;
         }
 
         if (map[2])
         {
-            f = 0.2F;
+            f = 0F;
         }
 
         if (map[3])
         {
-            f1 = 0.8F;
+            f1 = 1F;
         }
 
         if (map[0]){
-        	f4 = 0.2F;
+        	f4 = 0F;
         }
         
         if (map[1]){
-        	f5 = 0.8F;
+        	f5 = 1F;
         }
         if(map[0] && map[1] && map[2] && map[3] && map[4] && map[5]){
         	f = 0.2F;
