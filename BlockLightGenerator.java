@@ -181,7 +181,7 @@ public class BlockLightGenerator extends Block{
 	
 	@Override
 	public void registerIcons(IconRegister par1IconRegister){
-		this.blockIcon = par1IconRegister.registerIcon("AwesomeMod:fuj1n.AwesomeMod.awesomeBlock");
+		this.blockIcon = par1IconRegister.registerIcon("AwesomeMod:fuj1n.AwesomeMod.lightGen");
 	}
 
 }
