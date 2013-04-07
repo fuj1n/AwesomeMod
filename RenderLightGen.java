@@ -60,11 +60,19 @@ public class RenderLightGen implements ISimpleBlockRenderingHandler {
 	public void renderAttachedHandles(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer){
 		boolean[] map = getBlockSideMap(world, x, y, z);
 		boolean[] thisMap = getBlockSideMap(world, x, y, z, block.blockID);
+		double topHandleHeight = 1.5;
+		if(world.getBlockId(x, y + 1, z) == ModJam.woodTable.blockID || world.getBlockId(x, y + 1, z) == ModJam.stoneTable.blockID){
+			topHandleHeight = 1.9;
+		}else if(world.getBlockId(x, y + 1, z) == ModJam.woodChairIDs[0] || world.getBlockId(x, y + 1, z) == ModJam.woodChairIDs[1] || world.getBlockId(x, y + 1, z) == ModJam.woodChairIDs[2] || world.getBlockId(x, y + 1, z) == ModJam.woodChairIDs[3]
+				 || world.getBlockId(x, y + 1, z) == ModJam.stoneChairIDs[0] || world.getBlockId(x, y + 1, z) == ModJam.stoneChairIDs[1] || world.getBlockId(x, y + 1, z) == ModJam.stoneChairIDs[2] || world.getBlockId(x, y + 1, z) == ModJam.stoneChairIDs[3]){
+			topHandleHeight = 1.6;
+		}
+		
 		if(map[0] && !thisMap[0]){
 			renderer.setRenderBounds(0.45, -0.5, 0.45, 0.55, 0.35, 0.55);
 			renderer.renderStandardBlock(block, x, y, z);
 		}if(map[1] && !thisMap[1]){
-			renderer.setRenderBounds(0.45, 0.65, 0.45, 0.55, 1.5, 0.55);
+			renderer.setRenderBounds(0.45, 0.65, 0.45, 0.55, topHandleHeight, 0.55);
 			renderer.renderStandardBlock(block, x, y, z);
 		}if(map[2] && !thisMap[2]){
 			renderer.setRenderBounds(-0.5, 0.45, 0.45, 0.35, 0.55, 0.55);

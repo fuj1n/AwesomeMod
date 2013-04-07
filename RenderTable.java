@@ -135,7 +135,7 @@ public class RenderTable implements ISimpleBlockRenderingHandler {
 		renderer.clearOverrideBlockTexture();
 		renderer.renderStandardBlock(block, x, y, z);
 		ClientProxyModJam.furnitureRenderStage = 0;
-		renderer.setRenderBounds(0.001, 0.899, 0.001, 0.999, 0.999, 0.999);
+		renderer.setRenderBounds(0.001, 0.901, 0.001, 0.999, 0.999, 0.999);
 		renderer.setOverrideBlockTexture(handlerBlock.belowBlock.getBlockTextureFromSide(0));
 		renderer.renderStandardBlock(block, x, y, z);
 		ClientProxyModJam.furnitureRenderStage = 1;

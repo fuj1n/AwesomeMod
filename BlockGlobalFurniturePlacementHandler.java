@@ -40,6 +40,7 @@ public abstract class BlockGlobalFurniturePlacementHandler extends Block{
 		globalPlacementWhitelist[ModJam.awesomeBlock.blockID] = true;
 		globalPlacementWhitelist[ModJam.awesomeBlockStandard.blockID] = true;
 		globalPlacementWhitelist[ModJam.awesomeBlockCreeper.blockID] = true;
+		globalPlacementWhitelist[ModJam.lightGen.blockID] = true;
 	}
 
 	public abstract boolean isBlockInLocalPlacementWhiteList(World par1World, int par2, int par3, int par4);
