@@ -11,8 +11,8 @@ public abstract class BlockGlobalFurniturePlacementHandler extends Block{
 	
 	public static boolean[] globalPlacementWhitelist = new boolean[Block.blocksList.length];
 	
-	public BlockGlobalFurniturePlacementHandler(int par1, Material par2Material) {
-		super(par1, par2Material);
+	public BlockGlobalFurniturePlacementHandler(int par1) {
+		super(par1, Material.tnt);
 	}
 	
 	@Override

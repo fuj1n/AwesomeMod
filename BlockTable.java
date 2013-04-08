@@ -21,7 +21,7 @@ public class BlockTable extends BlockGlobalFurniturePlacementHandler{
 	public Block belowBlock;
 	
 	public BlockTable(int par1, Block belowBlock) {
-		super(par1, Material.circuits);
+		super(par1);
 		this.setStepSound(belowBlock.stepSound);
 		this.belowBlock = belowBlock;
 	}

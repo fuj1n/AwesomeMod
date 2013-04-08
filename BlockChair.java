@@ -27,7 +27,7 @@ public class BlockChair extends BlockGlobalFurniturePlacementHandler{
 	public int itemID;
 	
 	public BlockChair(int par1, ForgeDirection face, Block belowBlock, int itemID) {
-		super(par1, Material.circuits);
+		super(par1);
 		this.setStepSound(belowBlock.stepSound);
 		this.setBlockBounds(0.25F, 0F, 0.25F, 0.75F, 1.4F, 0.75F);
 		this.face = face;
