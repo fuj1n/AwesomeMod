@@ -4,7 +4,10 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 
 import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.settings.GameSettings;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.world.World;
@@ -23,6 +26,11 @@ public class GuiLightSettings extends GuiContainer{
 	
 	private ContainerDummy container;
 	
+	private GuiLightTextField lightField;
+	private GuiButton buttonSubtract;
+	private GuiButton buttonAdd;
+	private GuiButton buttonSet;
+	
 	public GuiLightSettings(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer) {
 		super(new ContainerDummy());
 		container = (ContainerDummy)this.inventorySlots;
@@ -31,7 +39,8 @@ public class GuiLightSettings extends GuiContainer{
 		y = par3;
 		z = par4;
 		entityPlayer = par5EntityPlayer;
-		ySize = 190;
+		xSize = 176;
+		ySize = 66;
 	}
 
 	@Override
@@ -42,49 +51,68 @@ public class GuiLightSettings extends GuiContainer{
 	@Override
     public void initGui() {
 		super.initGui();
-		buttonList.add(new GuiButton(0, width / 2 - 60, height / 2 - 60, 20, 20, "0"));
-		buttonList.add(new GuiButton(1, width / 2 - 10, height / 2 - 60, 20, 20, "1"));
-		buttonList.add(new GuiButton(2, width / 2 + 40, height / 2 - 60, 20, 20, "2"));
-		buttonList.add(new GuiButton(3, width / 2 - 60, height / 2 - 35, 20, 20, "3"));
-		buttonList.add(new GuiButton(4, width / 2 - 10, height / 2 - 35, 20, 20, "4"));
-		buttonList.add(new GuiButton(5, width / 2 + 40, height / 2 - 35, 20, 20, "5"));
-		buttonList.add(new GuiButton(6, width / 2 - 60, height / 2 - 10, 20, 20, "6"));
-		buttonList.add(new GuiButton(7, width / 2 - 10, height / 2 - 10, 20, 20, "7"));
-		buttonList.add(new GuiButton(8, width / 2 + 40, height / 2 - 10, 20, 20, "8"));
-		buttonList.add(new GuiButton(9, width / 2 - 60, height / 2 + 15, 20, 20, "9"));
-		buttonList.add(new GuiButton(10, width / 2 - 10, height / 2 + 15, 20, 20, "10"));
-		buttonList.add(new GuiButton(11, width / 2 + 40, height / 2 + 15, 20, 20, "11"));
-		buttonList.add(new GuiButton(12, width / 2 - 60, height / 2 + 40, 20, 20, "12"));
-		buttonList.add(new GuiButton(13, width / 2 - 10, height / 2 + 40, 20, 20, "13"));
-		buttonList.add(new GuiButton(14, width / 2 + 40, height / 2 + 40, 20, 20, "14"));
-		buttonList.add(new GuiButton(15, width / 2 - 10, height / 2 + 65, 20, 20, "15"));
+		buttonSubtract = new GuiButton(0, this.width / 2 - 40, this.height / 2 - 18, 20, 20, "-");
+		buttonAdd = new GuiButton(1, this.width / 2 + 20, this.height / 2 - 18, 20, 20, "+");
+		buttonSet = new GuiButton(2, this.width / 2 - 35, this.height / 2 + 5, 70, 20, "Set");
+		this.buttonList.add(buttonSubtract);
+		this.buttonList.add(buttonAdd);
+		this.buttonList.add(buttonSet);
+		this.lightField = new GuiLightTextField(this.fontRenderer, this.width / 2 - 15, this.height / 2 - 18, 30, 20);
+		this.lightField.setMaxStringLength(2);
+        this.lightField.setVisible(true);
+        this.lightField.setTextColor(16777215);
+		this.lightField.setText(Integer.toString(world.getBlockMetadata(x, y, z)));
 	}
 	
 	@Override
     protected void actionPerformed(GuiButton par1GuiButton) {
-		//PACKET
-		ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
-		DataOutputStream outputStream = new DataOutputStream(bos);
-		try {
-			outputStream.writeShort(par1GuiButton.id);
-			outputStream.writeInt(x);
-			outputStream.writeInt(y);
-			outputStream.writeInt(z);
-		} catch (Exception ex) {
-		        ex.printStackTrace();
-		}
+		switch(par1GuiButton.id){
+		case 0: 
+			if(Integer.parseInt(this.lightField.getText()) > 0){
+				int value = Integer.parseInt(this.lightField.getText()) - 1;
+				this.lightField.setText(Integer.toString(value));
+			}
+			break;
+		case 1:
+			if(Integer.parseInt(this.lightField.getText()) < 15){
+				int value = Integer.parseInt(this.lightField.getText()) + 1;
+				this.lightField.setText(Integer.toString(value));
+			}
+			break;
+		case 2:
+			//PACKET
+			ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
+			DataOutputStream outputStream = new DataOutputStream(bos);
+			try {
+				outputStream.writeShort(Short.parseShort(this.lightField.getText()));
+				outputStream.writeInt(x);
+				outputStream.writeInt(y);
+				outputStream.writeInt(z);
+			} catch (Exception ex) {
+			        ex.printStackTrace();
+			}
 
-		Packet250CustomPayload packet = new Packet250CustomPayload();
-		packet.channel = "fuj1nAMetaPacket";
-		packet.data = bos.toByteArray();
-		packet.length = bos.size();
-		//END PACKET
-		if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT){
-			System.out.println(packet);
-			PacketDispatcher.sendPacketToServer(packet);
+			Packet250CustomPayload packet = new Packet250CustomPayload();
+			packet.channel = "fuj1nAMetaPacket";
+			packet.data = bos.toByteArray();
+			packet.length = bos.size();
+			//END PACKET
+			if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT){
+				System.out.println(packet);
+				PacketDispatcher.sendPacketToServer(packet);
+			}
+			this.entityPlayer.closeScreen();
+			break;
 		}
-		this.entityPlayer.closeScreen();
-		
+	}
+	
+	protected void keyTyped(char par1, int par2) {
+		if (!this.checkHotbarKeys(par2)) {
+			if (this.lightField.textboxKeyTyped(par1, par2)) {}
+			else {
+				super.keyTyped(par1, par2);
+			}
+		}
 	}
 	
 	@Override
@@ -94,6 +122,8 @@ public class GuiLightSettings extends GuiContainer{
         int x = (width - xSize) / 2;
         int y = (height - ySize) / 2;
         this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
+        this.lightField.setFocused(true);
+        this.lightField.drawTextBox();
 	}
 
 }
