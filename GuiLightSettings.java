@@ -101,7 +101,6 @@ public class GuiLightSettings extends GuiContainer{
 			packet.length = bos.size();
 			//END PACKET
 			if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT){
-				System.out.println(packet);
 				PacketDispatcher.sendPacketToServer(packet);
 			}
 			this.entityPlayer.closeScreen();

@@ -17,9 +17,7 @@ public class PacketHandler implements IPacketHandler{
 	public void onPacketData(INetworkManager manager,
 			Packet250CustomPayload packet, Player player) {
 		int x, y, z, meta;
-		System.out.println("Packet Get");
 		if(packet.channel.equals("fuj1nAMetaPacket")){
-			System.out.println("Packet Recognize");
 	        DataInputStream inputStream = new DataInputStream(new ByteArrayInputStream(packet.data));
 	        try {
                 meta = inputStream.readShort();
@@ -33,14 +31,7 @@ public class PacketHandler implements IPacketHandler{
 	        EntityPlayerMP playerMP = (EntityPlayerMP)player;
 			World world = playerMP.worldObj;
 			world.setBlockMetadataWithNotify(x, y, z, meta, 2);
-			System.out.println("Packet Run");
 			world.updateAllLightTypes(x, y, z);
-	    	world.updateAllLightTypes(x, y - 1, z);
-	    	world.updateAllLightTypes(x, y + 1, z);
-	    	world.updateAllLightTypes(x - 1, y, z);
-	    	world.updateAllLightTypes(x + 1, y, z);
-	    	world.updateAllLightTypes(x, y, z - 1);
-	    	world.updateAllLightTypes(x, y, z + 1);
 		}
 		
 	}
