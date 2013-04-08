@@ -18,7 +18,7 @@ public abstract class BlockGlobalFurniturePlacementHandler extends Block{
 	@Override
     public int getLightValue(IBlockAccess world, int x, int y, int z)
     {
-        if(ClientProxyModJam.awesomeOreRenderStage == 0){
+        if(ClientProxyModJam.furnitureRenderStage == 0){
             Block block = blocksList[world.getBlockId(x, y, z)];
             if (block != null && block != this)
             {
