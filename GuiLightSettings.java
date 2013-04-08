@@ -80,6 +80,9 @@ public class GuiLightSettings extends GuiContainer{
 			}
 			break;
 		case 2:
+			if(this.lightField.getText().isEmpty() || this.lightField.getText() == null|| this.lightField.getText() == ""){
+				this.lightField.setText("0");
+			}
 			//PACKET
 			ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
 			DataOutputStream outputStream = new DataOutputStream(bos);
