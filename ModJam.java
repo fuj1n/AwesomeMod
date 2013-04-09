@@ -391,7 +391,7 @@ public class ModJam {
 		ComponentChestContents.addItemGen(awesomeChestplate, new int[]{0, 10, 20}, 1, 1, 3);
 		ComponentChestContents.addItemGen(awesomeLeggings, new int[]{0, 10, 20}, 1, 1, 3);
 		ComponentChestContents.addItemGen(awesomeBoots, new int[]{0, 10, 20}, 1, 1, 3);
-		for(int i = 0; i < 15; i++){
+		for(int i = 0; i < 16; i++){
 			ComponentChestContents.addItemGen(awesomeBlockStandard, i, 1, 3, 3);
 			ComponentChestContents.addItemGen(awesomeBlockCreeper, i, 1, 3, 2);
 			ComponentChestContents.addItemGen(awesomeOre, i, 1, 4, 10);
