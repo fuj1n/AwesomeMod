@@ -282,7 +282,7 @@ public class ModJam {
 	}
 	
 	public void addAllCrafting(){
-		for(int i = 0; i < 15; i++){
+		for(int i = 0; i < 16; i++){
 			CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(woodChair, 1, i), new Object[]{
 				"PXX", "PPP", "PXP", Character.valueOf('P'), Block.planks, Character.valueOf('X'), "ingotAwesome" + awesomeColors[i]
 			}));
@@ -357,7 +357,7 @@ public class ModJam {
 	}
 	
 	public void addAllSmelting(){
-		for (int i = 0; i < 15; i++){
+		for (int i = 0; i < 16; i++){
 			FurnaceRecipes.smelting().addSmelting(oreAwesomeID, i, new ItemStack(awesomeIngot, 8, i), 0.1F);
 		}
 		FurnaceRecipes.smelting().addSmelting(Item.coal.itemID, new ItemStack(darkExtract, 3, 0), 0.1F);
