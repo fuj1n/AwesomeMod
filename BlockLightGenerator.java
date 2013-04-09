@@ -4,6 +4,7 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.IBlockAccess;
@@ -12,10 +13,15 @@ import net.minecraft.world.World;
 public class BlockLightGenerator extends Block{
 
 	public BlockLightGenerator(int par1) {
-		super(par1, Material.circuits);
+		super(par1, Material.tnt);
 		this.setStepSound(soundMetalFootstep);
 		this.setBlockBounds(0.25F, 0.35F, 0.25F, 0.75F, 0.65F, 0.75F);
 	}
+	
+    public void onBlockAdded(World par1World, int par2, int par3, int par4) {
+    	par1World.markBlockForUpdate(par2, par3, par4);
+    	
+    }
 	
     /**
      * Updates the blocks bounds based on its current state. Args: world, x, y, z
@@ -68,42 +74,34 @@ public class BlockLightGenerator extends Block{
         this.setBlockBounds(f, f4, f2, f1, f5, f3);
     }
     
-	@Override
-    public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, int par5) {
-    	super.onNeighborBlockChange(par1World, par2, par3, par4, par5);
-    	par1World.updateAllLightTypes(par2, par3 - 1, par4);
-    	par1World.updateAllLightTypes(par2, par3 + 1, par4);
-    	par1World.updateAllLightTypes(par2 - 1, par3, par4);
-    	par1World.updateAllLightTypes(par2 + 1, par3, par4);
-    	par1World.updateAllLightTypes(par2, par3, par4 - 1);
-    	par1World.updateAllLightTypes(par2, par3, par4 + 1);
+    public boolean canConnectRedstone(IBlockAccess world, int x, int y, int z, int side)
+    {
+        return true;
     }
     
 	@Override
-	public void onBlockAdded(World par1World, int par2, int par3, int par4){
-		super.onBlockAdded(par1World, par2, par3, par4);
-    	par1World.updateAllLightTypes(par2, par3 - 1, par4);
-    	par1World.updateAllLightTypes(par2, par3 + 1, par4);
-    	par1World.updateAllLightTypes(par2 - 1, par3, par4);
-    	par1World.updateAllLightTypes(par2 + 1, par3, par4);
-    	par1World.updateAllLightTypes(par2, par3, par4 - 1);
-    	par1World.updateAllLightTypes(par2, par3, par4 + 1);
-	}
-	
-    @Override
-    public void onBlockDestroyedByPlayer(World par1World, int par2, int par3, int par4, int par5) {
-    	super.onBlockDestroyedByPlayer(par1World, par2, par3, par4, par5);
-    	par1World.updateAllLightTypes(par2, par3 - 1, par4);
-    	par1World.updateAllLightTypes(par2, par3 + 1, par4);
-    	par1World.updateAllLightTypes(par2 - 1, par3, par4);
-    	par1World.updateAllLightTypes(par2 + 1, par3, par4);
-    	par1World.updateAllLightTypes(par2, par3, par4 - 1);
-    	par1World.updateAllLightTypes(par2, par3, par4 + 1);
+    public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, int par5) {
+    	super.onNeighborBlockChange(par1World, par2, par3, par4, par5);
+    	par1World.updateAllLightTypes(par2, par3, par4);
+    	par1World.markBlockForUpdate(par2, par3, par4);
     }
     
     @Override
     public int getLightValue(IBlockAccess par1IBlockAccess, int par2, int par3, int par4){
-    	return par1IBlockAccess.getBlockMetadata(par2, par3, par4);
+    	int meta = par1IBlockAccess.getBlockMetadata(par2, par3, par4);
+    	World world = null;
+    	if(par1IBlockAccess instanceof World){
+    		world = (World)par1IBlockAccess;
+    	}
+    	if(world != null){
+	    	int redstone = world.getStrongestIndirectPower(par2, par3, par4);
+	    	if(meta == 0 && redstone > 0){
+	    		return redstone;
+	    	}else if(meta > 0){
+	    		return meta - redstone > 0 ? meta - redstone : 0;
+	    	}
+    	}
+    	return meta;
     }
     
 	@Override
@@ -153,11 +151,17 @@ public class BlockLightGenerator extends Block{
 		return false;
 	}
 	
+    public boolean canPlaceTorchOnTop(World world, int x, int y, int z)
+    {
+        return true;
+    }
+	
     public void randomDisplayTick(World par1World, int par2, int par3, int par4, Random par5Random) {
+    	int redstone = par1World.getStrongestIndirectPower(par2, par3, par4);
     	boolean[] map = getBlockSideMap(par1World, par2, par3, par4);
     	boolean[] selfMap = getBlockSideMap(par1World, par2, par3, par4, this.blockID);
     	double zero = 0.3D;
-	    if(par1World.canBlockSeeTheSky(par2, par3, par4) && par1World.isDaytime() && par1World.getBlockMetadata(par2, par3, par4) > 0){
+	    if(par1World.canBlockSeeTheSky(par2, par3, par4) && par1World.isDaytime() && (par1World.getBlockMetadata(par2, par3, par4) > 0 || redstone > 0)){
 	    	par1World.spawnParticle("portal", par2 + 0.5, par3 + 0.653, par4 + 0.5, zero, +5D, zero);
 	    }if(map[0] && par1World.getBlockMetadata(par2, par3, par4) > 0 || selfMap[0]){
 	   		par1World.spawnParticle("portal", par2 + 0.5, par3 + 0.653, par4 + 0.5, zero, -2D, zero);
