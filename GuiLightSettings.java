@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 
 import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.settings.GameSettings;
@@ -68,51 +69,112 @@ public class GuiLightSettings extends GuiContainer{
     protected void actionPerformed(GuiButton par1GuiButton) {
 		switch(par1GuiButton.id){
 		case 0: 
-			if(Integer.parseInt(this.lightField.getText()) > 0){
-				int value = Integer.parseInt(this.lightField.getText()) - 1;
-				this.lightField.setText(Integer.toString(value));
-			}
+			decr_DO();
 			break;
 		case 1:
-			if(Integer.parseInt(this.lightField.getText()) < 15){
-				int value = Integer.parseInt(this.lightField.getText()) + 1;
-				this.lightField.setText(Integer.toString(value));
-			}
+			incr_DO();
 			break;
 		case 2:
-			if(this.lightField.getText().isEmpty() || this.lightField.getText() == null|| this.lightField.getText() == ""){
-				this.lightField.setText("0");
-			}
-			//PACKET
-			ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
-			DataOutputStream outputStream = new DataOutputStream(bos);
-			try {
-				outputStream.writeShort(Short.parseShort(this.lightField.getText()));
-				outputStream.writeInt(x);
-				outputStream.writeInt(y);
-				outputStream.writeInt(z);
-			} catch (Exception ex) {
-			        ex.printStackTrace();
-			}
-
-			Packet250CustomPayload packet = new Packet250CustomPayload();
-			packet.channel = "fuj1nAMetaPacket";
-			packet.data = bos.toByteArray();
-			packet.length = bos.size();
-			//END PACKET
-			if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT){
-				PacketDispatcher.sendPacketToServer(packet);
-			}
-			this.entityPlayer.closeScreen();
+			set_DO();
 			break;
+		}
+	}
+	
+	protected boolean set_DO(){
+		if(this.lightField.getText().isEmpty() || this.lightField.getText() == null|| this.lightField.getText() == ""){
+			this.lightField.setText("0");
+		}
+		//PACKET
+		ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
+		DataOutputStream outputStream = new DataOutputStream(bos);
+		try {
+			outputStream.writeShort(Short.parseShort(this.lightField.getText()));
+			outputStream.writeInt(x);
+			outputStream.writeInt(y);
+			outputStream.writeInt(z);
+		} catch (Exception ex) {
+		        ex.printStackTrace();
+		        return false;
+		}
+
+		Packet250CustomPayload packet = new Packet250CustomPayload();
+		packet.channel = "fuj1nAMetaPacket";
+		packet.data = bos.toByteArray();
+		packet.length = bos.size();
+		//END PACKET
+		if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT){
+			PacketDispatcher.sendPacketToServer(packet);
+		}
+		this.entityPlayer.closeScreen();
+		return true;
+	}
+	
+	protected boolean decr_DO(){
+		if(Integer.parseInt(this.lightField.getText()) > 0){
+			int value = Integer.parseInt(this.lightField.getText()) - 1;
+			this.lightField.setText(Integer.toString(value));
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	protected boolean incr_DO(){
+		if(Integer.parseInt(this.lightField.getText()) < 15){
+			int value = Integer.parseInt(this.lightField.getText()) + 1;
+			this.lightField.setText(Integer.toString(value));
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	protected boolean min_DO(){
+		this.lightField.setText("0");
+		return true;
+	}
+	
+	protected boolean max_DO(){
+		this.lightField.setText("15");
+		return true;
+	}
+	
+	protected boolean checkHotkeys(int par1){
+		switch(par1){
+		case 20:
+			this.lightField.setText("");
+			this.lightField.setFocused(true);
+			return true;
+		case 28:
+			return set_DO();
+		case 30:
+			return decr_DO();
+		case 203:
+			return decr_DO();
+		case 32:
+			return incr_DO();
+		case 205:
+			return incr_DO();
+		case 17:
+			return min_DO();
+		case 200:
+			return min_DO();
+		case 31:
+			return max_DO();
+		case 208:
+			return max_DO();
+		default:
+			return false;
 		}
 	}
 	
 	protected void keyTyped(char par1, int par2) {
 		if (!this.checkHotbarKeys(par2)) {
-			if (this.lightField.textboxKeyTyped(par1, par2)) {}
-			else {
-				super.keyTyped(par1, par2);
+			if (!this.checkHotkeys(par2)) {
+				if (this.lightField.textboxKeyTyped(par1, par2)) {
+				} else {
+					super.keyTyped(par1, par2);
+				}
 			}
 		}
 	}
