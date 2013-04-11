@@ -6,6 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -72,6 +73,15 @@ public class BlockLightGenerator extends Block{
         }
         this.setBlockBounds(f, f4, f2, f1, f5, f3);
     }
+    
+    /**
+     * Returns the bounding box of the wired rectangular prism to render.
+     */
+    public AxisAlignedBB getSelectedBoundingBoxFromPool(World par1World, int par2, int par3, int par4)
+    {
+        return AxisAlignedBB.getAABBPool().getAABB(0.25F, 0.75F, 0.25F, 0.75F, 0.35F, 0.65F);
+    }
+	
     
     public boolean canConnectRedstone(IBlockAccess world, int x, int y, int z, int side)
     {
