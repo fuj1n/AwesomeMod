@@ -3,13 +3,13 @@ package modJam;
 import java.util.List;
 import java.util.Random;
 
+import javax.jws.Oneway;
+
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Icon;
@@ -40,7 +40,12 @@ public class BlockChair extends BlockGlobalFurniturePlacementHandler{
     	if(par5EntityPlayer.getHeldItem() != null && par5EntityPlayer.getHeldItem().itemID == ModJam.rotationTool.itemID){
     		return false;
     	}
-    	//Will return true when one of the features is added(the reason for the check above).
+    	List<Entity> entities = par1World.getEntitiesWithinAABB(EntityChair.class, this.getSelectedBoundingBoxFromPool(par1World, par2, par3, par4));
+    	if(entities.size() > 0){
+    		EntityChair chair = (EntityChair)entities.get(0);
+    		chair.mountAct(par5EntityPlayer);
+    		return true;
+    	}
         return false;
     }
 	
@@ -66,7 +71,23 @@ public class BlockChair extends BlockGlobalFurniturePlacementHandler{
     	}
         return null;
     }
+    
+    public void onBlockDestroyedByPlayer(World par1World, int par2, int par3, int par4, int par5) {
+    	if(par1World.getEntitiesWithinAABB(EntityChair.class, this.getSelectedBoundingBoxFromPool(par1World, par2, par3, par4)).size() > 0){
+        	Entity ent = (Entity) par1World.getEntitiesWithinAABB(EntityChair.class, this.getSelectedBoundingBoxFromPool(par1World, par2, par3, par4)).get(0);
+    		ent.setDead();
+    	}
+    }
 	
+    public void onBlockAdded(World par1World, int par2, int par3, int par4) {
+    	int idThis = par1World.getBlockId(par2, par3, par4);
+    	int blockFace = idThis == ModJam.woodChairNorth.blockID || idThis == ModJam.stoneChairSouth.blockID ? 2 : idThis == ModJam.woodChairEast.blockID || idThis == ModJam.stoneChairEast.blockID ? 3 : idThis == ModJam.woodChairSouth.blockID || idThis == ModJam.stoneChairSouth.blockID ? 0 : idThis == ModJam.woodChairWest.blockID || idThis == ModJam.stoneChairWest.blockID ? 1 : 4;
+    	EntityChair chairMountEntity = new EntityChair(par1World, par2, par3, par4, blockFace);
+    	if(par1World.getEntitiesWithinAABB(EntityChair.class, this.getSelectedBoundingBoxFromPool(par1World, par2, par3, par4)).size() == 0){
+    		par1World.spawnEntityInWorld(chairMountEntity);
+    	}
+    }
+    
 	public boolean isBlockInLocalPlacementWhiteList(World par1World, int par2, int par3, int par4){
 		return false;
 	}
@@ -144,7 +165,9 @@ public class BlockChair extends BlockGlobalFurniturePlacementHandler{
     			}
     		}
     	}
+    	Block.blocksList[currentBlock].onBlockDestroyedByPlayer(par1World, par2, par3, par4, 0);
     	par1World.setBlock(par2, par3, par4, nextBlock, meta, 2);
+    	Block.blocksList[nextBlock].onBlockAdded(par1World, par2, par3, par4);
     	return true;
 	}
 	
