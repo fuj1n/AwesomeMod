@@ -259,7 +259,6 @@ public class ModJam {
 			LanguageRegistry.addName(new ItemStack(stoneTable, 1, i), awesomeColors[new ItemStack(stoneTable, 1, i).getItemDamage()] + " Glowing Stone Table");
 			LanguageRegistry.addName(new ItemStack(awesomeBlockStandard, 1, i), awesomeColors[new ItemStack(awesomeBlockStandard, 1, i).getItemDamage()] + " Awesome Block");
 			LanguageRegistry.addName(new ItemStack(awesomeBlockCreeper, 1, i), awesomeColors[new ItemStack(awesomeBlockCreeper, 1, i).getItemDamage()] + " Awesome Block");
-			//LanguageRegistry.instance().addStringLocalization(awesomeHelmet.getUnlocalizedName(ItemAwesomeArmor.getItemStackForNaming(awesomeHelmet.itemID, i)), awesomeColors[i] + " Awesome Helmet");
 		}
 		LanguageRegistry.addName(new ItemStack(awesomeHelmet), "Awesome Helmet");
 		LanguageRegistry.addName(new ItemStack(awesomeChestplate), "Awesome Chestplate");
@@ -358,7 +357,7 @@ public class ModJam {
 	
 	public void addAllSmelting(){
 		for (int i = 0; i < 16; i++){
-			FurnaceRecipes.smelting().addSmelting(oreAwesomeID, i, new ItemStack(awesomeIngot, 8, i), 0.1F);
+			FurnaceRecipes.smelting().addSmelting(oreAwesomeID, i, new ItemStack(awesomeIngot, 3, i), 0.1F);
 		}
 		FurnaceRecipes.smelting().addSmelting(Item.coal.itemID, new ItemStack(darkExtract, 3, 0), 0.1F);
 	}
