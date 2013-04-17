@@ -29,9 +29,9 @@ public class GuiLightSettings extends GuiContainer{
 	private ContainerDummy container;
 	
 	private GuiNumberField lightField;
-	private GuiButton buttonSubtract;
-	private GuiButton buttonAdd;
-	private GuiButton buttonSet;
+	private GuiLightButton buttonSubtract;
+	private GuiLightButton buttonAdd;
+	private GuiLightButton buttonSet;
 	
 	public GuiLightSettings(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer) {
 		super(new ContainerDummy());
@@ -47,15 +47,15 @@ public class GuiLightSettings extends GuiContainer{
 
 	@Override
 	protected void drawGuiContainerForegroundLayer(int par1, int par2){
-        fontRenderer.drawString("Light Settings", 8, 5, 4210752);
+        fontRenderer.drawString("Light Settings", 8, 5, 0xFFFFFF);
 	}
 	
 	@Override
     public void initGui() {
 		super.initGui();
-		buttonSubtract = new GuiButton(0, this.width / 2 - 40, this.height / 2 - 18, 20, 20, "-");
-		buttonAdd = new GuiButton(1, this.width / 2 + 20, this.height / 2 - 18, 20, 20, "+");
-		buttonSet = new GuiButton(2, this.width / 2 - 35, this.height / 2 + 5, 70, 20, "Set");
+		buttonSubtract = new GuiLightButton(0, this.width / 2 - 40, this.height / 2 - 18, 20, 20, "-");
+		buttonAdd = new GuiLightButton(1, this.width / 2 + 20, this.height / 2 - 18, 20, 20, "+");
+		buttonSet = new GuiLightButton(2, this.width / 2 - 35, this.height / 2 + 5, 70, 20, "Set");
 		this.buttonList.add(buttonSubtract);
 		this.buttonList.add(buttonAdd);
 		this.buttonList.add(buttonSet);
