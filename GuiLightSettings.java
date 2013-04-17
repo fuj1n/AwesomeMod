@@ -13,6 +13,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.world.World;
 
+import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -27,7 +28,7 @@ public class GuiLightSettings extends GuiContainer{
 	
 	private ContainerDummy container;
 	
-	private GuiLightTextField lightField;
+	private GuiNumberField lightField;
 	private GuiButton buttonSubtract;
 	private GuiButton buttonAdd;
 	private GuiButton buttonSet;
@@ -58,7 +59,8 @@ public class GuiLightSettings extends GuiContainer{
 		this.buttonList.add(buttonSubtract);
 		this.buttonList.add(buttonAdd);
 		this.buttonList.add(buttonSet);
-		this.lightField = new GuiLightTextField(this.fontRenderer, this.width / 2 - 15, this.height / 2 - 18, 30, 20);
+		this.lightField = new GuiNumberField(this.fontRenderer, this.width / 2 - 15, this.height / 2 - 18, 30, 20);
+		this.lightField.setMaxNumber(15);
 		this.lightField.setMaxStringLength(2);
         this.lightField.setVisible(true);
         this.lightField.setTextColor(16777215);
@@ -69,14 +71,28 @@ public class GuiLightSettings extends GuiContainer{
     protected void actionPerformed(GuiButton par1GuiButton) {
 		switch(par1GuiButton.id){
 		case 0: 
-			decr_DO();
+			this.lightField.decrement();
 			break;
 		case 1:
-			incr_DO();
+			this.lightField.increment();
 			break;
 		case 2:
 			set_DO();
 			break;
+		}
+	}
+	
+	@Override
+	public void handleMouseInput(){
+		int DWheelRotation = Mouse.getDWheel();
+		if(DWheelRotation != 0){
+			if(DWheelRotation > 0){
+				this.lightField.increment();
+			}else if(DWheelRotation < 0){
+				this.lightField.decrement();
+			}
+		}else{
+			super.handleMouseInput();
 		}
 	}
 	
@@ -109,36 +125,6 @@ public class GuiLightSettings extends GuiContainer{
 		return true;
 	}
 	
-	protected boolean decr_DO(){
-		if(Integer.parseInt(this.lightField.getText()) > 0){
-			int value = Integer.parseInt(this.lightField.getText()) - 1;
-			this.lightField.setText(Integer.toString(value));
-			return true;
-		}else{
-			return false;
-		}
-	}
-	
-	protected boolean incr_DO(){
-		if(Integer.parseInt(this.lightField.getText()) < 15){
-			int value = Integer.parseInt(this.lightField.getText()) + 1;
-			this.lightField.setText(Integer.toString(value));
-			return true;
-		}else{
-			return false;
-		}
-	}
-	
-	protected boolean min_DO(){
-		this.lightField.setText("0");
-		return true;
-	}
-	
-	protected boolean max_DO(){
-		this.lightField.setText("15");
-		return true;
-	}
-	
 	protected boolean checkHotkeys(int par1){
 		switch(par1){
 		case 20:
@@ -148,21 +134,21 @@ public class GuiLightSettings extends GuiContainer{
 		case 28:
 			return set_DO();
 		case 30:
-			return decr_DO();
+			return this.lightField.decrement();
 		case 203:
-			return decr_DO();
+			return this.lightField.decrement();
 		case 32:
-			return incr_DO();
+			return this.lightField.increment();
 		case 205:
-			return incr_DO();
+			return this.lightField.increment();
 		case 17:
-			return min_DO();
+			return this.lightField.minimum();
 		case 200:
-			return min_DO();
+			return this.lightField.minimum();
 		case 31:
-			return max_DO();
+			return this.lightField.maximum();
 		case 208:
-			return max_DO();
+			return this.lightField.maximum();
 		default:
 			return false;
 		}

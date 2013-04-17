@@ -12,7 +12,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class GuiLightTextField extends Gui
+public class GuiNumberField extends Gui
 {
     /**
      * Have the font renderer from GuiScreen to render the textbox text into the screen.
@@ -27,6 +27,10 @@ public class GuiLightTextField extends Gui
 
     /** Have the current text beign edited on the textbox. */
     private String text = "";
+    private boolean hasMin = true;
+    private boolean hasMax = false;
+    private int minNumber = 0;
+    private int maxNumber = 0;
     private int maxStringLength = 32;
     private int cursorCounter;
     private boolean enableBackgroundDrawing = true;
@@ -60,7 +64,7 @@ public class GuiLightTextField extends Gui
     /** True if this textbox is visible */
     private boolean visible = true;
 
-    public GuiLightTextField(FontRenderer par1FontRenderer, int par2, int par3, int par4, int par5)
+    public GuiNumberField(FontRenderer par1FontRenderer, int par2, int par3, int par4, int par5)
     {
         this.fontRenderer = par1FontRenderer;
         this.xPos = par2;
@@ -69,6 +73,24 @@ public class GuiLightTextField extends Gui
         this.height = par5;
     }
 
+    public void remMinNumber(){
+    	this.hasMin = false;
+    }
+    
+    public void remMaxNumber(){
+    	this.hasMax = false;
+    }
+    
+    public void setMinNumber(int par1){
+    	this.minNumber = par1;
+    	this.hasMin = true;
+    }
+    
+    public void setMaxNumber(int par1){
+    	this.maxNumber = par1;
+    	this.hasMax = true;
+    }
+    
     /**
      * Increments the cursor counter
      */
@@ -94,6 +116,47 @@ public class GuiLightTextField extends Gui
         this.setCursorPositionEnd();
     }
 
+
+	protected boolean decrement(){
+		if (!this.getText().isEmpty()) {
+			if (Integer.parseInt(this.getText()) > this.minNumber || !this.hasMin) {
+				int value = Integer.parseInt(this.getText()) - 1;
+				this.setText(Integer.toString(value));
+				return true;
+			} else {
+				return false;
+			}
+		}else{
+			this.setText(Integer.toString(this.minNumber));
+		}
+		return false;
+	}
+	
+	protected boolean increment(){
+		if (!this.getText().isEmpty()) {
+			if (Integer.parseInt(this.getText()) < this.maxNumber || !this.hasMax) {
+				int value = Integer.parseInt(this.getText()) + 1;
+				this.setText(Integer.toString(value));
+				return true;
+			} else {
+				return false;
+			}
+		}else{
+			this.setText(Integer.toString(this.minNumber + 1));
+		}
+		return false;
+	}
+	
+	protected boolean minimum(){
+		this.setText(Integer.toString(minNumber));
+		return true;
+	}
+	
+	protected boolean maximum(){
+		this.setText(Integer.toString(maxNumber));
+		return true;
+	}
+    
     /**
      * Returns the text beign edited on the textbox.
      */
@@ -310,7 +373,7 @@ public class GuiLightTextField extends Gui
     {
         this.setCursorPosition(this.text.length());
     }
-
+    
     /**
      * Call this method from you GuiScreen to process the keys into textbox.
      */
@@ -416,8 +479,11 @@ public class GuiLightTextField extends Gui
                             {
                             	if(Character.isDigit(par1)){
                             		this.writeText(Character.toString(par1));
-                            		if(Integer.parseInt(this.text) > 15){
-                            			this.text = Integer.toString(15);
+                            		if(Integer.parseInt(this.text) > maxNumber && hasMax){
+                            			this.text = Integer.toString(maxNumber);
+                            		}
+                            		if(Integer.parseInt(this.text) < minNumber && hasMin){
+                            			this.text = Integer.toString(minNumber);
                             		}
                             	}
                                 return true;
