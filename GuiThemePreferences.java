@@ -1,17 +1,19 @@
 package modJam;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.inventory.Container;
+import net.minecraft.entity.player.EntityPlayer;
+
+import org.lwjgl.opengl.GL11;
 
 public class GuiThemePreferences extends GuiContainer {
 
 	public int[] currentPrefs = ModJam.themeHandler.readConfiguration();
 	public int columnWidth = 176;
 	public int columnHeight = 66;
+	
+	public EntityPlayer thePlayer;
 	
 	public int numberOfFiles = 2;
 	public int themesPerFile = 3;
@@ -24,8 +26,9 @@ public class GuiThemePreferences extends GuiContainer {
 	public GuiLightButton addIndex;
 	public GuiLightButton savePrefs;
 	
-	public GuiThemePreferences() {
+	public GuiThemePreferences(EntityPlayer par1EntityPlayer) {
 		super(new ContainerDummy());
+		thePlayer = par1EntityPlayer;
 	}
 
     /**
@@ -97,6 +100,7 @@ public class GuiThemePreferences extends GuiContainer {
 			break;
 		case 4:
 			ModJam.themeHandler.writeConfiguration(currentPrefs[0], currentPrefs[1]);
+			thePlayer.closeScreen();
 			break;
 		default:
 			break;

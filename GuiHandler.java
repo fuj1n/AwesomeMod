@@ -25,7 +25,7 @@ public class GuiHandler implements IGuiHandler{
 		case 0:
 			return new GuiLightSettings(world, x, y, z, player);
 		case 1:
-			return new GuiThemePreferences();
+			return new GuiThemePreferences(player);
 		}
 		return null;
 	}
