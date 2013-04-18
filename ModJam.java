@@ -32,6 +32,33 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
+import fuj1n.awesomeMod.client.UpdaterClient;
+import fuj1n.awesomeMod.client.gui.GuiHandler;
+import fuj1n.awesomeMod.client.gui.ThemingHandler;
+import fuj1n.awesomeMod.common.CommonProxyModJam;
+import fuj1n.awesomeMod.common.PacketHandler;
+import fuj1n.awesomeMod.common.UpdaterServer;
+import fuj1n.awesomeMod.common.blocks.BlockAwesome;
+import fuj1n.awesomeMod.common.blocks.BlockAwesomeOre;
+import fuj1n.awesomeMod.common.blocks.BlockChair;
+import fuj1n.awesomeMod.common.blocks.BlockGlobalFurniturePlacementHandler;
+import fuj1n.awesomeMod.common.blocks.BlockLightGenerator;
+import fuj1n.awesomeMod.common.blocks.BlockTable;
+import fuj1n.awesomeMod.common.items.ItemAwesomeArmor;
+import fuj1n.awesomeMod.common.items.ItemAwesomeAxe;
+import fuj1n.awesomeMod.common.items.ItemAwesomeBlock;
+import fuj1n.awesomeMod.common.items.ItemAwesomeHoe;
+import fuj1n.awesomeMod.common.items.ItemAwesomeIngot;
+import fuj1n.awesomeMod.common.items.ItemAwesomeOre;
+import fuj1n.awesomeMod.common.items.ItemAwesomePickaxe;
+import fuj1n.awesomeMod.common.items.ItemAwesomeShovel;
+import fuj1n.awesomeMod.common.items.ItemAwesomeSword;
+import fuj1n.awesomeMod.common.items.ItemChair;
+import fuj1n.awesomeMod.common.items.ItemDarkExtract;
+import fuj1n.awesomeMod.common.items.ItemRotationTool;
+import fuj1n.awesomeMod.common.items.ItemTable;
+import fuj1n.awesomeMod.common.world.ComponentChestContents;
+import fuj1n.awesomeMod.common.world.WorldGeneratorModJam;
 
 @Mod(modid="fuj1n.modJam", name=CommonProxyModJam.modName, version=CommonProxyModJam.version)
 @NetworkMod(clientSideRequired=true, serverSideRequired=false, channels={"fuj1nAMetaPacket"}, packetHandler = PacketHandler.class)
