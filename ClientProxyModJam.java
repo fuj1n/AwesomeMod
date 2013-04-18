@@ -16,9 +16,7 @@ public class ClientProxyModJam extends CommonProxyModJam{
     public static int awesomeBlockRenderStage = 0;
     
     @Override
-    public void preInit(){
-    	
-    }
+    public void preInit(){}
     
 	@Override
 	public void Init(){
