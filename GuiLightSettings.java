@@ -33,6 +33,8 @@ public class GuiLightSettings extends GuiContainer{
 	private GuiLightButton buttonAdd;
 	private GuiLightButton buttonSet;
 	
+	public int[] themePrefs = ModJam.themeHandler.readConfiguration();
+	
 	public GuiLightSettings(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer) {
 		super(new ContainerDummy());
 		container = (ContainerDummy)this.inventorySlots;
@@ -168,10 +170,11 @@ public class GuiLightSettings extends GuiContainer{
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float f, int i, int j) {
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.mc.renderEngine.bindTexture("/gui/lightSettings.png");
+        String textureFilePostfix = themePrefs[0] == 0 ? "" : Integer.toString(themePrefs[0] + 1);
+        this.mc.renderEngine.bindTexture("/gui/lightSettings" + textureFilePostfix + ".png");
         int x = (width - xSize) / 2;
         int y = (height - ySize) / 2;
-        this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
+        this.drawTexturedModalRect(x, y, 0, this.themePrefs[1] * ySize, xSize, ySize);
         this.lightField.setFocused(true);
         this.lightField.drawTextBox();
 	}

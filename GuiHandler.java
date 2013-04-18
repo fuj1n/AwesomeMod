@@ -12,6 +12,8 @@ public class GuiHandler implements IGuiHandler{
 		switch(ID){
 		case 0:
 			return new ContainerDummy();
+		case 1:
+			return new ContainerDummy();
 		}
 		return null;
 	}
@@ -22,6 +24,8 @@ public class GuiHandler implements IGuiHandler{
 		switch(ID){
 		case 0:
 			return new GuiLightSettings(world, x, y, z, player);
+		case 1:
+			return new GuiThemePreferences();
 		}
 		return null;
 	}

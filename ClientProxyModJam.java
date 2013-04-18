@@ -1,7 +1,9 @@
 package modJam;
 
 import net.minecraft.block.Block;
+import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.client.MinecraftForgeClient;
+import cpw.mods.fml.client.registry.KeyBindingRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 
 public class ClientProxyModJam extends CommonProxyModJam{
@@ -15,8 +17,13 @@ public class ClientProxyModJam extends CommonProxyModJam{
     public static int furnitureRenderStage = 0;
     public static int awesomeBlockRenderStage = 0;
     
+    //Key binding
+    public static KeyBinding themeProps;
+    
     @Override
-    public void preInit(){}
+    public void preInit(){
+		ModJam.themeHandler = new ThemingHandler(ModJam.configDir);
+    }
     
 	@Override
 	public void Init(){
@@ -31,6 +38,8 @@ public class ClientProxyModJam extends CommonProxyModJam{
         RenderingRegistry.registerBlockHandler(new RenderAwesomeBlock());
         RenderingRegistry.registerBlockHandler(new RenderLightGen());
         awesomeArmorID = RenderingRegistry.addNewArmourRendererPrefix("awesome");
+    	themeProps = new KeyBinding("Awesome Mod Theme Settings", 25);
+    	KeyBindingRegistry.registerKeyBinding(new KeyHandlerModJam(new KeyBinding[]{themeProps}, new boolean[]{false}));
 	}
 	
 	@Override

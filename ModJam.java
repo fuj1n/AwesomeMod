@@ -1,5 +1,6 @@
 package modJam;
 
+import java.io.File;
 import java.util.logging.Level;
 
 import net.minecraft.block.Block;
@@ -39,6 +40,8 @@ public class ModJam {
 	@SidedProxy(serverSide="modJam.CommonProxyModJam", clientSide="modJam.ClientProxyModJam")
 	public static CommonProxyModJam proxy;
 	public static Configuration config;
+	public static File configDir;
+	public static ThemingHandler themeHandler = null;
 	
 	//Config values
 	//Blocks
@@ -120,6 +123,7 @@ public class ModJam {
 	@PreInit
 	public void PreInit(FMLPreInitializationEvent event){
 		proxy.preInit();
+		configDir = event.getModConfigurationDirectory();
 		config = new Configuration(event.getSuggestedConfigurationFile());
 		config.load();
 		//Blocks
