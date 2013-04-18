@@ -1,4 +1,4 @@
-package modJam;
+package fuj1n.awesomeMod;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.settings.KeyBinding;

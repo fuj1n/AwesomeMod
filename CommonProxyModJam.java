@@ -1,4 +1,4 @@
-package modJam;
+package fuj1n.awesomeMod;
 
 import cpw.mods.fml.client.registry.RenderingRegistry;
 

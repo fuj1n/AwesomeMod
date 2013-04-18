@@ -1,4 +1,4 @@
-package modJam;
+package fuj1n.awesomeMod;
 
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;

@@ -1,4 +1,4 @@
-package modJam;
+package fuj1n.awesomeMod;
 
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;

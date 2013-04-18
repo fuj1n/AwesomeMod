@@ -1,4 +1,4 @@
-package modJam;
+package fuj1n.awesomeMod;
 
 import java.util.EnumSet;
 

@@ -1,4 +1,4 @@
-package modJam;
+package fuj1n.awesomeMod;
 
 import org.lwjgl.opengl.GL11;
 

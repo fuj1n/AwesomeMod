@@ -1,4 +1,4 @@
-package modJam;
+package fuj1n.awesomeMod;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;

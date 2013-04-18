@@ -1,4 +1,4 @@
-package modJam;
+package fuj1n.awesomeMod;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumEntitySize;

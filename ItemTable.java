@@ -1,4 +1,4 @@
-package modJam;
+package fuj1n.awesomeMod;
 
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.item.ItemBlock;

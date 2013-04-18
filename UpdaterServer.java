@@ -1,4 +1,4 @@
-package modJam;
+package fuj1n.awesomeMod;
 
 import java.io.BufferedReader;
 import java.io.IOException;
