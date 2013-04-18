@@ -3,7 +3,7 @@ Awesome Mod - modJam
 
 Download Mod From
 =================
-http://www.mediafire.com/?7zpt48zy0alzbow
+http://www.planetminecraft.com/mod/alphamodjam-awesome-mod/
 
 Install Instructions
 ====================
