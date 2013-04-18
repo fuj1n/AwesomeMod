@@ -4,6 +4,7 @@ import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.inventory.Container;
 
 public class GuiThemePreferences extends GuiContainer {
@@ -47,10 +48,12 @@ public class GuiThemePreferences extends GuiContainer {
 	
 	@Override
 	protected void drawGuiContainerForegroundLayer(int par1, int par2){
-        fontRenderer.drawString("Theme Preferences", 8, 5, 0xFFFFFF);
-        fontRenderer.drawString("Preview:", 8, 73, 0xFFFFFF);
-        fontRenderer.drawString("File: " + (currentPrefs[0] + 1), 8, 15, 0xFFFFFF);
-        fontRenderer.drawString("Index: " + (currentPrefs[1] + 1), 8, 45, 0xFFFFFF);
+		RenderHelper.disableStandardItemLighting();
+        fontRenderer.drawString("Theme Preferences", 8, 5, 0xFFFFFF, false);
+        fontRenderer.drawString("Preview:", 8, 73, 0xFFFFFF, false);
+        fontRenderer.drawString("File: " + (currentPrefs[0] + 1), 8, 15, 0xFFFFFF, false);
+        fontRenderer.drawString("Index: " + (currentPrefs[1] + 1), 8, 45, 0xFFFFFF, false);
+        RenderHelper.enableStandardItemLighting();
 	}
     
 	private void alignButtonsAndPreviewWindow(){

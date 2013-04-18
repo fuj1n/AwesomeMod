@@ -7,6 +7,7 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -49,7 +50,9 @@ public class GuiLightSettings extends GuiContainer{
 
 	@Override
 	protected void drawGuiContainerForegroundLayer(int par1, int par2){
+		RenderHelper.disableStandardItemLighting();
         fontRenderer.drawString("Light Settings", 8, 5, 0xFFFFFF);
+        RenderHelper.enableStandardItemLighting();
 	}
 	
 	@Override
