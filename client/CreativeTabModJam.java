@@ -6,9 +6,9 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import fuj1n.awesomeMod.ModJam;
 
-final class CreativeTabModJam extends CreativeTabs
+public final class CreativeTabModJam extends CreativeTabs
 {
-    CreativeTabModJam(String label)
+    public CreativeTabModJam(String label)
     {
         super(label);
     }
