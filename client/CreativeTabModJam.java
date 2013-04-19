@@ -1,9 +1,10 @@
-package fuj1n.awesomeMod;
+package fuj1n.awesomeMod.client;
 
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import fuj1n.awesomeMod.ModJam;
 
 final class CreativeTabModJam extends CreativeTabs
 {

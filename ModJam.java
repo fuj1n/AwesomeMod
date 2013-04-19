@@ -32,6 +32,7 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
+import fuj1n.awesomeMod.client.CreativeTabModJam;
 import fuj1n.awesomeMod.client.UpdaterClient;
 import fuj1n.awesomeMod.client.gui.GuiHandler;
 import fuj1n.awesomeMod.client.gui.ThemingHandler;
