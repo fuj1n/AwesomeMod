@@ -65,7 +65,7 @@ import fuj1n.awesomeMod.common.world.WorldGeneratorModJam;
 @NetworkMod(clientSideRequired=true, serverSideRequired=false, channels={"fuj1nAMetaPacket"}, packetHandler = PacketHandler.class)
 
 public class ModJam {
-	@SidedProxy(serverSide="modJam.CommonProxyModJam", clientSide="modJam.ClientProxyModJam")
+	@SidedProxy(serverSide="fuj1n.awesomeMod.common.CommonProxyModJam", clientSide="fuj1n.awesomeMod.client.ClientProxyModJam")
 	public static CommonProxyModJam proxy;
 	public static Configuration config;
 	public static File configDir;
