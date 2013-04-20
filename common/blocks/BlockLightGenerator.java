@@ -1,17 +1,26 @@
 package fuj1n.awesomeMod.common.blocks;
 
+import static net.minecraftforge.common.ForgeDirection.DOWN;
+import static net.minecraftforge.common.ForgeDirection.UP;
+
 import java.util.Random;
 
 import fuj1n.awesomeMod.ModJam;
 import fuj1n.awesomeMod.client.ClientProxyModJam;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockFarmland;
+import net.minecraft.block.BlockHalfSlab;
+import net.minecraft.block.BlockHopper;
+import net.minecraft.block.BlockPoweredOre;
+import net.minecraft.block.BlockStairs;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeDirection;
 
 public class BlockLightGenerator extends Block{
 
@@ -190,6 +199,12 @@ public class BlockLightGenerator extends Block{
 	    }
     }
 	
+    @Override
+    public boolean isBlockSolidOnSide(World world, int x, int y, int z, ForgeDirection side)
+    {
+        return true;
+    }
+    
 	@Override
 	public int getRenderType(){
 		return ClientProxyModJam.lightGenRenderType;
