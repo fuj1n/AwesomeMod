@@ -18,9 +18,6 @@ public class GuiThemePreferences extends GuiContainer {
 
 	public EntityPlayer thePlayer;
 
-	public int numberOfFiles = 2;
-	public int themesPerFile = 3;
-
 	public int previewXPos = 0, previewYPos = 0;
 
 	public GuiLightButton subFile;
@@ -88,7 +85,7 @@ public class GuiThemePreferences extends GuiContainer {
 			}
 			break;
 		case 1:
-			if (currentPrefs[0] + 1 < numberOfFiles) {
+			if (currentPrefs[0] + 1 < ModJam.themeHandler.numberOfFiles) {
 				currentPrefs[0]++;
 			}
 			break;
@@ -98,7 +95,7 @@ public class GuiThemePreferences extends GuiContainer {
 			}
 			break;
 		case 3:
-			if (currentPrefs[1] + 1 < themesPerFile) {
+			if (currentPrefs[1] + 1 < ModJam.themeHandler.themesPerFile) {
 				currentPrefs[1]++;
 			}
 			break;
