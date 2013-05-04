@@ -8,13 +8,13 @@ import cpw.mods.fml.client.registry.KeyBindingRegistry.KeyHandler;
 import cpw.mods.fml.common.TickType;
 import fuj1n.awesomeMod.ModJam;
 
-public class KeyHandlerModJam extends KeyHandler{
+public class KeyHandlerModJam extends KeyHandler {
 
 	public KeyHandlerModJam(KeyBinding[] keyBindings) {
 		super(keyBindings);
 	}
-	
-	public KeyHandlerModJam(KeyBinding[] keyBindings, boolean[] repeatings){
+
+	public KeyHandlerModJam(KeyBinding[] keyBindings, boolean[] repeatings) {
 		super(keyBindings, repeatings);
 	}
 
@@ -24,17 +24,17 @@ public class KeyHandlerModJam extends KeyHandler{
 	}
 
 	@Override
-	public void keyDown(EnumSet<TickType> types, KeyBinding kb,
-			boolean tickEnd, boolean isRepeat) {
-		if(kb == ClientProxyModJam.themeProps){
-			if(Minecraft.getMinecraft().theWorld != null && Minecraft.getMinecraft().currentScreen == null){
+	public void keyDown(EnumSet<TickType> types, KeyBinding kb, boolean tickEnd, boolean isRepeat) {
+		if (kb == ClientProxyModJam.themeProps) {
+			if (Minecraft.getMinecraft().theWorld != null && Minecraft.getMinecraft().currentScreen == null) {
 				Minecraft.getMinecraft().thePlayer.openGui(ModJam.instance, 1, null, 0, 0, 0);
 			}
 		}
 	}
 
 	@Override
-	public void keyUp(EnumSet<TickType> types, KeyBinding kb, boolean tickEnd) {}
+	public void keyUp(EnumSet<TickType> types, KeyBinding kb, boolean tickEnd) {
+	}
 
 	@Override
 	public EnumSet<TickType> ticks() {

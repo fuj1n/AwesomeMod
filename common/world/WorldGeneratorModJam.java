@@ -1,7 +1,6 @@
 package fuj1n.awesomeMod.common.world;
 
 import java.util.Random;
-import java.util.logging.Level;
 
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
@@ -10,15 +9,10 @@ import net.minecraft.world.gen.feature.WorldGenMinable;
 import cpw.mods.fml.common.IWorldGenerator;
 import fuj1n.awesomeMod.ModJam;
 
-public class WorldGeneratorModJam implements IWorldGenerator{
-	private static final String[] awesomeColors = { 
-		"White", "Orange", "Magenta",
-		"Light-Blue", "Yellow", "Lime", "Pink", "Gray", "Light-Gray", "Cyan",
-		"Purple", "Blue", "Brown", "Green", "Red", "Black"
-	};
+public class WorldGeneratorModJam implements IWorldGenerator {
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
-		switch(world.provider.dimensionId){
+		switch (world.provider.dimensionId) {
 		case -1:
 			generateNether(random, chunkX * 16, chunkZ * 16, world, chunkGenerator, chunkProvider);
 			break;
@@ -33,29 +27,30 @@ public class WorldGeneratorModJam implements IWorldGenerator{
 			break;
 		}
 	}
-	
-	public void generateOverworld(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider){
-		for(int meta = 0; meta < 16; meta++){
-			for(int i = 0; i < 1; i++){
+
+	public void generateOverworld(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
+		for (int meta = 0; meta < 16; meta++) {
+			for (int i = 0; i < 1; i++) {
 				int xCoord = chunkX + random.nextInt(16);
 				int yCoord = random.nextInt(50);
 				int zCoord = chunkZ + random.nextInt(16);
-				//ModJam.log(awesomeColors[meta] + "generated at: " + xCoord + " " + yCoord + " " + zCoord, Level.INFO);
+				// ModJam.log(awesomeColors[meta] + "generated at: " + xCoord +
+				// " " + yCoord + " " + zCoord, Level.INFO);
 				(new WorldGenMinable(ModJam.oreAwesomeID, meta, 10, Block.stone.blockID)).generate(world, random, xCoord, yCoord, zCoord);
 			}
 		}
-		if(random.nextInt(15) == 1){
+		if (random.nextInt(15) == 1) {
 			int y1 = random.nextInt(12);
 			int y2 = 45;
 			int y = y1 + y2;
 			new WorldGenAwesomeRoom().generate(world, random, chunkX + 6, y, chunkZ + 6);
 		}
 	}
-	
-	public void generateNether(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider){
-		for(int meta = 0; meta < 15; meta++){
-			for(int i = 0; i < 1; i++){
-				if(world.rand.nextInt(2) == 1){
+
+	public void generateNether(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
+		for (int meta = 0; meta < 15; meta++) {
+			for (int i = 0; i < 1; i++) {
+				if (world.rand.nextInt(2) == 1) {
 					int xCoord = chunkX + random.nextInt(16);
 					int yCoord = random.nextInt(50);
 					int zCoord = chunkZ + random.nextInt(16);
@@ -64,10 +59,10 @@ public class WorldGeneratorModJam implements IWorldGenerator{
 			}
 		}
 	}
-	
-	public void generateEnd(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider){
-		for(int meta = 0; meta < 15; meta++){
-			for(int i = 0; i < 10; i++){
+
+	public void generateEnd(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
+		for (int meta = 0; meta < 15; meta++) {
+			for (int i = 0; i < 10; i++) {
 				int xCoord = chunkX + random.nextInt(16);
 				int yCoord = random.nextInt(50);
 				int zCoord = chunkZ + random.nextInt(16);
@@ -75,10 +70,10 @@ public class WorldGeneratorModJam implements IWorldGenerator{
 			}
 		}
 	}
-	
-	public void generateMisc(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider){
-		for(int meta = 0; meta < 15; meta++){
-			for(int i = 0; i < 2; i++){
+
+	public void generateMisc(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
+		for (int meta = 0; meta < 15; meta++) {
+			for (int i = 0; i < 2; i++) {
 				int xCoord = chunkX + random.nextInt(16);
 				int yCoord = random.nextInt(50);
 				int zCoord = chunkZ + random.nextInt(16);
@@ -86,6 +81,5 @@ public class WorldGeneratorModJam implements IWorldGenerator{
 			}
 		}
 	}
-	
 
 }
