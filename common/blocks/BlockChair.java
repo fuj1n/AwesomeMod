@@ -30,7 +30,6 @@ public class BlockChair extends BlockGlobalFurniturePlacementHandler {
 	public BlockChair(int par1, ForgeDirection face, Block belowBlock, int itemID) {
 		super(par1);
 		this.setStepSound(belowBlock.stepSound);
-		this.setBlockBounds(0.25F, 0F, 0.25F, 0.75F, 1.4F, 0.75F);
 		this.face = face;
 		this.belowBlock = belowBlock;
 		this.itemID = itemID;
@@ -202,4 +201,31 @@ public class BlockChair extends BlockGlobalFurniturePlacementHandler {
 		blockColors[14] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.awesomeOreRed");
 		blockColors[15] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.awesomeOreBlack");
 	}
+	
+	@Override
+    public void setBlockBoundsBasedOnState(IBlockAccess par1IBlockAccess, int par2, int par3, int par4) {
+		this.setBlockBounds(0.25F, 0F, 0.25F, 0.75F, 1.4F, 0.75F);
+	}
+	
+	@Override
+    public void addCollisionBoxesToList(World par1World, int par2, int par3, int par4, AxisAlignedBB par5AxisAlignedBB, List par6List, Entity par7Entity){
+        this.setBlockBounds(0.25F, 0.0F, 0.25F, 0.75F, 0.7F, 0.75F);
+        
+        super.addCollisionBoxesToList(par1World, par2, par3, par4, par5AxisAlignedBB, par6List, par7Entity);
+        
+		if(face == ForgeDirection.NORTH){
+			this.setBlockBounds(0.25F, 0.7F, 0.65F, 0.75F, 1.4F, 0.75F);
+		}else if(face == ForgeDirection.SOUTH){
+			this.setBlockBounds(0.25F, 0.7F, 0.25F, 0.75F, 1.4F, 0.35F);
+		}else if(face == ForgeDirection.EAST){
+			this.setBlockBounds(0.25F, 0.7F, 0.25F, 0.35F, 1.4F, 0.75F);
+		}else if(face == ForgeDirection.WEST){
+			this.setBlockBounds(0.65F, 0.7F, 0.25F, 0.75F, 1.4F, 0.75F);
+		}
+        
+		super.addCollisionBoxesToList(par1World, par2, par3, par4, par5AxisAlignedBB, par6List, par7Entity);
+		
+        this.setBlockBoundsBasedOnState(par1World, par2, par3, par4);
+    }
+	
 }

@@ -274,28 +274,28 @@ public class ModJam {
 
 	public void addAllNames() {
 		for (int i = 0; i < 16; i++) {
-			LanguageRegistry.addName(new ItemStack(awesomeOre, 1, i), awesomeColors[new ItemStack(awesomeOre, 1, i).getItemDamage()] + " Awesome Ore");
-			LanguageRegistry.addName(new ItemStack(awesomeIngot, 1, i), awesomeColors[new ItemStack(awesomeIngot, 1, i).getItemDamage()] + " Awesome Gem");
-			LanguageRegistry.addName(new ItemStack(woodChair, 1, i), awesomeColors[new ItemStack(woodChair, 1, i).getItemDamage()] + " Glowing Wooden Chair");
-			LanguageRegistry.addName(new ItemStack(stoneChair, 1, i), awesomeColors[new ItemStack(stoneChair, 1, i).getItemDamage()] + " Glowing Stone Chair");
-			LanguageRegistry.addName(new ItemStack(woodTable, 1, i), awesomeColors[new ItemStack(woodTable, 1, i).getItemDamage()] + " Glowing Wooden Table");
-			LanguageRegistry.addName(new ItemStack(stoneTable, 1, i), awesomeColors[new ItemStack(stoneTable, 1, i).getItemDamage()] + " Glowing Stone Table");
-			LanguageRegistry.addName(new ItemStack(awesomeBlockStandard, 1, i), awesomeColors[new ItemStack(awesomeBlockStandard, 1, i).getItemDamage()] + " Awesome Block");
-			LanguageRegistry.addName(new ItemStack(awesomeBlockCreeper, 1, i), awesomeColors[new ItemStack(awesomeBlockCreeper, 1, i).getItemDamage()] + " Awesome Block");
+			LanguageRegistry.addName(new ItemStack(awesomeOre, 1, i), awesomeColors[new ItemStack(awesomeOre, 1, i).getItemDamage()] + " Neon Ore");
+			LanguageRegistry.addName(new ItemStack(awesomeIngot, 1, i), awesomeColors[new ItemStack(awesomeIngot, 1, i).getItemDamage()] + " Neon Gem");
+			LanguageRegistry.addName(new ItemStack(woodChair, 1, i), awesomeColors[new ItemStack(woodChair, 1, i).getItemDamage()] + " Neon Wooden Chair");
+			LanguageRegistry.addName(new ItemStack(stoneChair, 1, i), awesomeColors[new ItemStack(stoneChair, 1, i).getItemDamage()] + " Neon Stone Chair");
+			LanguageRegistry.addName(new ItemStack(woodTable, 1, i), awesomeColors[new ItemStack(woodTable, 1, i).getItemDamage()] + " Neon Wooden Table");
+			LanguageRegistry.addName(new ItemStack(stoneTable, 1, i), awesomeColors[new ItemStack(stoneTable, 1, i).getItemDamage()] + " Neon Stone Table");
+			LanguageRegistry.addName(new ItemStack(awesomeBlockStandard, 1, i), awesomeColors[new ItemStack(awesomeBlockStandard, 1, i).getItemDamage()] + " Neon Block");
+			LanguageRegistry.addName(new ItemStack(awesomeBlockCreeper, 1, i), awesomeColors[new ItemStack(awesomeBlockCreeper, 1, i).getItemDamage()] + " Neon Block");
 		}
-		LanguageRegistry.addName(new ItemStack(awesomeHelmet), "Awesome Helmet");
-		LanguageRegistry.addName(new ItemStack(awesomeChestplate), "Awesome Chestplate");
-		LanguageRegistry.addName(new ItemStack(awesomeLeggings), "Awesome Leggings");
-		LanguageRegistry.addName(new ItemStack(awesomeBoots), "Awesome Boots");
-		LanguageRegistry.addName(awesomePickaxe, "Awesome Pickaxe");
-		LanguageRegistry.addName(awesomeShovel, "Awesome Shovel");
-		LanguageRegistry.addName(awesomeSword, "Awesome Sword");
-		LanguageRegistry.addName(awesomeAxe, "Awesome Axe");
-		LanguageRegistry.addName(awesomeHoe, "Awesome Hoe");
+		LanguageRegistry.addName(new ItemStack(awesomeHelmet), "Neon Helmet");
+		LanguageRegistry.addName(new ItemStack(awesomeChestplate), "Neon Chestplate");
+		LanguageRegistry.addName(new ItemStack(awesomeLeggings), "Neon Leggings");
+		LanguageRegistry.addName(new ItemStack(awesomeBoots), "Neon Boots");
+		LanguageRegistry.addName(awesomePickaxe, "Neon Pickaxe");
+		LanguageRegistry.addName(awesomeShovel, "Neon Shovel");
+		LanguageRegistry.addName(awesomeSword, "Neon Sword");
+		LanguageRegistry.addName(awesomeAxe, "Neon Axe");
+		LanguageRegistry.addName(awesomeHoe, "Neon Hoe");
 		LanguageRegistry.addName(darkExtract, "Dark Extract");
-		LanguageRegistry.addName(awesomeBlock, "Awesome Block");
-		LanguageRegistry.addName(rotationTool, "Rotation Tool");
-		LanguageRegistry.addName(lightGen, "Light Generator");
+		LanguageRegistry.addName(awesomeBlock, "Dark Neon Block");
+		LanguageRegistry.addName(rotationTool, "Neon Rotator");
+		LanguageRegistry.addName(lightGen, "Neon Light Generator");
 	}
 
 	public void registerCreativeTab() {
