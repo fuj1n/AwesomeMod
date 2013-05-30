@@ -1,8 +1,5 @@
 package fuj1n.awesomeMod.common.items;
 
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.relauncher.Side;
-import paulscode.sound.SoundSystem;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,9 +10,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
-import fuj1n.awesomeMod.ModJam;
-import fuj1n.awesomeMod.common.blocks.BlockChair;
-import fuj1n.awesomeMod.common.blocks.BlockLightGenerator;
 import fuj1n.awesomeMod.common.blocks.INeonRotatable;
 import fuj1n.awesomeMod.common.blocks.IRotatorBreakable;
 
@@ -84,10 +78,6 @@ public class ItemRotationTool extends Item {
 		par1Block.onBlockDestroyedByPlayer(par3World, par4, par5, par6, par3World.getBlockMetadata(par4, par5, par6));
 		par3World.setBlockToAir(par4, par5, par6);
 		par1Block.breakBlock(par3World, par4, par5, par6, par1Block.blockID, par3World.getBlockMetadata(par4, par5, par6));
-		
-		if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT){
-			
-		}
 	}
 	
 	@Override
