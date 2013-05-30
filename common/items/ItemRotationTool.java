@@ -1,5 +1,9 @@
 package fuj1n.awesomeMod.common.items;
 
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.relauncher.Side;
+import paulscode.sound.SoundSystem;
+import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
@@ -12,6 +16,8 @@ import net.minecraft.world.World;
 import fuj1n.awesomeMod.ModJam;
 import fuj1n.awesomeMod.common.blocks.BlockChair;
 import fuj1n.awesomeMod.common.blocks.BlockLightGenerator;
+import fuj1n.awesomeMod.common.blocks.INeonRotatable;
+import fuj1n.awesomeMod.common.blocks.IRotatorBreakable;
 
 public class ItemRotationTool extends Item {
 
@@ -51,13 +57,20 @@ public class ItemRotationTool extends Item {
 	 */
 	@Override
 	public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, World par3World, int par4, int par5, int par6, int par7, float par8, float par9, float par10) {
-		int currentBlock = par3World.getBlockId(par4, par5, par6);
+		Block currentBlock = !par3World.isAirBlock(par4, par5, par6) ? Block.blocksList[par3World.getBlockId(par4, par5, par6)] : null;
 		boolean wasSuccessful = false;
-		if (currentBlock == ModJam.woodChairIDs[0] || currentBlock == ModJam.woodChairIDs[1] || currentBlock == ModJam.woodChairIDs[2] || currentBlock == ModJam.woodChairIDs[3] || currentBlock == ModJam.stoneChairIDs[0] || currentBlock == ModJam.stoneChairIDs[1] || currentBlock == ModJam.stoneChairIDs[2] || currentBlock == ModJam.stoneChairIDs[3]) {
-			wasSuccessful = BlockChair.handleRotation(par3World, par4, par5, par6, par2EntityPlayer);
-		}
-		if (currentBlock == ModJam.lightGen.blockID) {
-			wasSuccessful = BlockLightGenerator.handleRotation(par3World, par4, par5, par6, par2EntityPlayer);
+		if(currentBlock instanceof INeonRotatable){
+			if(par2EntityPlayer.isSneaking()){
+				wasSuccessful = true;
+				destroyBlock(currentBlock, par2EntityPlayer, par3World, par4, par5, par6, par7, par8, par9, par10);
+			}else{
+				wasSuccessful = ((INeonRotatable)currentBlock).handleRotation(par3World, par4, par5, par6, par2EntityPlayer);
+			}
+		}else if(currentBlock instanceof IRotatorBreakable){
+			if(par2EntityPlayer.isSneaking()){
+				wasSuccessful = true;
+				destroyBlock(currentBlock, par2EntityPlayer, par3World, par4, par5, par6, par7, par8, par9, par10);
+			}
 		}
 		if (wasSuccessful) {
 			par1ItemStack.damageItem(2, par2EntityPlayer);
@@ -66,6 +79,17 @@ public class ItemRotationTool extends Item {
 		return false;
 	}
 
+	public void destroyBlock(Block par1Block, EntityPlayer par2EntityPlayer, World par3World, int par4, int par5, int par6, int par7, float par8, float par9, float par10){
+		par1Block.dropBlockAsItem(par3World, par4, par5, par6, par3World.getBlockMetadata(par4, par5, par6), 0);
+		par1Block.onBlockDestroyedByPlayer(par3World, par4, par5, par6, par3World.getBlockMetadata(par4, par5, par6));
+		par3World.setBlockToAir(par4, par5, par6);
+		par1Block.breakBlock(par3World, par4, par5, par6, par1Block.blockID, par3World.getBlockMetadata(par4, par5, par6));
+		
+		if(FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT){
+			
+		}
+	}
+	
 	@Override
 	/**
 	 * returns the action that specifies what animation to play when the items is being used

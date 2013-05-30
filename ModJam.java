@@ -56,8 +56,10 @@ import fuj1n.awesomeMod.common.items.ItemAwesomeShovel;
 import fuj1n.awesomeMod.common.items.ItemAwesomeSword;
 import fuj1n.awesomeMod.common.items.ItemChair;
 import fuj1n.awesomeMod.common.items.ItemDarkExtract;
+import fuj1n.awesomeMod.common.items.ItemMulti;
 import fuj1n.awesomeMod.common.items.ItemRotationTool;
 import fuj1n.awesomeMod.common.items.ItemTable;
+import fuj1n.awesomeMod.common.lib.MultiItemReference;
 import fuj1n.awesomeMod.common.world.ComponentChestContents;
 import fuj1n.awesomeMod.common.world.WorldGeneratorModJam;
 
@@ -96,6 +98,7 @@ public class ModJam {
 	public static int awesomeToolHoeID = 3251;
 	public static int darkExtractID = 3252;
 	public static int rotationToolID = 3253;
+	public static int multiItemID = 3254;
 	// End Config values
 	// Blocks
 	public static Block awesomeOre;
@@ -128,6 +131,7 @@ public class ModJam {
 	public static Item awesomeHoe;
 	public static Item darkExtract;
 	public static Item rotationTool;
+	public static Item multiItem;
 	// Materials
 	public static EnumArmorMaterial awesomeArmorMaterial;
 	public static EnumToolMaterial awesomeToolMaterial;
@@ -171,6 +175,7 @@ public class ModJam {
 		awesomeToolHoeID = config.getItem("Awesome Hoe ID", awesomeToolHoeID).getInt();
 		darkExtractID = config.getItem("Dark Extract ID", darkExtractID).getInt();
 		rotationToolID = config.getItem("Rotation Tool ID", rotationToolID).getInt();
+		multiItemID = config.getItem("Multi Item ID", multiItemID).getInt();
 		config.save();
 	}
 
@@ -252,6 +257,7 @@ public class ModJam {
 		awesomeHoe = new ItemAwesomeHoe(awesomeToolHoeID, awesomeToolMaterial, "awesomeMod:fuj1n.AwesomeMod.awesomeHoe").setUnlocalizedName("fuj1n.AwesomeMod.awesomeHoe");
 		darkExtract = new ItemDarkExtract(darkExtractID).setCreativeTab(modJamCreativeTab).setUnlocalizedName("fuj1n.AwesomeMod.darkExtract");
 		rotationTool = new ItemRotationTool(rotationToolID).setCreativeTab(modJamCreativeTab).setUnlocalizedName("fuj1n.AwesomeMod.rotationTool");
+		multiItem = new ItemMulti(multiItemID).setCreativeTab(modJamCreativeTab).setUnlocalizedName("fuj1n.AwesomeMod.multiItem");
 	}
 
 	public void registerAllBlocks() {
@@ -296,6 +302,10 @@ public class ModJam {
 		LanguageRegistry.addName(awesomeBlock, "Dark Neon Block");
 		LanguageRegistry.addName(rotationTool, "Neon Rotator");
 		LanguageRegistry.addName(lightGen, "Neon Light Generator");
+		
+		for (int i = 0; i < MultiItemReference.NAMES.length; i++) {
+			LanguageRegistry.addName(new ItemStack(multiItem, 0, i), MultiItemReference.NAMES[i]);
+		}
 	}
 
 	public void registerCreativeTab() {

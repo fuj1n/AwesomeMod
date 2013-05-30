@@ -1,8 +1,16 @@
 package fuj1n.awesomeMod.common.blocks;
 
+import static net.minecraftforge.common.ForgeDirection.DOWN;
+import static net.minecraftforge.common.ForgeDirection.UP;
+
 import java.util.List;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockFarmland;
+import net.minecraft.block.BlockHalfSlab;
+import net.minecraft.block.BlockHopper;
+import net.minecraft.block.BlockPoweredOre;
+import net.minecraft.block.BlockStairs;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -11,9 +19,10 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeDirection;
 import fuj1n.awesomeMod.client.ClientProxyModJam;
 
-public class BlockTable extends BlockGlobalFurniturePlacementHandler {
+public class BlockTable extends BlockGlobalFurniturePlacementHandler implements IRotatorBreakable{
 
 	private Icon[] blockColors = new Icon[16];
 
@@ -128,4 +137,14 @@ public class BlockTable extends BlockGlobalFurniturePlacementHandler {
 		blockColors[14] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.awesomeOreRed");
 		blockColors[15] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.awesomeOreBlack");
 	}
+	
+	@Override
+    public boolean isBlockSolidOnSide(World world, int x, int y, int z, ForgeDirection side)
+    {
+        if(side == ForgeDirection.UP){
+        	return true;
+        }else{
+        	return false;
+        }
+    }
 }

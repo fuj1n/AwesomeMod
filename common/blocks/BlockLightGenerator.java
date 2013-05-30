@@ -13,7 +13,7 @@ import net.minecraftforge.common.ForgeDirection;
 import fuj1n.awesomeMod.ModJam;
 import fuj1n.awesomeMod.client.ClientProxyModJam;
 
-public class BlockLightGenerator extends Block {
+public class BlockLightGenerator extends Block implements INeonRotatable{
 
 	public BlockLightGenerator(int par1) {
 		super(par1, Material.tnt);
@@ -154,7 +154,7 @@ public class BlockLightGenerator extends Block {
 		return returnValue;
 	}
 
-	public static boolean handleRotation(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer) {
+	public boolean handleRotation(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer) {
 		par5EntityPlayer.openGui(ModJam.instance, 0, par1World, par2, par3, par4);
 		return false;
 	}

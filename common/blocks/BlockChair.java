@@ -19,7 +19,7 @@ import fuj1n.awesomeMod.ModJam;
 import fuj1n.awesomeMod.client.ClientProxyModJam;
 import fuj1n.awesomeMod.common.entity.EntityChair;
 
-public class BlockChair extends BlockGlobalFurniturePlacementHandler {
+public class BlockChair extends BlockGlobalFurniturePlacementHandler implements INeonRotatable{
 
 	private Icon[] blockColors = new Icon[16];
 
@@ -151,7 +151,7 @@ public class BlockChair extends BlockGlobalFurniturePlacementHandler {
 		return true;
 	}
 
-	public static boolean handleRotation(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer) {
+	public boolean handleRotation(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer) {
 		int currentBlock = par1World.getBlockId(par2, par3, par4);
 		int nextBlock = currentBlock + 1;
 		int meta = par1World.getBlockMetadata(par2, par3, par4);
