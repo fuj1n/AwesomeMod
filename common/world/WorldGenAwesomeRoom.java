@@ -1,6 +1,7 @@
 package fuj1n.awesomeMod.common.world;
 
 import java.util.Random;
+import java.util.logging.Level;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
@@ -14,8 +15,8 @@ public class WorldGenAwesomeRoom extends WorldGenerator {
 	@Override
 	public boolean generate(World world, Random random, int i, int j, int k) {
 		if (world.getBlockId(i, j, k) != 0 && world.getBlockId(i, j, k) != Block.waterStill.blockID) {
-			// ModJam.log("Generating room at: " + i + " " + j + " " + k,
-			// Level.INFO);
+			ModJam.log("Generating room at: " + i + " " + j + " " + k,
+			 Level.INFO);
 			for (int i1 = i; i1 < i + 5; i1++) {
 				for (int j1 = j; j1 < j + 5; j1++) {
 					for (int k1 = k; k1 < k + 5; k1++) {
@@ -28,17 +29,27 @@ public class WorldGenAwesomeRoom extends WorldGenerator {
 					world.setBlock(i1, j1, k, ModJam.awesomeBlock.blockID);
 					world.setBlock(i1, j1, k + 4, ModJam.awesomeBlock.blockID);
 				}
+				
 				for (int k1 = k; k1 < k + 5; k1++) {
-					world.setBlock(i1, j, k1, ModJam.awesomeBlock.blockID);
+					for (int j1 = j; j1 < j + 5; j1++) {
+						world.setBlock(i, j1, k1, ModJam.awesomeBlock.blockID);
+						world.setBlock(i + 4, j1, k1, ModJam.awesomeBlock.blockID);
+					}
+				}
+			}
+			
+			//Floor gen
+			for (int i1 = i; i1 < i + 5; i1++) {
+				for (int k1 = k; k1 < k + 5; k1++) {
 					world.setBlock(i1, j + 4, k1, ModJam.awesomeBlock.blockID);
+					if ((i1 + k1) % 2 == 0) {
+						world.setBlock(i1, j, k1, ModJam.awesomeBlockStandard.blockID, 15, 2);
+					} else {
+						world.setBlock(i1, j, k1, ModJam.awesomeBlockStandard.blockID, 9, 2);
+					}
 				}
 			}
-			for (int k1 = k; k1 < k + 5; k1++) {
-				for (int j1 = j; j1 < j + 5; j1++) {
-					world.setBlock(i, j1, k1, ModJam.awesomeBlock.blockID);
-					world.setBlock(i + 4, j1, k1, ModJam.awesomeBlock.blockID);
-				}
-			}
+			
 			world.setBlock(i + 2, j + 2, k, ModJam.awesomeBlockCreeper.blockID, 5, 2);
 			world.setBlock(i + 2, j + 2, k + 4, ModJam.awesomeBlockCreeper.blockID, 5, 2);
 			world.setBlock(i + 2, j + 4, k + 2, ModJam.awesomeBlockCreeper.blockID, 5, 2);

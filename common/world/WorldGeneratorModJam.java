@@ -39,7 +39,7 @@ public class WorldGeneratorModJam implements IWorldGenerator {
 				(new WorldGenMinable(ModJam.oreAwesomeID, meta, 10, Block.stone.blockID)).generate(world, random, xCoord, yCoord, zCoord);
 			}
 		}
-		if (random.nextInt(15) == 1) {
+		if (random.nextInt(50) == 1 && world.getWorldInfo().isMapFeaturesEnabled()) {
 			int y1 = random.nextInt(12);
 			int y2 = 45;
 			int y = y1 + y2;
@@ -54,7 +54,7 @@ public class WorldGeneratorModJam implements IWorldGenerator {
 					int xCoord = chunkX + random.nextInt(16);
 					int yCoord = random.nextInt(50);
 					int zCoord = chunkZ + random.nextInt(16);
-					(new WorldGenMinable(ModJam.oreAwesomeID, meta, 10, Block.stone.blockID)).generate(world, random, xCoord, yCoord, zCoord);
+					(new WorldGenMinable(ModJam.oreAwesomeID, meta, 10, Block.netherrack.blockID)).generate(world, random, xCoord, yCoord, zCoord);
 				}
 			}
 		}
@@ -66,7 +66,7 @@ public class WorldGeneratorModJam implements IWorldGenerator {
 				int xCoord = chunkX + random.nextInt(16);
 				int yCoord = random.nextInt(50);
 				int zCoord = chunkZ + random.nextInt(16);
-				(new WorldGenMinable(ModJam.oreAwesomeID, meta, 10, Block.stone.blockID)).generate(world, random, xCoord, yCoord, zCoord);
+				(new WorldGenMinable(ModJam.oreAwesomeID, meta, 10, Block.whiteStone.blockID)).generate(world, random, xCoord, yCoord, zCoord);
 			}
 		}
 	}
