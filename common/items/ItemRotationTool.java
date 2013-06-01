@@ -11,7 +11,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import fuj1n.awesomeMod.common.blocks.INeonRotatable;
-import fuj1n.awesomeMod.common.blocks.IRotatorBreakable;
 
 public class ItemRotationTool extends Item {
 
@@ -25,6 +24,11 @@ public class ItemRotationTool extends Item {
 		return 1;
 	}
 
+    public boolean getShareTag()
+    {
+        return true;
+    }
+	
 	@Override
 	public boolean isBookEnchantable(ItemStack itemstack1, ItemStack itemstack2) {
 		ItemEnchantedBook handlerItem = null;
@@ -44,6 +48,8 @@ public class ItemRotationTool extends Item {
 		return false;
 	}
 
+	
+	
 	/**
 	 * Callback for item usage. If the item does something special on right
 	 * clicking, he will have one of those. Return True if something happen and
@@ -60,15 +66,17 @@ public class ItemRotationTool extends Item {
 			}else{
 				wasSuccessful = ((INeonRotatable)currentBlock).handleRotation(par3World, par4, par5, par6, par2EntityPlayer);
 			}
-		}else if(currentBlock instanceof IRotatorBreakable){
+		}else if(currentBlock instanceof INeonRotatable.IRotatorBreakable){
 			if(par2EntityPlayer.isSneaking()){
 				wasSuccessful = true;
 				destroyBlock(currentBlock, par2EntityPlayer, par3World, par4, par5, par6, par7, par8, par9, par10);
 			}
 		}
-		if (wasSuccessful) {
-			par1ItemStack.damageItem(2, par2EntityPlayer);
-			return true;
+		if (wasSuccessful || currentBlock instanceof INeonRotatable.IAlwaysSuccessful) {
+			if(par1ItemStack != null && par2EntityPlayer != null){
+				par1ItemStack.damageItem(2, par2EntityPlayer);
+				return true;
+			}
 		}
 		return false;
 	}

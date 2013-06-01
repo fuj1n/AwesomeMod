@@ -22,7 +22,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import fuj1n.awesomeMod.client.ClientProxyModJam;
 
-public class BlockTable extends BlockGlobalFurniturePlacementHandler implements IRotatorBreakable{
+public class BlockTable extends BlockGlobalFurniturePlacementHandler implements INeonRotatable.IRotatorBreakable{
 
 	private Icon[] blockColors = new Icon[16];
 

@@ -8,4 +8,8 @@ public interface INeonRotatable {
 
 	public abstract boolean handleRotation(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer);
 	
+	public interface IAlwaysSuccessful{}
+	
+	public interface IRotatorBreakable{}
+	
 }
