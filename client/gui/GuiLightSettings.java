@@ -6,6 +6,7 @@ import java.io.DataOutputStream;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.client.resources.ResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.world.World;
@@ -31,7 +32,7 @@ public class GuiLightSettings extends GuiContainer {
 	private GuiLightButton buttonSet;
 
 	public int[] themePrefs = ModJam.themeHandler.readConfiguration();
-
+	
 	public GuiLightSettings(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer) {
 		super(new ContainerDummy());
 		world = par1World;
@@ -170,7 +171,8 @@ public class GuiLightSettings extends GuiContainer {
 	protected void drawGuiContainerBackgroundLayer(float f, int i, int j) {
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		String textureFilePostfix = themePrefs[0] == 0 ? "" : Integer.toString(themePrefs[0] + 1);
-		mc.renderEngine.bindTexture("/gui/lightSettings" + textureFilePostfix + ".png");
+		ResourceLocation background = new ResourceLocation("awesomeMod:textures/gui/lightSettings" + textureFilePostfix + ".png");
+		mc.renderEngine.func_110577_a(background);
 		int x = (width - xSize) / 2;
 		int y = (height - ySize) / 2;
 		this.drawTexturedModalRect(x, y, 0, themePrefs[1] * ySize, xSize, ySize);

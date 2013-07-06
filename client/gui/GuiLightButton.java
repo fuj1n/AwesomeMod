@@ -3,6 +3,7 @@ package fuj1n.awesomeMod.client.gui;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.resources.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
@@ -36,6 +37,9 @@ public class GuiLightButton extends GuiButton {
 	public boolean drawButton;
 	protected boolean field_82253_i;
 
+	/** Resources */
+	ResourceLocation backgroundLocation = new ResourceLocation("awesomeMod:textures/gui/lightButtons.png");
+	
 	public GuiLightButton(int par1, int par2, int par3, String par4Str) {
 		super(par1, par2, par3, 200, 20, par4Str);
 	}
@@ -78,7 +82,7 @@ public class GuiLightButton extends GuiButton {
 	public void drawButton(Minecraft par1Minecraft, int par2, int par3) {
 		if (drawButton) {
 			FontRenderer fontrenderer = par1Minecraft.fontRenderer;
-			par1Minecraft.renderEngine.bindTexture("/gui/lightButtons.png");
+			par1Minecraft.renderEngine.func_110577_a(backgroundLocation);
 			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 			field_82253_i = par2 >= xPosition && par3 >= yPosition && par2 < xPosition + width && par3 < yPosition + height;
 			int k = this.getHoverState(field_82253_i);

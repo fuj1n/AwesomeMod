@@ -59,6 +59,13 @@ public class ItemRotationTool extends Item {
 	public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, World par3World, int par4, int par5, int par6, int par7, float par8, float par9, float par10) {
 		Block currentBlock = !par3World.isAirBlock(par4, par5, par6) ? Block.blocksList[par3World.getBlockId(par4, par5, par6)] : null;
 		boolean wasSuccessful = false;
+		
+		if(currentBlock instanceof INeonRotatable.IAlwaysSuccessful){
+			if(par1ItemStack != null && par2EntityPlayer != null){
+				par1ItemStack.damageItem(2, par2EntityPlayer);
+			}
+		}
+		
 		if(currentBlock instanceof INeonRotatable){
 			if(par2EntityPlayer.isSneaking()){
 				wasSuccessful = true;
@@ -72,13 +79,14 @@ public class ItemRotationTool extends Item {
 				destroyBlock(currentBlock, par2EntityPlayer, par3World, par4, par5, par6, par7, par8, par9, par10);
 			}
 		}
-		if (wasSuccessful || currentBlock instanceof INeonRotatable.IAlwaysSuccessful) {
+		if (wasSuccessful && !(currentBlock instanceof INeonRotatable.IAlwaysSuccessful)) {
 			if(par1ItemStack != null && par2EntityPlayer != null){
 				par1ItemStack.damageItem(2, par2EntityPlayer);
 				return true;
 			}
 		}
-		return false;
+		
+		return currentBlock instanceof INeonRotatable.IAlwaysSuccessful;
 	}
 
 	public void destroyBlock(Block par1Block, EntityPlayer par2EntityPlayer, World par3World, int par4, int par5, int par6, int par7, float par8, float par9, float par10){

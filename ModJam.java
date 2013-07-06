@@ -176,7 +176,23 @@ public class ModJam {
 		darkExtractID = config.getItem("Dark Extract ID", darkExtractID).getInt();
 		rotationToolID = config.getItem("Rotation Tool ID", rotationToolID).getInt();
 		multiItemID = config.getItem("Multi Item ID", multiItemID).getInt();
-		config.save();
+		if(config.hasChanged()){
+			config.save();
+		}
+		
+		if (event.getSide() == Side.CLIENT) {
+			new UpdaterClient();
+			registerCreativeTab();
+		} else if (event.getSide() == Side.SERVER) {
+			new UpdaterServer();
+		} else {
+			log("Failed to detect current side.", Level.SEVERE);
+		}
+		
+		initAllMaterials();
+		initAllItems();
+		initAllBlocks();
+		registerAllBlocks();
 	}
 
 	public void refreshChairIDs() {
@@ -190,20 +206,8 @@ public class ModJam {
 
 	@Init
 	public void Init(FMLInitializationEvent event) {
-		if (event.getSide() == Side.CLIENT) {
-			new UpdaterClient();
-			registerCreativeTab();
-		} else if (event.getSide() == Side.SERVER) {
-			new UpdaterServer();
-		} else {
-			log("Failed to detect current side.", Level.SEVERE);
-		}
 		NetworkRegistry.instance().registerGuiHandler(this, new GuiHandler());
 		proxy.Init();
-		initAllMaterials();
-		initAllItems();
-		initAllBlocks();
-		registerAllBlocks();
 		addAllNames();
 		addAllCrafting();
 		addHeadRecipe();
@@ -221,7 +225,7 @@ public class ModJam {
 
 	public void initAllMaterials() {
 		awesomeArmorMaterial = EnumHelper.addArmorMaterial("AWESOME", 13, new int[] { 3, 7, 5, 2 }, 25);
-		awesomeToolMaterial = EnumHelper.addToolMaterial("AWESOME", 3, 280, 7.0F, 2, 22);
+		awesomeToolMaterial = EnumHelper.addToolMaterial("AWESOME", 3, 280, 7.0F, 2F, 22);
 	}
 
 	public void initAllBlocks() {

@@ -13,7 +13,8 @@ import net.minecraftforge.common.ForgeDirection;
 import fuj1n.awesomeMod.ModJam;
 import fuj1n.awesomeMod.client.ClientProxyModJam;
 
-public class BlockLightGenerator extends Block implements INeonRotatable{
+//For some reason, right clicking with the neon rotator on the light generator, and making the neon rotator get damaged crashes because of a net place handler NPE :(
+public class BlockLightGenerator extends Block implements INeonRotatable/*, INeonRotatable.IAlwaysSuccessful*/{
 
 	public BlockLightGenerator(int par1) {
 		super(par1, Material.tnt);

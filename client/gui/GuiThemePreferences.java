@@ -3,6 +3,7 @@ package fuj1n.awesomeMod.client.gui;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.client.resources.ResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
 
 import org.lwjgl.opengl.GL11;
@@ -25,6 +26,8 @@ public class GuiThemePreferences extends GuiContainer {
 	public GuiLightButton subIndex;
 	public GuiLightButton addIndex;
 	public GuiLightButton savePrefs;
+	
+	ResourceLocation background = new ResourceLocation("awesomeMod:textures/gui/themePreferences.png");
 
 	public GuiThemePreferences(EntityPlayer par1EntityPlayer) {
 		super(new ContainerDummy());
@@ -111,12 +114,13 @@ public class GuiThemePreferences extends GuiContainer {
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float f, int i, int j) {
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		mc.renderEngine.bindTexture("/gui/themePreferences.png");
+		mc.renderEngine.func_110577_a(background);
 		int x = (width - xSize) / 2;
 		int y = (height - ySize) / 2;
 		this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
 		String textureFilePostfix = currentPrefs[0] == 0 ? "" : Integer.toString(currentPrefs[0] + 1);
-		mc.renderEngine.bindTexture("/gui/lightSettings" + textureFilePostfix + ".png");
+		ResourceLocation preview = new ResourceLocation("awesomeMod:textures/gui/lightSettings" + textureFilePostfix + ".png");
+		mc.renderEngine.func_110577_a(preview);
 		this.drawTexturedModalRect(previewXPos, previewYPos, 0, currentPrefs[1] * columnHeight, columnWidth, columnHeight);
 		alignButtonsAndPreviewWindow();
 
