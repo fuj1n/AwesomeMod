@@ -32,10 +32,6 @@ public class ClientProxyModJam extends CommonProxyModJam {
 	@Override
 	public void preInit() {
 		ModJam.themeHandler = new ThemingHandler(ModJam.configDir);
-	}
-
-	@Override
-	public void Init() {
 		awesomeOreRenderType = RenderingRegistry.getNextAvailableRenderId();
 		chairRenderType = RenderingRegistry.getNextAvailableRenderId();
 		tableRenderType = RenderingRegistry.getNextAvailableRenderId();
@@ -49,6 +45,11 @@ public class ClientProxyModJam extends CommonProxyModJam {
 		awesomeArmorID = RenderingRegistry.addNewArmourRendererPrefix("awesome");
 		themeProps = new KeyBinding("Awesome Mod Theme Settings", 25);
 		KeyBindingRegistry.registerKeyBinding(new KeyHandlerModJam(new KeyBinding[] { themeProps }, new boolean[] { false }));
+	}
+
+	@Override
+	public void Init() {
+		
 	}
 
 	@Override
