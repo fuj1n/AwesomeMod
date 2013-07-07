@@ -14,9 +14,15 @@ public class WorldGenAwesomeRoom extends WorldGenerator {
 
 	@Override
 	public boolean generate(World world, Random random, int i, int j, int k) {
+		int genColor = 5;
+		
+		int temp = AwesomeRoomGenHelper.getRandomSecondaryColor(random);
+		if(temp != -1){
+			genColor = temp;
+		}
+		
 		if (world.getBlockId(i, j, k) != 0 && world.getBlockId(i, j, k) != Block.waterStill.blockID) {
-			ModJam.log("Generating room at: " + i + " " + j + " " + k,
-			 Level.INFO);
+			// ModJam.log("Generating room at: " + i + " " + j + " " + k, Level.INFO);
 			for (int i1 = i; i1 < i + 5; i1++) {
 				for (int j1 = j; j1 < j + 5; j1++) {
 					for (int k1 = k; k1 < k + 5; k1++) {
@@ -29,7 +35,7 @@ public class WorldGenAwesomeRoom extends WorldGenerator {
 					world.setBlock(i1, j1, k, ModJam.awesomeBlock.blockID);
 					world.setBlock(i1, j1, k + 4, ModJam.awesomeBlock.blockID);
 				}
-				
+
 				for (int k1 = k; k1 < k + 5; k1++) {
 					for (int j1 = j; j1 < j + 5; j1++) {
 						world.setBlock(i, j1, k1, ModJam.awesomeBlock.blockID);
@@ -37,8 +43,8 @@ public class WorldGenAwesomeRoom extends WorldGenerator {
 					}
 				}
 			}
-			
-			//Floor gen
+
+			// Floor gen
 			for (int i1 = i; i1 < i + 5; i1++) {
 				for (int k1 = k; k1 < k + 5; k1++) {
 					world.setBlock(i1, j + 4, k1, ModJam.awesomeBlock.blockID);
@@ -49,13 +55,13 @@ public class WorldGenAwesomeRoom extends WorldGenerator {
 					}
 				}
 			}
-			
-			world.setBlock(i + 2, j + 2, k, ModJam.awesomeBlockCreeper.blockID, 5, 2);
-			world.setBlock(i + 2, j + 2, k + 4, ModJam.awesomeBlockCreeper.blockID, 5, 2);
-			world.setBlock(i + 2, j + 4, k + 2, ModJam.awesomeBlockCreeper.blockID, 5, 2);
-			world.setBlock(i + 2, j, k + 2, ModJam.awesomeBlockStandard.blockID, 5, 2);
-			world.setBlock(i, j + 2, k + 2, ModJam.awesomeBlockStandard.blockID, 5, 2);
-			world.setBlock(i + 4, j + 2, k + 2, ModJam.awesomeBlockStandard.blockID, 5, 2);
+
+			world.setBlock(i + 2, j + 2, k, ModJam.awesomeBlockCreeper.blockID, genColor, 2);
+			world.setBlock(i + 2, j + 2, k + 4, ModJam.awesomeBlockCreeper.blockID, genColor, 2);
+			world.setBlock(i + 2, j + 4, k + 2, ModJam.awesomeBlockCreeper.blockID, genColor, 2);
+			world.setBlock(i + 2, j, k + 2, ModJam.awesomeBlockStandard.blockID, genColor, 2);
+			world.setBlock(i, j + 2, k + 2, ModJam.awesomeBlockStandard.blockID, genColor, 2);
+			world.setBlock(i + 4, j + 2, k + 2, ModJam.awesomeBlockStandard.blockID, genColor, 2);
 			genChestContents(world, random, i + 2, j + 1, k + 2);
 			return true;
 		}

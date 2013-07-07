@@ -10,6 +10,13 @@ import cpw.mods.fml.common.IWorldGenerator;
 import fuj1n.awesomeMod.ModJam;
 
 public class WorldGeneratorModJam implements IWorldGenerator {
+	
+	public WorldGeneratorModJam(){
+		AwesomeRoomGenHelper.possibleColors.add(5);
+		AwesomeRoomGenHelper.possibleColors.add(9);
+		AwesomeRoomGenHelper.possibleColors.add(10);
+	}
+	
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
 		switch (world.provider.dimensionId) {
