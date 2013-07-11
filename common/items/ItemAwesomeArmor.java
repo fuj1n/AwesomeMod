@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
@@ -105,6 +106,13 @@ public class ItemAwesomeArmor extends ItemArmor {
 
 	}
 
+	@Override
+	public String getArmorTexture(ItemStack stack, Entity entity, int slot, int layer) {
+		int suffix = this.armorType == 2 ? 2 : 1;
+
+		return "awesomeMod:textures/models/armor/awesome_layer_" + suffix + ".png";
+	}
+	
 	@Override
 	public String getUnlocalizedName(ItemStack par1ItemStack) {
 		return getUnlocalizedName() + "." + getArmorNameByType(armorType);

@@ -62,6 +62,10 @@ public class WorldGenAwesomeRoom extends WorldGenerator {
 			world.setBlock(i + 2, j, k + 2, ModJam.awesomeBlockStandard.blockID, genColor, 2);
 			world.setBlock(i, j + 2, k + 2, ModJam.awesomeBlockStandard.blockID, genColor, 2);
 			world.setBlock(i + 4, j + 2, k + 2, ModJam.awesomeBlockStandard.blockID, genColor, 2);
+			world.setBlockToAir(i, j + 4, k);
+			world.setBlockToAir(i + 4, j + 4, k);
+			world.setBlockToAir(i, j + 4, k + 4);
+			world.setBlockToAir(i + 4, j + 4, k + 4);
 			genChestContents(world, random, i + 2, j + 1, k + 2);
 			return true;
 		}

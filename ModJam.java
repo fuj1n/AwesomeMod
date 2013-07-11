@@ -19,6 +19,7 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.Mod.PostInit;
@@ -143,7 +144,7 @@ public class ModJam {
 	@Instance("fuj1n.modJam")
 	public static ModJam instance;
 
-	@PreInit
+	@EventHandler
 	public void PreInit(FMLPreInitializationEvent event) {
 		proxy.preInit();
 		configDir = event.getModConfigurationDirectory();
@@ -204,7 +205,7 @@ public class ModJam {
 		stoneChairIDs[3] = stoneChairIDs[2] + 1;
 	}
 
-	@Init
+	@EventHandler
 	public void Init(FMLInitializationEvent event) {
 		NetworkRegistry.instance().registerGuiHandler(this, new GuiHandler());
 		proxy.Init();
@@ -218,7 +219,7 @@ public class ModJam {
 		BlockGlobalFurniturePlacementHandler.initPlacementWhitelist();
 	}
 
-	@PostInit
+	@EventHandler
 	public void PostInit(FMLPostInitializationEvent event) {
 		proxy.postInit();
 	}
