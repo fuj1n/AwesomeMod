@@ -58,6 +58,11 @@ public class BlockTable extends BlockGlobalFurniturePlacementHandler implements 
 	public boolean canPlaceTorchOnTop(World world, int x, int y, int z) {
 		return true;
 	}
+	
+	@Override
+    public boolean isBlockSolidOnSide(World world, int x, int y, int z, ForgeDirection side){
+        return side == ForgeDirection.UP;
+    }
 
 	@Override
 	public Icon getIcon(int par1, int par2) {
@@ -137,14 +142,4 @@ public class BlockTable extends BlockGlobalFurniturePlacementHandler implements 
 		blockColors[14] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.awesomeOreRed");
 		blockColors[15] = par1IconRegister.registerIcon("awesomeMod:fuj1n.AwesomeMod.awesomeOreBlack");
 	}
-	
-	@Override
-    public boolean isBlockSolidOnSide(World world, int x, int y, int z, ForgeDirection side)
-    {
-        if(side == ForgeDirection.UP){
-        	return true;
-        }else{
-        	return false;
-        }
-    }
 }

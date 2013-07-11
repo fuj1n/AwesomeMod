@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeDirection;
 import fuj1n.awesomeMod.client.ClientProxyModJam;
 
 public class BlockAwesomeOre extends BlockOre {
@@ -27,6 +28,11 @@ public class BlockAwesomeOre extends BlockOre {
 	public Icon getIcon(int par1, int par2) {
 		return blockColors[par2];
 	}
+	
+	@Override
+    public boolean isBlockSolidOnSide(World world, int x, int y, int z, ForgeDirection side){
+        return true;
+    }
 
 	/**
 	 * Determines if a torch can be placed on the top surface of this block.

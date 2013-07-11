@@ -12,6 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeDirection;
 import fuj1n.awesomeMod.client.ClientProxyModJam;
 
 public class BlockAwesome extends Block {
@@ -38,6 +39,11 @@ public class BlockAwesome extends Block {
 		}
 	}
 
+	@Override
+    public boolean isBlockSolidOnSide(World world, int x, int y, int z, ForgeDirection side){
+        return true;
+    }
+	
 	public Icon getUnderlyingTexture(int par1, int par2) {
 		return bottomBlock;
 	}
