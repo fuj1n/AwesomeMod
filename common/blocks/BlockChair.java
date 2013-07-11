@@ -101,6 +101,11 @@ public class BlockChair extends BlockGlobalFurniturePlacementHandler implements 
 	public Icon getIcon(int par1, int par2) {
 		return blockColors[par2];
 	}
+	
+	@Override
+    public boolean isBlockSolidOnSide(World world, int x, int y, int z, ForgeDirection side){
+		return face == side.getOpposite();
+    }
 
 	@Override
 	public boolean renderAsNormalBlock() {
